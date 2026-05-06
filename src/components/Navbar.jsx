@@ -19,12 +19,17 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
+    { name: 'Free Tools', path: '/tools' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Estimator', path: '/estimator' },
     { name: 'Quiz', path: '/quiz' }
   ];
+
+  const isActivePath = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || isOpen ? 'bg-white/95 backdrop-blur-xl shadow-md border-b border-slate-200/50 py-3' : 'bg-transparent py-4 md:py-6'}`}>
@@ -44,27 +49,33 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-10">
-            <div className="flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
+            <div className="flex items-center gap-6">
               {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
+                const isActive = isActivePath(link.path);
                 return (
                   <Link 
                     key={link.path} 
                     to={link.path}
-                    className={`text-[15px] font-bold transition-all hover:text-blue-600 ${
+                    className={`text-[15px] font-bold transition-all hover:text-blue-600 relative ${
                       scrolled 
                         ? isActive ? 'text-blue-600' : 'text-slate-700' 
                         : isActive ? 'text-white drop-shadow-md' : 'text-white/80'
                     }`}
                   >
                     {link.name}
+                    {isActive && (
+                      <motion.div 
+                        layoutId="navIndicator"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full"
+                      />
+                    )}
                   </Link>
                 )
               })}
             </div>
             <Link to="/contact">
-              <Button className="rounded-full px-8 py-6 h-12 text-base font-bold bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/15 hover:shadow-lg hover:shadow-blue-600/25 hover:-translate-y-0.5 transition-all">
+              <Button className="rounded-full px-7 py-5 h-11 text-sm font-bold bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/15 hover:shadow-lg hover:shadow-blue-600/25 hover:-translate-y-0.5 transition-all">
                 Get a Quote
               </Button>
             </Link>
@@ -90,21 +101,21 @@ const Navbar = () => {
             transition={{ duration: 0.2 }}
             className="lg:hidden bg-white border-b border-slate-200 absolute w-full top-full left-0 shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto"
           >
-            <div className="flex flex-col px-6 py-8 gap-2">
+            <div className="flex flex-col px-6 py-6 gap-1">
               {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
+                const isActive = isActivePath(link.path);
                 return (
                   <Link 
                     key={link.path} 
                     to={link.path}
-                    className={`text-lg font-bold p-4 rounded-xl transition-colors ${isActive ? 'bg-blue-50 text-blue-700' : 'text-slate-800 hover:bg-slate-50'}`}
+                    className={`text-base font-bold p-4 rounded-xl transition-colors ${isActive ? 'bg-blue-50 text-blue-700' : 'text-slate-800 hover:bg-slate-50'}`}
                   >
                     {link.name}
                   </Link>
                 )
               })}
-              <Link to="/contact" className="mt-6">
-                <Button className="w-full h-14 rounded-xl text-lg font-bold bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20">
+              <Link to="/contact" className="mt-4">
+                <Button className="w-full h-12 rounded-xl text-base font-bold bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20">
                   Get a Quote
                 </Button>
               </Link>
