@@ -74,8 +74,9 @@ const Pricing = () => {
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
               <PricingCard 
                 title="Starter"
-                desc="Essential web presence and basic support."
+                desc="A professional website to get your business online."
                 price={getPrice(599)}
+                originalPrice={billingCycle === 'yearly' ? 599 : null}
                 period={billingCycle === 'yearly' ? 'mo (billed yearly)' : 'mo'}
                 features={['Custom 5-Page Website', 'Basic Local SEO Setup', 'Mobile Responsive Design', 'Standard Email Support']}
               />
@@ -85,8 +86,9 @@ const Pricing = () => {
               <PricingCard 
                 isPopular={true}
                 title="Growth"
-                desc="Advanced digital marketing and active SEO."
+                desc="Website plus ongoing SEO and marketing."
                 price={getPrice(799)}
+                originalPrice={billingCycle === 'yearly' ? 799 : null}
                 period={billingCycle === 'yearly' ? 'mo (billed yearly)' : 'mo'}
                 features={['Everything in Starter', 'Active Monthly SEO Optimization', 'Social Media Management (2 platforms)', 'Google Business Profile Management', 'Monthly Performance Reporting', 'Priority Support (24hr response)']}
               />
@@ -95,8 +97,9 @@ const Pricing = () => {
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               <PricingCard 
                 title="Premium"
-                desc="Comprehensive digital management for established teams."
+                desc="Full digital management for growing businesses."
                 price={getPrice(999)}
+                originalPrice={billingCycle === 'yearly' ? 999 : null}
                 period={billingCycle === 'yearly' ? 'mo (billed yearly)' : 'mo'}
                 features={['Everything in Growth', 'Full E-commerce capabilities', 'Dedicated Technical Account Manager', 'Advanced Cyber Security & Backups', 'Custom Workflow Integrations', '24/7 Priority IT Support']}
               />

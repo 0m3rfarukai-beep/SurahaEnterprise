@@ -2,7 +2,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
-const PricingCard = ({ title, desc, price, features, isPopular, period = 'mo' }) => {
+const PricingCard = ({ title, desc, price, features, isPopular, period = 'mo', originalPrice }) => {
   return (
     <div className={`relative flex flex-col h-full rounded-[2.5rem] p-8 sm:p-10 md:p-12 transition-all duration-500 ${isPopular ? 'bg-slate-950 text-white shadow-2xl shadow-blue-900/20 md:-translate-y-4' : 'bg-white text-slate-900 border border-slate-100 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_100px_-20px_rgba(37,99,235,0.08)]'}`}>
       
@@ -14,13 +14,23 @@ const PricingCard = ({ title, desc, price, features, isPopular, period = 'mo' })
 
       <div className="mb-8">
         <h3 className={`text-2xl font-bold mb-2 ${isPopular ? 'text-white' : 'text-slate-900'}`}>{title}</h3>
-        <p className={`text-sm ${isPopular ? 'text-slate-200' : 'text-slate-700'}`}>{desc}</p>
+        <p className={`text-sm ${isPopular ? 'text-slate-300' : 'text-slate-600'}`}>{desc}</p>
       </div>
 
-      <div className="mb-8 flex items-end gap-1">
+      <div className="mb-2 flex items-end gap-1">
         <span className="text-5xl font-extrabold tracking-tight">£{price}</span>
-        <span className={`text-lg mb-1 font-medium ${isPopular ? 'text-slate-200' : 'text-slate-700'}`}>/{period}</span>
+        <span className={`text-lg mb-1 font-medium ${isPopular ? 'text-slate-300' : 'text-slate-600'}`}>/{period}</span>
       </div>
+
+      {/* Yearly savings callout */}
+      {originalPrice && (
+        <div className="mb-8">
+          <span className={`text-sm font-semibold ${isPopular ? 'text-cyan-400' : 'text-green-600'}`}>
+            Save £{(originalPrice - price) * 12}/year vs monthly
+          </span>
+        </div>
+      )}
+      {!originalPrice && <div className="mb-8" />}
 
       <Link to="/contact">
         <Button 
@@ -33,8 +43,8 @@ const PricingCard = ({ title, desc, price, features, isPopular, period = 'mo' })
       <div className="space-y-4 flex-1">
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-start gap-3">
-            <CheckCircle2 size={24} className={`shrink-0 mt-0.5 ${isPopular ? 'text-cyan-400' : 'text-blue-600'}`} />
-            <span className={`text-lg leading-relaxed ${isPopular ? 'text-slate-200' : 'text-slate-700'}`}>{feature}</span>
+            <CheckCircle2 size={22} className={`shrink-0 mt-0.5 ${isPopular ? 'text-cyan-400' : 'text-blue-600'}`} />
+            <span className={`text-base leading-relaxed ${isPopular ? 'text-slate-200' : 'text-slate-700'}`}>{feature}</span>
           </div>
         ))}
       </div>
