@@ -96,56 +96,59 @@ const Blog = () => {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((post, idx) => (
-              <motion.article
+              <motion.div
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ delay: idx * 0.04 }}
-                className="bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/8 hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group"
               >
-                {/* Gradient Header Bar */}
-                <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-400 group-hover:h-3 transition-all" />
-                
-                <div className="p-7 flex flex-col flex-1">
-                  {/* Category + Read Time */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${categoryColors[post.category] || 'bg-slate-50 text-slate-700 border-slate-200'}`}>
-                      {post.category}
-                    </span>
-                    <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
-                      <Clock size={13} /> {post.readTime}
-                    </span>
-                  </div>
+                <Link to={`/blog/${post.id}`} className="block h-full">
+                  <article className="bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/8 hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group h-full">
+                    {/* Gradient Header Bar */}
+                    <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-400 group-hover:h-3 transition-all" />
+                    
+                    <div className="p-7 flex flex-col flex-1">
+                      {/* Category + Read Time */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold border ${categoryColors[post.category] || 'bg-slate-50 text-slate-700 border-slate-200'}`}>
+                          {post.category}
+                        </span>
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+                          <Clock size={13} /> {post.readTime}
+                        </span>
+                      </div>
 
-                  {/* Title */}
-                  <h2 className="text-lg font-bold text-slate-900 mb-3 leading-snug tracking-tight group-hover:text-blue-600 transition-colors">
-                    {post.title}
-                  </h2>
+                      {/* Title */}
+                      <h2 className="text-lg font-bold text-slate-900 mb-3 leading-snug tracking-tight group-hover:text-blue-600 transition-colors">
+                        {post.title}
+                      </h2>
 
-                  {/* Excerpt */}
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-1">
-                    {post.excerpt}
-                  </p>
+                      {/* Excerpt */}
+                      <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-1">
+                        {post.excerpt}
+                      </p>
 
-                  {/* Affiliate indicator */}
-                  {post.hasAffiliate && (
-                    <p className="text-xs text-slate-400 mb-4 flex items-center gap-1">
-                      <Tag size={12} /> Contains affiliate recommendations
-                    </p>
-                  )}
+                      {/* Affiliate indicator */}
+                      {post.hasAffiliate && (
+                        <p className="text-xs text-slate-400 mb-4 flex items-center gap-1">
+                          <Tag size={12} /> Contains affiliate recommendations
+                        </p>
+                      )}
 
-                  {/* CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                    <span className="text-xs text-slate-400 font-semibold">
-                      {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </span>
-                    <span className="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:gap-3 transition-all">
-                      Read Article <ArrowRight size={14} />
-                    </span>
-                  </div>
-                </div>
-              </motion.article>
+                      {/* CTA */}
+                      <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                        <span className="text-xs text-slate-400 font-semibold">
+                          {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        </span>
+                        <span className="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:gap-3 transition-all">
+                          Read Article <ArrowRight size={14} />
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </motion.div>
             ))}
           </div>
         )}

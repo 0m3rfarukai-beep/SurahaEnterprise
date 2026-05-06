@@ -10,6 +10,7 @@ import Quiz from './pages/Quiz';
 import Estimator from './pages/Estimator';
 import Tools from './pages/Tools';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="estimator" element={<Estimator />} />
         <Route path="tools" element={<Tools />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blog/:slug" element={<BlogPost />} />
       </Route>
     </Routes>
   );
