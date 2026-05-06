@@ -1,0 +1,119 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => setIsOpen(false), [location]);
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'Estimator', path: '/estimator' },
+    { name: 'Quiz', path: '/quiz' }
+  ];
+
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || isOpen ? 'bg-white/95 backdrop-blur-xl shadow-md border-b border-slate-200/50 py-3' : 'bg-transparent py-4 md:py-6'}`}>
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between">
+          
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src="/logo.png" 
+              alt="Suraha Enterprise" 
+              className="w-10 h-10 rounded-xl object-contain group-hover:-translate-y-0.5 transition-transform"
+            />
+            <span className={`text-xl md:text-2xl font-extrabold tracking-tight ${scrolled || isOpen ? 'text-slate-900' : 'text-white drop-shadow-md'}`}>
+              Suraha<span className="text-blue-500">.</span>
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-10">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link 
+                    key={link.path} 
+                    to={link.path}
+                    className={`text-[15px] font-bold transition-all hover:text-blue-600 ${
+                      scrolled 
+                        ? isActive ? 'text-blue-600' : 'text-slate-700' 
+                        : isActive ? 'text-white drop-shadow-md' : 'text-white/80'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              })}
+            </div>
+            <Link to="/contact">
+              <Button className="rounded-full px-8 py-6 h-12 text-base font-bold bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/15 hover:shadow-lg hover:shadow-blue-600/25 hover:-translate-y-0.5 transition-all">
+                Get a Quote
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button 
+            className={`lg:hidden p-2 rounded-md transition-colors ${scrolled || isOpen ? 'text-slate-900 hover:bg-slate-100' : 'text-white hover:bg-white/10'}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden bg-white border-b border-slate-200 absolute w-full top-full left-0 shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto"
+          >
+            <div className="flex flex-col px-6 py-8 gap-2">
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link 
+                    key={link.path} 
+                    to={link.path}
+                    className={`text-lg font-bold p-4 rounded-xl transition-colors ${isActive ? 'bg-blue-50 text-blue-700' : 'text-slate-800 hover:bg-slate-50'}`}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              })}
+              <Link to="/contact" className="mt-6">
+                <Button className="w-full h-14 rounded-xl text-lg font-bold bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20">
+                  Get a Quote
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;
