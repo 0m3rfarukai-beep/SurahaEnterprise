@@ -8,6 +8,12 @@ const blogPosts = [
     date: '2026-04-28',
     author: 'Suraha Editorial Team',
     hasAffiliate: true,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Choosing the right web hosting is one of the most important decisions you will make for your business website. The wrong host means slow load times, frequent downtime, and frustrated customers. The right host means a fast, reliable site that works for you 24/7.' },
       { type: 'heading', body: 'What to Look For in a UK Web Host' },
@@ -31,6 +37,12 @@ const blogPosts = [
     date: '2026-04-25',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Your domain name is often the first thing potential customers see. It needs to be memorable, professional, and ideally give a hint about what your business does.' },
       { type: 'heading', body: 'The Golden Rules of Domain Names' },
@@ -51,6 +63,12 @@ const blogPosts = [
     date: '2026-04-22',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'SEO can feel overwhelming, but it does not need to be. This checklist breaks down everything into manageable steps that any small business owner can follow — no technical background required.' },
       { type: 'heading', body: 'Technical SEO Basics' },
@@ -73,6 +91,12 @@ const blogPosts = [
     date: '2026-04-18',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Google Business Profile (formerly Google My Business) is the single most important free tool for local businesses. When someone searches "plumber near me" or "best cafe in Manchester", Google shows Business Profile results before organic listings.' },
       { type: 'heading', body: 'Setting Up Your Profile' },
@@ -92,6 +116,12 @@ const blogPosts = [
     date: '2026-04-15',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Not every design trend is worth following. Some look impressive but actually hurt your conversion rate. Here are the 10 trends that genuinely help turn visitors into customers in 2026.' },
       { type: 'heading', body: '1. Speed Above Everything' },
@@ -114,6 +144,12 @@ const blogPosts = [
     date: '2026-04-12',
     author: 'Suraha Editorial Team',
     hasAffiliate: true,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'This is one of the most common questions we get asked. The honest answer is: it depends on your business, budget, and goals. Let us break it down.' },
       { type: 'heading', body: 'When WordPress is the Right Choice' },
@@ -134,6 +170,12 @@ const blogPosts = [
     date: '2026-04-08',
     author: 'Suraha Editorial Team',
     hasAffiliate: true,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'You do not need expensive tools to start improving your SEO. Here are the tools we genuinely use every day, organised by budget.' },
       { type: 'heading', body: 'Free Tools (Start Here)' },
@@ -154,6 +196,12 @@ const blogPosts = [
     date: '2026-04-05',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'With a limited marketing budget, you cannot afford to waste money on the wrong platform. Here is how to decide between Facebook (Meta) Ads and Google Ads for your business.' },
       { type: 'heading', body: 'Google Ads: Capture Existing Demand' },
@@ -174,6 +222,12 @@ const blogPosts = [
     date: '2026-04-01',
     author: 'Suraha Editorial Team',
     hasAffiliate: true,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'AI tools have matured rapidly. In 2026, there are genuinely useful, affordable tools that can save small business owners hours every week. Here are the ones we recommend.' },
       { type: 'heading', body: '1. ChatGPT / Claude — Content Drafting' },
@@ -196,6 +250,12 @@ const blogPosts = [
     date: '2026-03-28',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'This case study illustrates how a systematic SEO approach transformed a small plumbing business\'s online presence. The results are representative of typical local SEO campaigns we run.' },
       { type: 'heading', body: 'The Challenge' },
@@ -216,6 +276,12 @@ const blogPosts = [
     date: '2026-03-25',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Most small businesses approach social media backwards: they post sporadically, measure nothing, and wonder why it does not work. Here is a framework that actually delivers results.' },
       { type: 'heading', body: 'Step 1: Define Your Goals' },
@@ -238,6 +304,12 @@ const blogPosts = [
     date: '2026-03-20',
     author: 'Suraha Editorial Team',
     hasAffiliate: true,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'WordPress plugins extend your website\'s functionality, but installing too many can slow your site down. Here are the 15 essential plugins that every business website actually needs — and nothing more.' },
       { type: 'heading', body: 'Security & Backups' },
@@ -260,6 +332,12 @@ const blogPosts = [
     date: '2026-03-15',
     author: 'Suraha Editorial Team',
     hasAffiliate: false,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Growing a small business in the UK is challenging, but digital tools have levelled the playing field. Here are five strategies that deliver genuine results without requiring enterprise budgets.' },
       { type: 'heading', body: '1. Own Your Google Business Profile' },
@@ -284,6 +362,12 @@ const blogPosts = [
     date: '2026-03-10',
     author: 'Suraha Editorial Team',
     hasAffiliate: true,
+    status: 'published',
+    metaTitle: null,        // TODO: set per-post in CMS
+    metaDescription: null,  // TODO: set per-post in CMS
+    featuredImage: null,    // CMS: asset URL
+    cta: null,             // null = use default CTA
+    relatedPosts: [],      // CMS: explicit related post references
     content: [
       { type: 'text', body: 'Email marketing returns an average of £36 for every £1 spent — making it the highest ROI channel available. Yet most small businesses either ignore it or do it poorly. Here is how to get started properly.' },
       { type: 'heading', body: 'Choose Your Platform' },

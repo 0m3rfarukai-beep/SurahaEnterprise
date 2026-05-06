@@ -1,9 +1,9 @@
+// CMS NOTE: All data fetched via cms.js — swap to Sanity by editing that file only.
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, ArrowRight, Tag, BookOpen } from 'lucide-react';
-import blogPosts, { categories } from '@/data/blogPosts';
-import AffiliateDisclosure from '@/components/AffiliateDisclosure';
+import { getAllPosts, getCategories } from '@/lib/cms';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -24,15 +24,34 @@ const categoryColors = {
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [allPosts, setAllPosts] = useState([]);
+  const [categories, setCategories] = useState(['All']);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // CMS NOTE: These become real async Sanity fetches when cms.js is updated
+    Promise.all([getAllPosts(), getCategories()]).then(([posts, cats]) => {
+      // Only show published posts (drafts/archived hidden on frontend)
+      setAllPosts(posts.filter(p => !p.status || p.status === 'published'));
+      setCategories(cats);
+      setLoading(false);
+    });
+  }, []);
 
-  const filtered = blogPosts.filter(post => {
+  const filtered = allPosts.filter(post => {
     const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  if (loading) return (
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="w-10 h-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+    </div>
+  );
+
 
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
