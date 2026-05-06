@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Quiz from './pages/Quiz';
 import Estimator from './pages/Estimator';
 import Tools from './pages/Tools';
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="quiz" element={<Quiz />} />
         <Route path="estimator" element={<Estimator />} />
         <Route path="tools" element={<Tools />} />
+        <Route path="blog" element={<Blog />} />
       </Route>
     </Routes>
   );

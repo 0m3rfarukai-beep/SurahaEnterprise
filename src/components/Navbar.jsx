@@ -21,9 +21,9 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: 'Free Tools', path: '/tools' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Pricing', path: '/pricing' },
-    { name: 'Estimator', path: '/estimator' },
-    { name: 'Quiz', path: '/quiz' }
+    { name: 'Estimator', path: '/estimator' }
   ];
 
   const isActivePath = (path) => {

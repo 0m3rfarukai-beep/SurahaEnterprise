@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { 
-  Calculator, Search, FileText, Share2, MapPin, Lightbulb,
+  Calculator, Search, FileText, Share2, MapPin, Lightbulb, Globe, HelpCircle,
   ArrowRight, Copy, CheckCircle2, AlertCircle, RotateCcw
 } from 'lucide-react';
 
@@ -239,6 +239,94 @@ const GeneratedList = ({ label, items }) => (
   </motion.div>
 );
 
+/* ──── New Tool Components ──── */
+
+const DomainNameGenerator = () => {
+  const [form, setForm] = useState({ business: '', industry: '' });
+  const [results, setResults] = useState(null);
+
+  const generate = () => {
+    const { business, industry } = form;
+    if (!business) return;
+    const clean = business.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const ind = industry ? industry.toLowerCase().replace(/[^a-z]/g, '') : '';
+    const ideas = [
+      `${clean}.co.uk`, `${clean}${ind}.com`, `get${clean}.co.uk`, `${clean}hq.com`,
+      `${clean}.io`, ind ? `${ind}by${clean}.co.uk` : `the${clean}.com`,
+      `${clean}digital.agency`, `hello${clean}.com`
+    ];
+    setResults(ideas);
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="grid sm:grid-cols-2 gap-3">
+        <input value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+        <input value={form.industry} onChange={(e) => setForm({...form, industry: e.target.value})} placeholder="Industry (optional)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+      </div>
+      <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate Domain Ideas</Button>
+      {results && <GeneratedList label="Domain Name Ideas" items={results} />}
+      <p className="text-xs text-slate-500 italic">*Check availability with your preferred registrar. These are ideas only.</p>
+    </div>
+  );
+};
+
+const HostingQuiz = () => {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [result, setResult] = useState(null);
+
+  const questions = [
+    { id: 'type', q: 'What type of website do you have?', opts: ['WordPress', 'Custom/React', 'E-Commerce', 'Simple HTML', 'Not sure'] },
+    { id: 'traffic', q: 'Expected monthly traffic?', opts: ['Under 1,000', '1,000 - 10,000', '10,000 - 100,000', '100,000+'] },
+    { id: 'budget', q: 'Monthly hosting budget?', opts: ['Under £5/mo', '£5 - £20/mo', '£20 - £50/mo', '£50+/mo'] },
+    { id: 'priority', q: 'What matters most?', opts: ['Cheapest price', 'Best speed', 'Easy to use', 'UK data centres', 'Managed support'] }
+  ];
+
+  const handleAnswer = (opt) => {
+    const a = { ...answers, [questions[step].id]: opt };
+    setAnswers(a);
+    if (step < questions.length - 1) { setStep(step + 1); return; }
+    let rec;
+    if (a.budget === 'Under £5/mo') rec = { name: 'Hostinger', why: 'Best value hosting with UK servers. Great for beginners.', price: 'From £1.99/mo' };
+    else if (a.type === 'WordPress' || a.priority === 'Managed support') rec = { name: 'SiteGround', why: 'Premium managed WordPress hosting with excellent support.', price: 'From £4.99/mo' };
+    else if (a.priority === 'Best speed' || a.traffic === '100,000+') rec = { name: 'Cloudways', why: 'Cloud hosting for high-performance sites that scales easily.', price: 'From £11/mo' };
+    else if (a.priority === 'UK data centres') rec = { name: '20i', why: 'UK-based hosting with data centres in the UK.', price: 'From £4.99/mo' };
+    else rec = { name: 'SiteGround', why: 'Reliable all-round hosting with excellent support.', price: 'From £4.99/mo' };
+    setResult(rec);
+  };
+
+  if (result) return (
+    <div className="space-y-6">
+      <div className="bg-blue-50 border border-blue-200 p-6 rounded-2xl">
+        <p className="text-xs text-blue-600 font-bold uppercase tracking-wider mb-2">Our Recommendation</p>
+        <h4 className="text-2xl font-extrabold text-slate-900 mb-2">{result.name}</h4>
+        <p className="text-slate-700 mb-3">{result.why}</p>
+        <p className="text-lg font-bold text-blue-600 mb-4">{result.price}</p>
+        <p className="text-xs text-slate-500 italic">*Affiliate link placeholder — replace with actual URL when ready.</p>
+      </div>
+      <button onClick={() => { setStep(0); setAnswers({}); setResult(null); }} className="text-sm font-bold text-blue-600 hover:underline">← Retake Quiz</button>
+      <p className="text-xs text-slate-500">Want us to handle hosting setup? <Link to="/contact" className="text-blue-600 font-bold hover:underline">Contact Suraha Enterprise →</Link></p>
+    </div>
+  );
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between mb-2">
+        <p className="text-sm font-bold text-blue-600">Question {step + 1} of {questions.length}</p>
+        <div className="w-32 h-2 bg-slate-100 rounded-full"><div className="h-full bg-blue-600 rounded-full transition-all" style={{ width: `${(step / questions.length) * 100}%` }} /></div>
+      </div>
+      <h4 className="text-xl font-bold text-slate-900">{questions[step].q}</h4>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {questions[step].opts.map(opt => (
+          <button key={opt} onClick={() => handleAnswer(opt)} className="p-4 rounded-xl border-2 border-slate-200 text-left font-semibold text-slate-700 hover:border-blue-600 hover:bg-blue-50 transition-all">{opt}</button>
+        ))}
+      </div>
+      {step > 0 && <button onClick={() => setStep(step - 1)} className="text-sm text-slate-500 hover:text-slate-800 font-bold">← Previous</button>}
+    </div>
+  );
+};
+
 /* ──── Tools Page ──── */
 
 const tools = [
@@ -246,7 +334,9 @@ const tools = [
   { id: 'seo', icon: FileText, title: 'SEO Title & Meta Generator', desc: 'Generate optimised page titles and meta descriptions for your business.', badges: ['Free', 'Instant'], component: SeoTitleGenerator },
   { id: 'captions', icon: Share2, title: 'Social Media Caption Generator', desc: 'Create engaging captions for Facebook, Instagram, LinkedIn, and TikTok.', badges: ['Free', 'Instant'], component: CaptionGenerator },
   { id: 'gbp', icon: MapPin, title: 'Google Business Profile Post Generator', desc: 'Generate professional posts for your Google Business Profile listing.', badges: ['Free', 'Instant'], component: GBPPostGenerator },
-  { id: 'leads', icon: Lightbulb, title: 'Lead Magnet Idea Generator', desc: 'Get 5 lead magnet ideas tailored to your industry to grow your email list.', badges: ['Free', 'Instant'], component: LeadMagnetGenerator }
+  { id: 'leads', icon: Lightbulb, title: 'Lead Magnet Idea Generator', desc: 'Get 5 lead magnet ideas tailored to your industry to grow your email list.', badges: ['Free', 'Instant'], component: LeadMagnetGenerator },
+  { id: 'domain', icon: Globe, title: 'Domain Name Idea Generator', desc: 'Get creative domain name suggestions based on your business name and industry.', badges: ['Free', 'Instant'], component: DomainNameGenerator },
+  { id: 'hosting', icon: HelpCircle, title: 'Hosting Recommendation Quiz', desc: 'Answer 4 quick questions and get a personalised hosting recommendation.', badges: ['Free', 'Quiz'], component: HostingQuiz }
 ];
 
 const Tools = () => {
