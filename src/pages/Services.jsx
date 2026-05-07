@@ -38,8 +38,8 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 max-w-[1200px]">
           
           {/* Search */}
           <motion.div 
@@ -84,7 +84,7 @@ const Services = () => {
                     key={service.id}
                   >
                     <Link to={`/services/${service.id}`} className="block h-full">
-                      <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col group">
+                      <div className="bg-white rounded-[1.5rem] p-6 border border-slate-200 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col group">
                         {/* Icon */}
                         <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
                           <Icon size={23} />
@@ -123,7 +123,7 @@ const Services = () => {
       </section>
       
       {/* Bottom CTA */}
-      <section className="py-16 md:py-20 bg-white text-center border-t border-slate-100">
+      <section className="py-16 md:py-20 bg-white text-center border-t border-slate-200">
         <div className="container mx-auto px-6 max-w-4xl">
           <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Not sure what you need?</h2>
           <p className="text-base md:text-lg text-slate-700 mb-7 leading-relaxed">

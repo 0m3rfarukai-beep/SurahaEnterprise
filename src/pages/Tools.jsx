@@ -261,8 +261,8 @@ const Tools = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-10 md:py-16">
-        <div className="mb-6 rounded-2xl bg-white border border-slate-100 p-4 sm:p-5 shadow-sm">
+      <div className="container mx-auto px-4 sm:px-6 max-w-[1200px] py-12 md:py-20">
+        <div className="mb-8 rounded-[1.5rem] bg-white border border-slate-200 p-5 sm:p-6 shadow-sm">
           <p className="text-sm font-bold text-slate-950">Start with the Growth Check, then use the smaller tools for specific fixes.</p>
           <p className="text-sm text-slate-600 mt-1">All outputs are free and preliminary. They are designed to help you understand what to review before paying for professional work.</p>
         </div>
@@ -276,7 +276,7 @@ const Tools = () => {
                     const Icon = tool.icon;
                     const active = activeTool === tool.id;
                     return (
-                      <button key={tool.id} onClick={() => setActiveTool(tool.id)} className={`w-full text-left rounded-xl border p-3.5 transition-all ${active ? 'bg-slate-950 text-white border-slate-950 shadow-lg shadow-blue-900/10' : 'bg-white text-slate-800 border-slate-100 hover:border-blue-200'}`}>
+                      <button key={tool.id} onClick={() => setActiveTool(tool.id)} className={`w-full text-left rounded-xl border p-3.5 transition-all ${active ? 'bg-slate-950 text-white border-slate-950 shadow-lg shadow-blue-900/10' : 'bg-white text-slate-800 border-slate-200 hover:border-blue-300 hover:-translate-y-0.5'}`}>
                         <div className="flex items-start gap-3">
                           <Icon size={18} className={active ? 'text-cyan-300 shrink-0 mt-0.5' : 'text-blue-600 shrink-0 mt-0.5'} />
                           <div>
@@ -302,12 +302,12 @@ const Tools = () => {
                 </div>
               );
             })}
-            <div className="mt-6 rounded-2xl bg-blue-600 text-white p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white text-slate-950 p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
               <div>
                 <h3 className="text-xl font-extrabold">Want a human review of the result?</h3>
-                <p className="text-blue-100">Book a free consultation and we will explain the most useful next step.</p>
+                <p className="text-slate-600">Book a free consultation and we will explain the most useful next step.</p>
               </div>
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-5 py-3 rounded-xl font-bold">
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-xl font-bold">
                 Book a free review <ArrowRight size={16} />
               </Link>
             </div>

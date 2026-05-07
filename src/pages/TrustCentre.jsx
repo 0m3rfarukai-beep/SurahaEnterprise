@@ -60,13 +60,13 @@ const TrustCentre = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="max-w-3xl mb-8">
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">How we compare</p>
             <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">Typical Agency vs Suraha Enterprise</h2>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm">
             <div className="hidden md:grid grid-cols-[0.8fr_1fr_1fr] bg-slate-950 text-white text-sm font-bold">
               <div className="p-4">Area</div>
               <div className="p-4 border-l border-white/10">Typical Agency</div>
@@ -83,9 +83,9 @@ const TrustCentre = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
+      <section className="py-16 md:py-20 border-y border-slate-200">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl grid lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-2xl border border-slate-100 p-6 md:p-8 shadow-sm">
+          <div className="bg-white rounded-[1.5rem] border border-slate-200 p-6 md:p-8 shadow-sm">
             <h2 className="text-2xl font-extrabold text-slate-950 mb-5">What you can expect</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {promises.map((item) => (
@@ -97,7 +97,7 @@ const TrustCentre = () => {
             </div>
           </div>
 
-          <div className="bg-slate-950 text-white rounded-2xl border border-slate-800 p-6 md:p-8 shadow-xl shadow-blue-900/10">
+          <div className="bg-slate-950 text-white rounded-[1.5rem] border border-slate-800 p-6 md:p-8 shadow-xl shadow-blue-900/10">
             <h2 className="text-2xl font-extrabold mb-5">What we do not promise</h2>
             <div className="space-y-4">
               {noPromises.map((item) => (
@@ -111,7 +111,7 @@ const TrustCentre = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="max-w-3xl mb-10">
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">Project milestones</p>
@@ -131,7 +131,7 @@ const TrustCentre = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-slate-50">
+      <section className="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
           <div className="text-center max-w-3xl mx-auto mb-9">
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">After you contact us</p>

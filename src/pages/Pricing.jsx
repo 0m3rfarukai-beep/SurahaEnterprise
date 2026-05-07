@@ -64,8 +64,8 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 max-w-[1200px]">
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
             {plans.map((plan, index) => (
               <motion.div
@@ -73,7 +73,7 @@ const Pricing = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.07 }}
-                className={`rounded-2xl p-6 border flex flex-col h-full ${plan.featured ? 'bg-slate-950 text-white border-slate-900 shadow-xl shadow-blue-900/15' : 'bg-white text-slate-950 border-slate-100 shadow-sm'}`}
+                className={`rounded-[1.5rem] p-6 border flex flex-col h-full ${plan.featured ? 'bg-slate-950 text-white border-slate-900 shadow-xl shadow-blue-900/15' : 'bg-white text-slate-950 border-slate-200 shadow-sm'}`}
               >
                 {plan.featured && <span className="self-start px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider mb-5">Most common</span>}
                 <h2 className="text-xl font-extrabold mb-2">{plan.title}</h2>
@@ -109,7 +109,7 @@ const Pricing = () => {
 
           <div className="mt-10 grid md:grid-cols-3 gap-5">
             {['Review the scope together', 'Agree milestones and payment points', 'Start with clear next actions'].map((item, index) => (
-              <div key={item} className="bg-white rounded-2xl border border-slate-100 p-5 flex items-start gap-4">
+              <div key={item} className="bg-white rounded-[1.5rem] border border-slate-200 p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold">{index + 1}</div>
                 <div>
                   <h3 className="font-extrabold text-slate-950">{item}</h3>
@@ -123,7 +123,7 @@ const Pricing = () => {
 
       <section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 md:p-8 mb-8 flex gap-4">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 md:p-8 mb-8 flex gap-4">
             <Info size={28} className="text-blue-600 shrink-0" />
             <div>
               <h2 className="text-xl md:text-2xl font-extrabold text-slate-950 mb-2">Pricing should reduce uncertainty, not create pressure.</h2>
@@ -134,14 +134,16 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-blue-600 text-center">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <ClipboardCheck size={34} className="text-white mx-auto mb-5" />
-          <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-5">Need the right option, not the biggest option?</h2>
-          <p className="text-blue-100 text-base md:text-lg mb-8">Book a free review and we will explain what should be fixed first.</p>
-          <Link to="/tools" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-full font-bold">
-            Not sure? Start with a free Growth Check <ArrowRight size={18} />
-          </Link>
+      <section className="py-12 md:py-16 bg-slate-950">
+        <div className="container mx-auto px-6 max-w-[1120px]">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-8 md:p-10 text-center">
+            <ClipboardCheck size={34} className="text-cyan-300 mx-auto mb-5" />
+            <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-5">Need the right option, not the biggest option?</h2>
+            <p className="text-slate-300 text-base md:text-lg mb-8">Book a free review and we will explain what should be fixed first.</p>
+            <Link to="/tools" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-full font-bold">
+              Not sure? Start with a free Growth Check <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
     </div>

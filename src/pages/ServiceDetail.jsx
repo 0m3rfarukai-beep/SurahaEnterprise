@@ -45,16 +45,16 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 max-w-5xl py-12 md:py-16 space-y-12 md:space-y-16">
+      <div className="container mx-auto px-4 sm:px-6 max-w-[1120px] py-16 md:py-24 space-y-14 md:space-y-20">
 
         {/* Problem */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="grid md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <div className="md:col-span-2 bg-white p-6 md:p-8 rounded-[1.5rem] border border-slate-200 shadow-sm">
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">The problem</p>
             <h2 className="text-xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">{service.problem}</h2>
             <p className="text-base md:text-lg text-slate-700 leading-relaxed">{service.costOfInaction}</p>
           </div>
-          <div className="bg-amber-50 p-6 rounded-2xl border border-amber-100">
+          <div className="bg-amber-50 p-6 rounded-[1.5rem] border border-amber-100">
             <p className="text-sm font-bold uppercase tracking-widest text-amber-700 mb-4">Symptoms</p>
             <div className="space-y-3">
               {(service.symptoms || service.problemsSolved).slice(0, 3).map((item) => (
@@ -72,7 +72,7 @@ const ServiceDetail = () => {
           <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-6">What We Fix</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {service.includes.slice(0, 4).map((item, i) => (
-              <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+              <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-[1.25rem] border border-slate-200 shadow-sm">
                 <CheckCircle2 size={19} className="text-blue-600 shrink-0 mt-0.5" />
                 <span className="text-sm md:text-base text-slate-700 font-medium">{item}</span>
               </div>
@@ -88,7 +88,7 @@ const ServiceDetail = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {service.whoFor.map((item, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100">
+              <div key={i} className="flex items-start gap-3 p-4 bg-blue-50/50 rounded-[1.25rem] border border-blue-100">
                 <ArrowRight size={18} className="text-blue-600 shrink-0 mt-1" />
                 <span className="text-sm text-slate-800 font-medium">{item}</span>
               </div>
@@ -101,7 +101,7 @@ const ServiceDetail = () => {
           <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-8">Our Process</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {process.map((step, i) => (
-              <div key={i} className="rounded-2xl bg-white border border-slate-100 p-5 text-center shadow-sm">
+              <div key={i} className="rounded-[1.25rem] bg-white border border-slate-200 p-5 text-center shadow-sm">
                   <div className="w-11 h-11 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-base font-bold shadow-lg shadow-blue-600/20">
                     {i + 1}
                   </div>
@@ -117,7 +117,7 @@ const ServiceDetail = () => {
             <Layers size={28} className="text-blue-600" />
             <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">What You Get</h2>
           </div>
-          <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <div className="bg-white p-6 md:p-8 rounded-[1.5rem] border border-slate-200 shadow-sm">
             <ul className="grid sm:grid-cols-2 gap-4">
               {service.deliverables.slice(0, 4).map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -131,14 +131,14 @@ const ServiceDetail = () => {
 
         {/* Timeline & Pricing */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <div className="bg-white p-6 md:p-8 rounded-[1.5rem] border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <Clock size={24} className="text-blue-600" />
               <h3 className="text-xl font-bold text-slate-900">Estimated Timeline</h3>
             </div>
             <p className="text-slate-700 text-lg leading-relaxed">{service.timeline}</p>
           </div>
-          <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
+          <div className="bg-white p-6 md:p-8 rounded-[1.5rem] border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <PoundSterling size={24} className="text-blue-600" />
               <h3 className="text-xl font-bold text-slate-900">Pricing Guide</h3>

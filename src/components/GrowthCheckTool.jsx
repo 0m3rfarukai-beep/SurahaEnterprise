@@ -91,7 +91,7 @@ const GrowthCheckTool = ({ compact = false }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 shadow-xl shadow-blue-900/8 overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-100 shadow-xl shadow-blue-900/10 overflow-hidden">
       <div className="p-5 sm:p-6 border-b border-slate-100">
         <p className="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">Free Website Growth Check</p>
         <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 tracking-tight leading-tight">

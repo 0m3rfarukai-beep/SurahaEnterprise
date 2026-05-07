@@ -45,7 +45,10 @@ const faqs = [
 ];
 
 const AuditPreview = () => (
-  <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl shadow-blue-950/20 p-5 md:p-6">
+  <div className="relative">
+    <div className="absolute -top-6 -right-5 w-20 h-20 rounded-full bg-cyan-300/20 border border-cyan-200/20" />
+    <div className="absolute -bottom-5 -left-5 w-16 h-16 bg-blue-500/15 rotate-6" />
+  <div className="relative bg-white rounded-2xl border border-slate-200 shadow-2xl shadow-blue-950/20 p-5 md:p-6">
     <div className="flex items-center justify-between gap-4 pb-5 border-b border-slate-100">
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-blue-600">Sample Growth Report</p>
@@ -78,12 +81,15 @@ const AuditPreview = () => (
       <p className="font-bold leading-snug">Fix trust signals and enquiry flow before spending more on traffic.</p>
     </div>
   </div>
+  </div>
 );
 
 const Home = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-12 md:pb-16 overflow-hidden">
+        <div className="absolute top-24 left-[6%] w-24 h-24 rounded-full border border-white/10" />
+        <div className="absolute bottom-16 right-[46%] w-16 h-16 bg-blue-500/10 rotate-12" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
         <div className="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-center max-w-7xl">
           <motion.div initial="hidden" animate="visible" variants={fadeIn}>
@@ -121,8 +127,40 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
+      <div className="bg-white border-y border-slate-200 overflow-hidden">
+        <div className="whitespace-nowrap py-3 text-xs md:text-sm font-bold tracking-[0.22em] text-slate-400 uppercase">
+          <div className="inline-block animate-[marquee_24s_linear_infinite]">
+            Website clarity &bull; Local SEO &bull; Lead capture &bull; Trust signals &bull; Conversion &bull; Growth &bull;&nbsp;
+            Website clarity &bull; Local SEO &bull; Lead capture &bull; Trust signals &bull; Conversion &bull; Growth &bull;&nbsp;
+          </div>
+        </div>
+      </div>
+
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 md:p-6 shadow-sm">
+            <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-6 items-start">
+              <div className="p-2 md:p-4">
+                <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">Free diagnostic module</p>
+                <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight mb-4">Get your free Website Growth Check.</h2>
+                <p className="text-slate-700 leading-relaxed max-w-xl">A report-style check for clarity, SEO visibility, trust signals, and lead capture. Built to show the most useful next step before you spend money.</p>
+                <div className="mt-6 space-y-3">
+                  {['Add your business details', 'Choose the main growth goal', 'Review the score, issue, and fixes'].map((step, index) => (
+                    <div key={step} className="flex items-center gap-3 border-t border-slate-200 pt-3">
+                      <span className="w-7 h-7 rounded-full bg-white border border-slate-200 flex items-center justify-center text-xs font-extrabold text-blue-600">{index + 1}</span>
+                      <span className="text-sm font-bold text-slate-800">{step}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <GrowthCheckTool />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
           <div className="max-w-3xl mb-9">
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">Common lead leaks</p>
             <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
@@ -144,8 +182,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 items-start">
+      <section className="py-16 md:py-24 bg-slate-50 border-y border-slate-200">
+        <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 items-start max-w-[1200px]">
           <div>
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">What we build</p>
             <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight mb-4 leading-tight">
@@ -183,8 +221,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[1120px]">
           <div className="max-w-3xl mb-8">
             <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">No jargon</p>
             <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">Plain English beats agency theatre.</h2>
@@ -206,8 +244,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-slate-950 text-white">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-16 md:py-24 bg-slate-950 text-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
               <p className="text-sm font-bold uppercase tracking-widest text-cyan-300 mb-3">Proof without pretending</p>
@@ -219,7 +257,7 @@ const Home = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {proofCards.map((card) => (
-              <div key={card.title} className="rounded-2xl border border-slate-800 bg-slate-900 p-6 h-full">
+              <div key={card.title} className={`rounded-2xl border border-slate-800 bg-slate-900 p-6 h-full ${card.label === 'Example scenario' ? 'md:translate-y-6' : ''}`}>
                 <span className="inline-flex mb-4 px-3 py-1 rounded-full bg-blue-600/15 border border-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider">{card.label}</span>
                 <h3 className="text-xl font-extrabold mb-3">{card.title}</h3>
                 <p className="text-slate-300 leading-relaxed">{card.text}</p>
@@ -230,7 +268,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-white">
+      <section className="py-20 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid lg:grid-cols-3 gap-6">
             {[
@@ -249,7 +287,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-slate-50">
+      <section className="py-16 md:py-24 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <div className="text-center mb-12">
             <AlertTriangle size={32} className="text-blue-600 mx-auto mb-4" />
@@ -259,8 +297,9 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-blue-600 text-center">
-        <div className="container mx-auto px-4 max-w-3xl">
+      <section className="py-12 md:py-16 bg-slate-950">
+        <div className="container mx-auto px-4 max-w-[1120px]">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-8 md:p-10 text-center text-white">
           <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-5">
             Start with value before you spend.
           </h2>
@@ -278,6 +317,7 @@ const Home = () => {
                 Book a free consultation
               </Button>
             </Link>
+          </div>
           </div>
         </div>
       </section>
