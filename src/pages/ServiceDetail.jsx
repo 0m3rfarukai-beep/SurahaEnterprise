@@ -57,7 +57,7 @@ const ServiceDetail = () => {
           <div className="bg-amber-50 p-6 rounded-2xl border border-amber-100">
             <p className="text-sm font-bold uppercase tracking-widest text-amber-700 mb-4">Symptoms</p>
             <div className="space-y-3">
-              {(service.symptoms || service.problemsSolved).map((item) => (
+              {(service.symptoms || service.problemsSolved).slice(0, 3).map((item) => (
                 <div key={item} className="flex items-start gap-3 text-slate-800">
                   <AlertTriangle size={17} className="text-amber-600 shrink-0 mt-0.5" />
                   <span className="font-medium">{item}</span>
@@ -71,7 +71,7 @@ const ServiceDetail = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
           <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight mb-6">What We Fix</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            {service.includes.map((item, i) => (
+            {service.includes.slice(0, 4).map((item, i) => (
               <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
                 <CheckCircle2 size={19} className="text-blue-600 shrink-0 mt-0.5" />
                 <span className="text-sm md:text-base text-slate-700 font-medium">{item}</span>
@@ -119,7 +119,7 @@ const ServiceDetail = () => {
           </div>
           <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
             <ul className="grid sm:grid-cols-2 gap-4">
-              {service.deliverables.map((item, i) => (
+              {service.deliverables.slice(0, 4).map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle2 size={20} className="text-green-600 shrink-0 mt-0.5" />
                   <span className="text-slate-700 font-medium">{item}</span>

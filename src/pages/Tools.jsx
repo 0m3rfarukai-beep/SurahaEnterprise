@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
-  BarChart3,
   CalendarDays,
   CheckCircle2,
   ClipboardList,
   Copy,
-  FileText,
   Globe,
   HelpCircle,
   MapPin,
@@ -226,18 +224,20 @@ const HostingQuiz = () => {
 };
 
 const tools = [
-  { id: 'growth-check', icon: Search, title: 'Free Website Growth Check', desc: 'Score clarity, SEO, mobile, trust, and lead capture.', component: GrowthCheckTool },
-  { id: 'lead-leak', icon: Target, title: 'Website Lead Leak Checker', desc: 'Find common reasons visitors do not become enquiries.', component: () => <BasicGenerator type="leadLeak" /> },
-  { id: 'local-seo', icon: MapPin, title: 'Local SEO Visibility Checker', desc: 'Get first-pass local visibility fixes.', component: () => <BasicGenerator type="localSeo" /> },
-  { id: 'cost', icon: PoundSterling, title: 'Website Cost Estimator', desc: 'Estimate a realistic starting range.', component: CostEstimator },
-  { id: 'gbp', icon: Globe, title: 'Google Business Profile Post Generator', desc: 'Write useful local posts quickly.', component: () => <BasicGenerator type="gbp" /> },
-  { id: 'reviews', icon: MessageSquareReply, title: 'Review Reply Generator', desc: 'Reply professionally to positive or negative reviews.', component: () => <BasicGenerator type="reviewReply" /> },
-  { id: 'follow-up', icon: Send, title: 'Quote Follow-Up Message Generator', desc: 'Follow up without sounding pushy.', component: () => <BasicGenerator type="followUp" /> },
-  { id: 'headline', icon: Sparkles, title: 'Landing Page Headline Generator', desc: 'Create clearer conversion-focused headlines.', component: () => <BasicGenerator type="headline" /> },
-  { id: 'competitor', icon: ClipboardList, title: 'Competitor Website Comparison Checklist', desc: 'Compare trust, clarity, proof, and enquiry paths.', component: () => <BasicGenerator type="checklist" /> },
-  { id: 'planner', icon: CalendarDays, title: 'Monthly Marketing Planner', desc: 'Get a simple monthly action plan.', component: () => <BasicGenerator type="planner" /> },
-  { id: 'hosting', icon: HelpCircle, title: 'Domain & Hosting Recommendation Quiz', desc: 'Choose a sensible hosting direction.', component: HostingQuiz },
+  { id: 'growth-check', group: 'Get More Enquiries', icon: Search, title: 'Free Website Growth Check', desc: 'Score the biggest conversion gaps.', component: GrowthCheckTool },
+  { id: 'lead-leak', group: 'Get More Enquiries', icon: Target, title: 'Website Lead Leak Checker', desc: 'Find why visitors do not enquire.', component: () => <BasicGenerator type="leadLeak" /> },
+  { id: 'follow-up', group: 'Get More Enquiries', icon: Send, title: 'Quote Follow-Up Message Generator', desc: 'Follow up without sounding pushy.', component: () => <BasicGenerator type="followUp" /> },
+  { id: 'local-seo', group: 'Get Found Online', icon: MapPin, title: 'Local SEO Visibility Checker', desc: 'Get first-pass local visibility fixes.', component: () => <BasicGenerator type="localSeo" /> },
+  { id: 'gbp', group: 'Get Found Online', icon: Globe, title: 'Google Business Profile Post Generator', desc: 'Write useful local posts quickly.', component: () => <BasicGenerator type="gbp" /> },
+  { id: 'hosting', group: 'Get Found Online', icon: HelpCircle, title: 'Domain & Hosting Recommendation Quiz', desc: 'Choose a sensible hosting direction.', component: HostingQuiz },
+  { id: 'reviews', group: 'Look More Trustworthy', icon: MessageSquareReply, title: 'Review Reply Generator', desc: 'Reply professionally to reviews.', component: () => <BasicGenerator type="reviewReply" /> },
+  { id: 'headline', group: 'Look More Trustworthy', icon: Sparkles, title: 'Landing Page Headline Generator', desc: 'Create clearer page headlines.', component: () => <BasicGenerator type="headline" /> },
+  { id: 'competitor', group: 'Look More Trustworthy', icon: ClipboardList, title: 'Competitor Website Checklist', desc: 'Compare clarity, proof, and CTAs.', component: () => <BasicGenerator type="checklist" /> },
+  { id: 'cost', group: 'Plan Growth', icon: PoundSterling, title: 'Website Cost Estimator', desc: 'Estimate a realistic starting range.', component: CostEstimator },
+  { id: 'planner', group: 'Plan Growth', icon: CalendarDays, title: 'Monthly Marketing Planner', desc: 'Get a simple monthly action plan.', component: () => <BasicGenerator type="planner" /> },
 ];
+
+const toolGroups = ['Get More Enquiries', 'Get Found Online', 'Look More Trustworthy', 'Plan Growth'];
 
 const Tools = () => {
   const [activeTool, setActiveTool] = useState('growth-check');
@@ -266,23 +266,30 @@ const Tools = () => {
           <p className="text-sm font-bold text-slate-950">Start with the Growth Check, then use the smaller tools for specific fixes.</p>
           <p className="text-sm text-slate-600 mt-1">All outputs are free and preliminary. They are designed to help you understand what to review before paying for professional work.</p>
         </div>
-        <div className="grid lg:grid-cols-[300px_1fr] gap-6 items-start">
-          <motion.aside initial="hidden" animate="visible" variants={fadeIn} className="space-y-2 lg:sticky lg:top-24">
-            {tools.map((tool) => {
-              const Icon = tool.icon;
-              const active = activeTool === tool.id;
-              return (
-                <button key={tool.id} onClick={() => setActiveTool(tool.id)} className={`w-full text-left rounded-xl border p-3.5 transition-all ${active ? 'bg-slate-950 text-white border-slate-950 shadow-lg shadow-blue-900/10' : 'bg-white text-slate-800 border-slate-100 hover:border-blue-200'}`}>
-                  <div className="flex items-start gap-3">
-                    <Icon size={19} className={active ? 'text-cyan-300 shrink-0 mt-0.5' : 'text-blue-600 shrink-0 mt-0.5'} />
-                    <div>
-                      <h3 className="font-extrabold leading-tight text-sm">{tool.title}</h3>
-                      <p className={`text-xs mt-1 leading-relaxed ${active ? 'text-slate-300' : 'text-slate-600'}`}>{tool.desc}</p>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
+        <div className="grid lg:grid-cols-[320px_1fr] gap-6 items-start">
+          <motion.aside initial="hidden" animate="visible" variants={fadeIn} className="space-y-4 lg:sticky lg:top-24">
+            {toolGroups.map((group) => (
+              <div key={group}>
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 px-1">{group}</p>
+                <div className="space-y-2">
+                  {tools.filter((tool) => tool.group === group).map((tool) => {
+                    const Icon = tool.icon;
+                    const active = activeTool === tool.id;
+                    return (
+                      <button key={tool.id} onClick={() => setActiveTool(tool.id)} className={`w-full text-left rounded-xl border p-3.5 transition-all ${active ? 'bg-slate-950 text-white border-slate-950 shadow-lg shadow-blue-900/10' : 'bg-white text-slate-800 border-slate-100 hover:border-blue-200'}`}>
+                        <div className="flex items-start gap-3">
+                          <Icon size={18} className={active ? 'text-cyan-300 shrink-0 mt-0.5' : 'text-blue-600 shrink-0 mt-0.5'} />
+                          <div>
+                            <h3 className="font-extrabold leading-tight text-sm">{tool.title}</h3>
+                            <p className={`text-xs mt-1 leading-relaxed ${active ? 'text-slate-300' : 'text-slate-600'}`}>{tool.desc}</p>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </motion.aside>
 
           <motion.main initial="hidden" animate="visible" variants={fadeIn}>

@@ -29,6 +29,19 @@ const milestones = [
   { title: 'Report', text: 'Ongoing work includes clear reporting on actions, results, and next priorities.' },
 ];
 
+const comparison = [
+  ['Pricing', 'Vague packages or a quote only after a sales call', 'Starting prices, scope notes, and exact quote before work starts'],
+  ['Ownership', 'Agency controls key accounts or makes handover difficult', 'You keep ownership of website, domain, hosting, analytics, and profiles'],
+  ['Reporting', 'Busy dashboards with little business meaning', 'Plain-English actions, results, and next priorities'],
+  ['Promises', 'Big claims about rankings, traffic, or instant growth', 'Realistic expectations and no fake guarantees'],
+];
+
+const contactSteps = [
+  'We review your website, goal, and message.',
+  'We identify the highest-impact issue first.',
+  'You get a clear next step, likely timeline, and pricing guidance.',
+];
+
 const TrustCentre = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
@@ -44,6 +57,29 @@ const TrustCentre = () => {
           <p className="text-base md:text-lg text-slate-300 leading-relaxed">
             We know small businesses do not trust agencies easily. This is how we keep the process clear, realistic, and low-pressure.
           </p>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="max-w-3xl mb-8">
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">How we compare</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">Typical Agency vs Suraha Enterprise</h2>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
+            <div className="hidden md:grid grid-cols-[0.8fr_1fr_1fr] bg-slate-950 text-white text-sm font-bold">
+              <div className="p-4">Area</div>
+              <div className="p-4 border-l border-white/10">Typical Agency</div>
+              <div className="p-4 border-l border-white/10">Suraha Enterprise</div>
+            </div>
+            {comparison.map(([area, agency, suraha]) => (
+              <div key={area} className="grid md:grid-cols-[0.8fr_1fr_1fr] border-t border-slate-100">
+                <div className="p-4 font-extrabold text-slate-950 bg-slate-50">{area}</div>
+                <div className="p-4 text-sm text-slate-600 md:border-l border-slate-100">{agency}</div>
+                <div className="p-4 text-sm text-slate-800 font-medium md:border-l border-slate-100">{suraha}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -89,6 +125,23 @@ const TrustCentre = () => {
                 <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold mb-4">{index + 1}</div>
                 <h3 className="font-extrabold text-slate-950 mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-slate-50">
+        <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+          <div className="text-center max-w-3xl mx-auto mb-9">
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">After you contact us</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">A simple next-step process, not a sales maze.</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {contactSteps.map((step, index) => (
+              <div key={step} className="rounded-2xl bg-white border border-slate-100 p-6 shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold mb-4">{index + 1}</div>
+                <p className="text-slate-700 font-semibold leading-relaxed">{step}</p>
               </div>
             ))}
           </div>

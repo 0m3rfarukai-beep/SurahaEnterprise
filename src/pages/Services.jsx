@@ -96,11 +96,10 @@ const Services = () => {
                         {/* Description */}
                         <p className="text-sm text-slate-600 leading-relaxed mb-5">{service.shortDesc}</p>
 
-                        {/* Benefits */}
                         <div className="space-y-2 mb-5 flex-1">
-                          {service.benefits.map((b, i) => (
+                          {service.benefits.slice(0, 2).map((b, i) => (
                             <div key={i} className="flex items-start gap-2 text-sm text-slate-700">
-                              <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0 mt-2" />
                               {b}
                             </div>
                           ))}

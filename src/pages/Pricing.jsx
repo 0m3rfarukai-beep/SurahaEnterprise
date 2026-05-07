@@ -10,6 +10,7 @@ const plans = [
     price: 'From £350',
     timeline: '2-5 working days',
     deliverables: ['Homepage clarity review', 'Lead leak fixes', 'CTA and trust-section recommendations', 'Tracking-ready action list'],
+    next: 'We send a short fix plan and agree the first quick wins.',
   },
   {
     title: 'Growth Website',
@@ -17,6 +18,7 @@ const plans = [
     price: 'From £1,200',
     timeline: '3-8 weeks',
     deliverables: ['Mobile-first website', 'Service page structure', 'Lead capture flow', 'CMS where useful', 'Launch checklist'],
+    next: 'We confirm scope, milestones, content needs, and launch date.',
     featured: true,
   },
   {
@@ -25,6 +27,7 @@ const plans = [
     price: 'From £400/mo',
     timeline: 'Monthly',
     deliverables: ['Local SEO action plan', 'Google Business Profile support', 'Content recommendations', 'Monthly reporting'],
+    next: 'We review search opportunities and agree the first month of actions.',
   },
   {
     title: 'Care & Support',
@@ -32,6 +35,7 @@ const plans = [
     price: 'From £150/mo',
     timeline: 'Monthly',
     deliverables: ['Updates and checks', 'Small fixes', 'Backup checks', 'Monthly improvement notes'],
+    next: 'We check the site, set the support rhythm, and confirm priorities.',
   },
 ];
 
@@ -73,9 +77,17 @@ const Pricing = () => {
               >
                 {plan.featured && <span className="self-start px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider mb-5">Most common</span>}
                 <h2 className="text-xl font-extrabold mb-2">{plan.title}</h2>
-                <p className={plan.featured ? 'text-sm text-slate-300 mb-5' : 'text-sm text-slate-600 mb-5'}>{plan.bestFor}</p>
-                <p className="text-3xl font-extrabold text-blue-500 mb-2">{plan.price}</p>
-                <p className={plan.featured ? 'text-sm text-slate-400 mb-6' : 'text-sm text-slate-500 mb-6'}>{plan.timeline}</p>
+                <p className="text-3xl font-extrabold text-blue-500 mb-5">{plan.price}</p>
+                <div className="grid grid-cols-2 gap-2 mb-5">
+                  <div className={plan.featured ? 'rounded-xl bg-white/5 p-3' : 'rounded-xl bg-slate-50 p-3'}>
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Best for</p>
+                    <p className={plan.featured ? 'text-sm text-slate-200 mt-1' : 'text-sm text-slate-700 mt-1'}>{plan.bestFor}</p>
+                  </div>
+                  <div className={plan.featured ? 'rounded-xl bg-white/5 p-3' : 'rounded-xl bg-slate-50 p-3'}>
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Timeline</p>
+                    <p className={plan.featured ? 'text-sm text-slate-200 mt-1' : 'text-sm text-slate-700 mt-1'}>{plan.timeline}</p>
+                  </div>
+                </div>
                 <div className="space-y-3 flex-1">
                   {plan.deliverables.map((item) => (
                     <div key={item} className="flex items-start gap-3">
@@ -83,6 +95,10 @@ const Pricing = () => {
                       <span className={plan.featured ? 'text-slate-200 text-sm' : 'text-slate-700 text-sm'}>{item}</span>
                     </div>
                   ))}
+                </div>
+                <div className={plan.featured ? 'mt-5 rounded-xl bg-white/5 p-3' : 'mt-5 rounded-xl bg-blue-50 p-3'}>
+                  <p className="text-xs font-bold uppercase tracking-widest text-blue-500">What happens next</p>
+                  <p className={plan.featured ? 'text-sm text-slate-200 mt-1' : 'text-sm text-slate-700 mt-1'}>{plan.next}</p>
                 </div>
                 <Link to="/contact" className={`mt-8 inline-flex items-center justify-center gap-2 h-12 rounded-xl font-bold ${plan.featured ? 'bg-blue-600 text-white hover:bg-blue-500' : 'bg-blue-50 text-blue-700 hover:bg-blue-100'}`}>
                   Request exact quote <ArrowRight size={16} />
@@ -123,8 +139,8 @@ const Pricing = () => {
           <ClipboardCheck size={34} className="text-white mx-auto mb-5" />
           <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-5">Need the right option, not the biggest option?</h2>
           <p className="text-blue-100 text-base md:text-lg mb-8">Book a free review and we will explain what should be fixed first.</p>
-          <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-full font-bold">
-            Request exact quote <ArrowRight size={18} />
+          <Link to="/tools" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-full font-bold">
+            Not sure? Start with a free Growth Check <ArrowRight size={18} />
           </Link>
         </div>
       </section>

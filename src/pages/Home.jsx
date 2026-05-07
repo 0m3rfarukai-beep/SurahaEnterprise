@@ -44,34 +44,70 @@ const faqs = [
   { question: 'Can I start small?', answer: 'Yes. Many businesses begin with a Starter Fix, then move into a website, SEO, or care plan once the priorities are clear.' },
 ];
 
+const AuditPreview = () => (
+  <div className="bg-white rounded-2xl border border-slate-100 shadow-2xl shadow-blue-950/20 p-5 md:p-6">
+    <div className="flex items-center justify-between gap-4 pb-5 border-b border-slate-100">
+      <div>
+        <p className="text-xs font-bold uppercase tracking-widest text-blue-600">Sample Growth Report</p>
+        <h3 className="text-xl font-extrabold text-slate-950 mt-1">Website lead health</h3>
+      </div>
+      <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+        <span className="text-2xl font-extrabold">68</span>
+      </div>
+    </div>
+    <div className="py-5 space-y-3">
+      {[
+        ['Clarity', 'Good', 'w-[78%]'],
+        ['Local SEO', 'Needs work', 'w-[52%]'],
+        ['Trust signals', 'Needs work', 'w-[46%]'],
+        ['Lead capture', 'At risk', 'w-[39%]'],
+      ].map(([label, status, width]) => (
+        <div key={label}>
+          <div className="flex items-center justify-between text-sm mb-1.5">
+            <span className="font-bold text-slate-800">{label}</span>
+            <span className="text-slate-500">{status}</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+            <div className={`h-full rounded-full bg-blue-600 ${width}`} />
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="rounded-2xl bg-slate-950 text-white p-4">
+      <p className="text-xs font-bold uppercase tracking-widest text-cyan-300 mb-2">Recommended next step</p>
+      <p className="font-bold leading-snug">Fix trust signals and enquiry flow before spending more on traffic.</p>
+    </div>
+  </div>
+);
+
 const Home = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-12 items-center max-w-7xl">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-center max-w-7xl">
           <motion.div initial="hidden" animate="visible" variants={fadeIn}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 font-bold text-xs uppercase tracking-widest mb-6">
               <Eye size={14} /> Growth platform for UK small businesses
             </div>
-            <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6 max-w-2xl">
-              Is your website helping you win customers, or quietly losing them?
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight mb-6 max-w-2xl">
+              Turn Your Website Into a Lead-Generating Asset for Your UK Business.
             </h1>
             <p className="text-base md:text-lg text-slate-300 leading-relaxed max-w-xl mb-8">
-              Suraha Enterprise helps UK small businesses turn websites, SEO, content, and digital tools into real enquiries with clear advice, transparent pricing, and practical systems built for growth.
+              Clear advice, transparent pricing, and practical systems that help small businesses get found, look trustworthy, and turn visitors into real enquiries.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link to="/tools">
                 <Button size="lg" className="w-full sm:w-auto h-12 md:h-14 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-xl shadow-blue-600/25">
-                  Get a free website growth check
+                  Get Your Free Growth Check
                 </Button>
               </Link>
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 h-12 md:h-14 px-6 rounded-full border border-white/15 text-white font-bold hover:bg-white/10 transition-colors">
-                Book a free consultation <ArrowRight size={18} />
+              <Link to="/services" className="inline-flex items-center justify-center gap-2 h-12 md:h-14 px-6 rounded-full border border-white/15 text-white font-bold hover:bg-white/10 transition-colors">
+                See How We Help <ArrowRight size={18} />
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-8 max-w-xl">
-              {['No jargon', 'No fake traffic', 'Clear milestones', 'Client-owned assets'].map((item) => (
+              {['No jargon', 'Transparent pricing', 'UK small business focused', 'You keep ownership'].map((item) => (
                 <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-bold text-slate-200 text-center">
                   {item}
                 </div>
@@ -80,7 +116,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}>
-            <GrowthCheckTool compact />
+            <AuditPreview />
           </motion.div>
         </div>
       </section>
@@ -143,6 +179,29 @@ const Home = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="max-w-3xl mb-8">
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">No jargon</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">Plain English beats agency theatre.</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              ['Full funnel optimisation', 'We make each page clearer so more visitors know what to do next.'],
+              ['Technical SEO architecture', 'We fix the page structure Google and customers need to understand your services.'],
+              ['Conversion enablement assets', 'We add proof, pricing guidance, FAQs, and better enquiry prompts.'],
+            ].map(([jargon, plain]) => (
+              <div key={jargon} className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                <p className="text-sm font-bold text-slate-400 mb-2">Agency jargon</p>
+                <p className="font-extrabold text-slate-950 mb-4">{jargon}</p>
+                <p className="text-sm font-bold text-blue-600 mb-2">What we actually do</p>
+                <p className="text-slate-700 leading-relaxed">{plain}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
