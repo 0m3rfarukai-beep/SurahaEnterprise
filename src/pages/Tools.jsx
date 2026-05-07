@@ -1,436 +1,310 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { 
-  Calculator, Search, FileText, Share2, MapPin, Lightbulb, Globe, HelpCircle,
-  ArrowRight, Copy, CheckCircle2, AlertCircle, RotateCcw
+import {
+  ArrowRight,
+  BarChart3,
+  CalendarDays,
+  CheckCircle2,
+  ClipboardList,
+  Copy,
+  FileText,
+  Globe,
+  HelpCircle,
+  MapPin,
+  MessageSquareReply,
+  PoundSterling,
+  Search,
+  Send,
+  Sparkles,
+  Target,
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import GrowthCheckTool from '@/components/GrowthCheckTool';
+import { buildLeadPayload, saveToolLead } from '@/lib/leadCapture';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
-
-/* ──── Tool Components ──── */
-
-const WebsiteAuditTool = () => {
-  const [url, setUrl] = useState('');
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const runAudit = () => {
-    if (!url.trim()) return;
-    setLoading(true);
-    setTimeout(() => {
-      const scores = {
-        performance: Math.floor(Math.random() * 30 + 55),
-        seo: Math.floor(Math.random() * 35 + 45),
-        mobile: Math.floor(Math.random() * 25 + 60),
-        security: Math.floor(Math.random() * 40 + 40),
-        content: Math.floor(Math.random() * 30 + 50)
-      };
-      setResult(scores);
-      setLoading(false);
-    }, 2000);
-  };
-
-  const getColor = (score) => score >= 80 ? 'text-green-600' : score >= 60 ? 'text-amber-500' : 'text-red-500';
-  const getBg = (score) => score >= 80 ? 'bg-green-50 border-green-200' : score >= 60 ? 'bg-amber-50 border-amber-200' : 'bg-red-50 border-red-200';
-
-  return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row gap-3">
-        <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Enter your website URL (e.g. example.com)" className="flex-1 px-5 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <Button onClick={runAudit} disabled={loading} className="h-12 px-6 rounded-xl font-bold">
-          {loading ? 'Scanning...' : 'Run Audit'}
-        </Button>
-      </div>
-      {result && (
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-          <div className="flex items-start gap-2 p-3 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800">
-            <AlertCircle size={18} className="shrink-0 mt-0.5" />
-            <span>This is a <strong>preliminary instant audit</strong> based on common best-practice checks — not a full technical crawl.</span>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {Object.entries(result).map(([key, score]) => (
-              <div key={key} className={`p-4 rounded-2xl border text-center ${getBg(score)}`}>
-                <p className={`text-3xl font-extrabold ${getColor(score)}`}>{score}</p>
-                <p className="text-xs font-bold text-slate-600 uppercase mt-1 tracking-wider">{key}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </div>
-  );
-};
-
-const SeoTitleGenerator = () => {
-  const [form, setForm] = useState({ business: '', service: '', location: '', keyword: '' });
-  const [results, setResults] = useState(null);
-
-  const generate = () => {
-    const { business, service, location, keyword } = form;
-    if (!business || !service) return;
-    const loc = location || 'UK';
-    const kw = keyword || service;
-    setResults({
-      titles: [
-        `${business} | Professional ${service} in ${loc}`,
-        `${kw} Services | ${business} — Trusted ${loc} Experts`,
-        `Affordable ${service} for Small Businesses | ${business} ${loc}`
-      ],
-      descriptions: [
-        `${business} offers professional ${service.toLowerCase()} services in ${loc}. Get results-driven solutions tailored to your business. Contact us for a free consultation.`,
-        `Looking for reliable ${kw.toLowerCase()} in ${loc}? ${business} helps small businesses grow online with proven ${service.toLowerCase()} strategies. Get in touch today.`,
-        `${business} provides expert ${service.toLowerCase()} services across ${loc}. Transparent pricing, real results. Book your free audit now.`
-      ]
-    });
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.service} onChange={(e) => setForm({...form, service: e.target.value})} placeholder="Service (e.g. Web Design)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.location} onChange={(e) => setForm({...form, location: e.target.value})} placeholder="Location (e.g. London)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.keyword} onChange={(e) => setForm({...form, keyword: e.target.value})} placeholder="Target keyword (optional)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-      </div>
-      <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate SEO Tags</Button>
-      {results && <GeneratedList label="Title Options" items={results.titles} />}
-      {results && <GeneratedList label="Meta Descriptions" items={results.descriptions} />}
-    </div>
-  );
-};
-
-const CaptionGenerator = () => {
-  const [form, setForm] = useState({ business: '', offer: '', platform: 'Instagram' });
-  const [results, setResults] = useState(null);
-  const platforms = ['Facebook', 'Instagram', 'LinkedIn', 'TikTok'];
-
-  const generate = () => {
-    const { business, offer, platform } = form;
-    if (!business || !offer) return;
-    const templates = {
-      Facebook: [
-        `🚀 ${business} is here to help! ${offer}. Message us today to learn more.`,
-        `Looking for ${offer.toLowerCase()}? ${business} has you covered. Click the link in our bio to get started!`,
-        `✅ ${offer} — that's what ${business} does best. Drop a comment or DM us!`
-      ],
-      Instagram: [
-        `${offer} 💡 That's what we do at ${business}.\n\nDM us "INFO" to get started.\n\n#SmallBusiness #${business.replace(/\s/g,'')} #GrowOnline`,
-        `Your business deserves ${offer.toLowerCase()}. We make it happen. 🔥\n\nLink in bio 👆\n\n#DigitalMarketing #UKBusiness`,
-        `Stop scrolling and start growing 📈\n\n${business} offers ${offer.toLowerCase()} for businesses like yours.\n\nDM us today!`
-      ],
-      LinkedIn: [
-        `At ${business}, we believe every small business deserves ${offer.toLowerCase()}.\n\nIf you're looking to grow your online presence this year, let's connect.\n\n#BusinessGrowth #DigitalTransformation`,
-        `${offer} isn't a luxury — it's a necessity.\n\n${business} helps UK businesses compete online with professional, affordable solutions.\n\nComment "INTERESTED" to learn more.`,
-        `3 things every small business needs in 2026:\n1. A fast, professional website\n2. A solid SEO strategy\n3. ${offer}\n\n${business} delivers all three. Let's talk.`
-      ],
-      TikTok: [
-        `POV: You just found ${business} and your business is about to level up 🚀 ${offer} #SmallBiz #BusinessTok`,
-        `${business} tip: ${offer.toLowerCase()} = more customers. Simple as that. 💪 #MarketingTips #UKBusiness`,
-        `Stop DIYing your marketing. ${business} offers ${offer.toLowerCase()} so you can focus on what you do best 🎯`
-      ]
-    };
-    setResults(templates[platform] || templates.Instagram);
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.offer} onChange={(e) => setForm({...form, offer: e.target.value})} placeholder="Your offer (e.g. Free website audit)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {platforms.map(p => (
-          <button key={p} onClick={() => setForm({...form, platform: p})} className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition-all ${form.platform === p ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-slate-200 text-slate-600 hover:border-blue-300'}`}>{p}</button>
-        ))}
-      </div>
-      <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate Captions</Button>
-      {results && <GeneratedList label={`${form.platform} Captions`} items={results} />}
-    </div>
-  );
-};
-
-const GBPPostGenerator = () => {
-  const [form, setForm] = useState({ business: '', service: '', location: '', offer: '' });
-  const [result, setResult] = useState('');
-
-  const generate = () => {
-    const { business, service, location, offer } = form;
-    if (!business || !service) return;
-    const loc = location || 'your area';
-    const off = offer || `professional ${service.toLowerCase()}`;
-    setResult(`📢 ${business} — ${service} in ${loc}\n\n${off}! Whether you need a new website, better Google rankings, or more customers — we've got you covered.\n\n✅ Free consultation available\n📞 Contact us today\n🌐 Visit our website to learn more\n\n#${business.replace(/\s/g,'')} #${loc.replace(/\s/g,'')} #SmallBusiness`);
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.service} onChange={(e) => setForm({...form, service: e.target.value})} placeholder="Main service" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.location} onChange={(e) => setForm({...form, location: e.target.value})} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.offer} onChange={(e) => setForm({...form, offer: e.target.value})} placeholder="Special offer (optional)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-      </div>
-      <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate GBP Post</Button>
-      {result && <CopyBlock text={result} />}
-    </div>
-  );
-};
-
-const LeadMagnetGenerator = () => {
-  const [industry, setIndustry] = useState('');
-  const [ideas, setIdeas] = useState(null);
-
-  const generate = () => {
-    if (!industry.trim()) return;
-    setIdeas([
-      `"The Ultimate ${industry} Website Checklist" — A downloadable PDF checklist of everything a ${industry.toLowerCase()} business needs on their website.`,
-      `"5 ${industry} Marketing Mistakes Costing You Customers" — A short guide exposing common mistakes and how to fix them.`,
-      `"Free ${industry} SEO Starter Template" — A simple spreadsheet template for tracking keywords, rankings, and content ideas.`,
-      `"${industry} Social Media Content Calendar" — A 30-day content plan with post ideas tailored to ${industry.toLowerCase()} businesses.`,
-      `"How to Get More ${industry} Customers Online" — A 10-minute video training or webinar recording with actionable tips.`
-    ]);
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row gap-3">
-        <input value={industry} onChange={(e) => setIndustry(e.target.value)} placeholder="Your industry (e.g. Plumbing, Law, Fitness)" className="flex-1 px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate Ideas</Button>
-      </div>
-      {ideas && <GeneratedList label="Lead Magnet Ideas" items={ideas} />}
-    </div>
-  );
-};
-
-/* ──── Shared Components ──── */
 
 const CopyButton = ({ text }) => {
   const [copied, setCopied] = useState(false);
-  const copy = () => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); };
+  const copy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  };
+
   return (
-    <button onClick={copy} className="flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors shrink-0">
+    <button onClick={copy} className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800">
       {copied ? <><CheckCircle2 size={14} /> Copied</> : <><Copy size={14} /> Copy</>}
     </button>
   );
 };
 
-const CopyBlock = ({ text }) => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-slate-50 p-5 rounded-2xl border border-slate-200 relative">
-    <div className="absolute top-4 right-4"><CopyButton text={text} /></div>
-    <pre className="whitespace-pre-wrap text-sm text-slate-700 font-sans leading-relaxed pr-16">{text}</pre>
-    <p className="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500">Want us to do this professionally? <Link to="/contact" className="text-blue-600 font-bold hover:underline">Contact Suraha Enterprise →</Link></p>
-  </motion.div>
-);
+const ResultPanel = ({ title, children, summary = '', recommendedService = 'Website Design & Development', form = {}, toolUsed = 'Growth tool' }) => {
+  useEffect(() => {
+    if (!summary) return;
+    saveToolLead(buildLeadPayload({
+      toolUsed,
+      form,
+      result: { summary },
+      recommendedService,
+      leadScore: 65,
+    }));
+  }, [form, recommendedService, summary, toolUsed]);
 
-const GeneratedList = ({ label, items }) => (
-  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-    <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">{label}</h4>
-    {items.map((item, i) => (
-      <div key={i} className="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-start justify-between gap-4">
-        <p className="text-sm text-slate-700 leading-relaxed flex-1">{item}</p>
-        <CopyButton text={item} />
+  return (
+    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 space-y-4">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h4 className="font-extrabold text-slate-950">{title}</h4>
+          <p className="text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-2.5 py-1.5 mt-2 inline-flex">Preliminary result. No live crawler or external API is connected yet.</p>
+        </div>
+        {summary && <CopyButton text={summary} />}
       </div>
-    ))}
-    <p className="text-xs text-slate-500 pt-2">Want us to do this professionally? <Link to="/contact" className="text-blue-600 font-bold hover:underline">Contact Suraha Enterprise →</Link></p>
-  </motion.div>
-);
+      {children}
+      <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <p className="text-sm font-semibold text-slate-700">Want this fixed professionally? Book a free review.</p>
+        <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
+          Book a free review <ArrowRight size={16} />
+        </Link>
+      </div>
+    </motion.div>
+  );
+};
 
-/* ──── New Tool Components ──── */
-
-const DomainNameGenerator = () => {
-  const [form, setForm] = useState({ business: '', industry: '' });
-  const [results, setResults] = useState(null);
+const BasicGenerator = ({ type }) => {
+  const [form, setForm] = useState({ businessName: '', websiteUrl: '', businessType: '', location: '', topic: '' });
+  const [result, setResult] = useState(null);
 
   const generate = () => {
-    const { business, industry } = form;
-    if (!business) return;
-    const clean = business.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const ind = industry ? industry.toLowerCase().replace(/[^a-z]/g, '') : '';
-    const ideas = [
-      `${clean}.co.uk`, `${clean}${ind}.com`, `get${clean}.co.uk`, `${clean}hq.com`,
-      `${clean}.io`, ind ? `${ind}by${clean}.co.uk` : `the${clean}.com`,
-      `${clean}digital.agency`, `hello${clean}.com`
-    ];
-    setResults(ideas);
+    const business = form.businessName || 'Your business';
+    const location = form.location || 'your area';
+    const industry = form.businessType || 'service business';
+
+    const outputs = {
+      leadLeak: [
+        'Make the primary call-to-action visible above the fold.',
+        'Add proof near the contact button, not only at the bottom of the page.',
+        'Replace vague copy with a direct offer, audience, location, and outcome.',
+        'Add a quote follow-up message for people who enquire but do not book.',
+        'Track form submissions and phone-clicks before spending more on ads.',
+      ],
+      localSeo: [
+        `Create or improve a ${location} service page for ${industry} searches.`,
+        'Add service areas, FAQs, reviews, and internal links to key pages.',
+        'Post weekly on Google Business Profile with one offer or helpful tip.',
+        'Make name, address, phone, and opening details consistent across listings.',
+        'Ask recent customers for reviews using a short direct link.',
+      ],
+      reviewReply: [
+        `Thank you for taking the time to leave this review. We are glad ${business} could help and we really appreciate your support.`,
+        `Thanks for the feedback. We are sorry the experience did not meet expectations. Please contact us directly so we can understand what happened and put it right.`,
+      ],
+      followUp: [
+        `Hi, just following up on your enquiry with ${business}. Would you like us to send a clear quote and next steps for this?`,
+        `Hi, I wanted to check whether you still need help. We can explain the options, timeline, and likely cost before you decide anything.`,
+      ],
+      headline: [
+        `${business} helps ${location} customers get reliable ${industry} without the confusion.`,
+        `Professional ${industry} in ${location}, with clear pricing and practical advice before you book.`,
+        `Turn your website visitors into real enquiries with ${business}.`,
+      ],
+      checklist: [
+        'Is their homepage message clearer than yours?',
+        'Do they show pricing guidance or make visitors guess?',
+        'Do they have stronger reviews, examples, or trust signals?',
+        'Do they answer buyer questions before the contact form?',
+        'Is their mobile enquiry path easier than yours?',
+      ],
+      planner: [
+        'Week 1: publish one buyer-question blog post and update your top service page.',
+        'Week 2: request 3 reviews and publish one Google Business Profile post.',
+        'Week 3: improve one landing page CTA and add one trust section.',
+        'Week 4: review enquiries, rankings, calls, and form submissions.',
+      ],
+      gbp: [
+        `${business} in ${location}: Need help with ${industry}? We offer clear advice, practical support, and transparent next steps. Contact us today for a free review.`,
+      ],
+    };
+
+    const items = outputs[type] || outputs.leadLeak;
+    setResult(items);
+  };
+
+  const summary = result ? result.join('\n') : '';
+
+  return (
+    <div className="space-y-5">
+      <div className="grid sm:grid-cols-2 gap-3">
+        <input value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+      </div>
+      <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate result</Button>
+      {result && (
+        <ResultPanel title="Your useful first-pass output" summary={summary} form={form} toolUsed={type}>
+          <div className="space-y-3">
+            {result.map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-xl bg-white border border-slate-100 p-3.5 text-sm text-slate-700">
+                <CheckCircle2 size={17} className="text-blue-600 shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </ResultPanel>
+      )}
+    </div>
+  );
+};
+
+const CostEstimator = () => {
+  const [form, setForm] = useState({ pages: '5', content: 'Basic', booking: false, seo: false });
+  const [range, setRange] = useState(null);
+
+  const estimate = () => {
+    const pages = Number(form.pages) || 1;
+    let low = 350 + pages * 120;
+    let high = 700 + pages * 220;
+    if (form.content === 'Copywriting') { low += 300; high += 900; }
+    if (form.booking) { low += 450; high += 1200; }
+    if (form.seo) { low += 300; high += 800; }
+    setRange({ low, high });
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-        <input value={form.industry} onChange={(e) => setForm({...form, industry: e.target.value})} placeholder="Industry (optional)" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+        <input value={form.pages} onChange={(event) => setForm({ ...form, pages: event.target.value })} placeholder="Pages needed" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900" />
+        <select value={form.content} onChange={(event) => setForm({ ...form, content: event.target.value })} className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900">
+          <option>Basic</option>
+          <option>Copywriting</option>
+        </select>
       </div>
-      <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate Domain Ideas</Button>
-      {results && <GeneratedList label="Domain Name Ideas" items={results} />}
-      <p className="text-xs text-slate-500 italic">*Check availability with your preferred registrar. These are ideas only.</p>
+      <div className="flex flex-wrap gap-3">
+        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700"><input type="checkbox" checked={form.booking} onChange={(event) => setForm({ ...form, booking: event.target.checked })} /> Booking or lead form</label>
+        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700"><input type="checkbox" checked={form.seo} onChange={(event) => setForm({ ...form, seo: event.target.checked })} /> SEO setup</label>
+      </div>
+      <Button onClick={estimate} className="h-12 px-6 rounded-xl font-bold">Estimate cost</Button>
+      {range && (
+        <ResultPanel title="Estimated website range" summary={`Estimated range: £${range.low.toLocaleString()}-£${range.high.toLocaleString()}`} toolUsed="Website Cost Estimator" recommendedService="Website Design & Development">
+          <p className="text-4xl font-extrabold text-blue-600">£{range.low.toLocaleString()} - £{range.high.toLocaleString()}</p>
+          <p className="text-sm text-slate-600">Exact pricing depends on content, integrations, design complexity, and launch support.</p>
+        </ResultPanel>
+      )}
     </div>
   );
 };
 
 const HostingQuiz = () => {
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [priority, setPriority] = useState('');
   const [result, setResult] = useState(null);
-
-  const questions = [
-    { id: 'type', q: 'What type of website do you have?', opts: ['WordPress', 'Custom/React', 'E-Commerce', 'Simple HTML', 'Not sure'] },
-    { id: 'traffic', q: 'Expected monthly traffic?', opts: ['Under 1,000', '1,000 - 10,000', '10,000 - 100,000', '100,000+'] },
-    { id: 'budget', q: 'Monthly hosting budget?', opts: ['Under £5/mo', '£5 - £20/mo', '£20 - £50/mo', '£50+/mo'] },
-    { id: 'priority', q: 'What matters most?', opts: ['Cheapest price', 'Best speed', 'Easy to use', 'UK data centres', 'Managed support'] }
-  ];
-
-  const handleAnswer = (opt) => {
-    const a = { ...answers, [questions[step].id]: opt };
-    setAnswers(a);
-    if (step < questions.length - 1) { setStep(step + 1); return; }
-    let rec;
-    if (a.budget === 'Under £5/mo') rec = { name: 'Hostinger', why: 'Best value hosting with UK servers. Great for beginners.', price: 'From £1.99/mo' };
-    else if (a.type === 'WordPress' || a.priority === 'Managed support') rec = { name: 'SiteGround', why: 'Premium managed WordPress hosting with excellent support.', price: 'From £4.99/mo' };
-    else if (a.priority === 'Best speed' || a.traffic === '100,000+') rec = { name: 'Cloudways', why: 'Cloud hosting for high-performance sites that scales easily.', price: 'From £11/mo' };
-    else if (a.priority === 'UK data centres') rec = { name: '20i', why: 'UK-based hosting with data centres in the UK.', price: 'From £4.99/mo' };
-    else rec = { name: 'SiteGround', why: 'Reliable all-round hosting with excellent support.', price: 'From £4.99/mo' };
-    setResult(rec);
+  const choose = () => {
+    const recommendation = priority === 'Budget' ? 'Start with a reputable low-cost shared host, then upgrade when traffic grows.' : priority === 'WordPress' ? 'Use managed WordPress hosting with backups, staging, and UK support.' : 'Choose hosting with UK/EU data centres, SSL, backups, and clear support response times.';
+    setResult(recommendation);
   };
 
-  if (result) return (
-    <div className="space-y-6">
-      <div className="bg-blue-50 border border-blue-200 p-6 rounded-2xl">
-        <p className="text-xs text-blue-600 font-bold uppercase tracking-wider mb-2">Our Recommendation</p>
-        <h4 className="text-2xl font-extrabold text-slate-900 mb-2">{result.name}</h4>
-        <p className="text-slate-700 mb-3">{result.why}</p>
-        <p className="text-lg font-bold text-blue-600 mb-4">{result.price}</p>
-        <p className="text-xs text-slate-500 italic">*Affiliate link placeholder — replace with actual URL when ready.</p>
-      </div>
-      <button onClick={() => { setStep(0); setAnswers({}); setResult(null); }} className="text-sm font-bold text-blue-600 hover:underline">← Retake Quiz</button>
-      <p className="text-xs text-slate-500">Want us to handle hosting setup? <Link to="/contact" className="text-blue-600 font-bold hover:underline">Contact Suraha Enterprise →</Link></p>
-    </div>
-  );
-
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between mb-2">
-        <p className="text-sm font-bold text-blue-600">Question {step + 1} of {questions.length}</p>
-        <div className="w-32 h-2 bg-slate-100 rounded-full"><div className="h-full bg-blue-600 rounded-full transition-all" style={{ width: `${(step / questions.length) * 100}%` }} /></div>
-      </div>
-      <h4 className="text-xl font-bold text-slate-900">{questions[step].q}</h4>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {questions[step].opts.map(opt => (
-          <button key={opt} onClick={() => handleAnswer(opt)} className="p-4 rounded-xl border-2 border-slate-200 text-left font-semibold text-slate-700 hover:border-blue-600 hover:bg-blue-50 transition-all">{opt}</button>
-        ))}
-      </div>
-      {step > 0 && <button onClick={() => setStep(step - 1)} className="text-sm text-slate-500 hover:text-slate-800 font-bold">← Previous</button>}
+    <div className="space-y-5">
+      <select value={priority} onChange={(event) => setPriority(event.target.value)} className="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900">
+        <option value="">What matters most?</option>
+        <option>Budget</option>
+        <option>WordPress</option>
+        <option>Speed and support</option>
+      </select>
+      <Button onClick={choose} disabled={!priority} className="h-12 px-6 rounded-xl font-bold">Get recommendation</Button>
+      {result && (
+        <ResultPanel title="Hosting recommendation" summary={result} toolUsed="Domain & Hosting Recommendation Quiz" recommendedService="Website Maintenance & Support">
+          <p className="text-slate-700">{result}</p>
+        </ResultPanel>
+      )}
     </div>
   );
 };
 
-/* ──── Tools Page ──── */
-
 const tools = [
-  { id: 'audit', icon: Search, title: 'Free Website Audit', desc: 'Instant preliminary check of your site\'s performance, SEO, mobile, security, and content.', badges: ['Free', 'Instant'], component: WebsiteAuditTool },
-  { id: 'seo', icon: FileText, title: 'SEO Title & Meta Generator', desc: 'Generate optimised page titles and meta descriptions for your business.', badges: ['Free', 'Instant'], component: SeoTitleGenerator },
-  { id: 'captions', icon: Share2, title: 'Social Media Caption Generator', desc: 'Create engaging captions for Facebook, Instagram, LinkedIn, and TikTok.', badges: ['Free', 'Instant'], component: CaptionGenerator },
-  { id: 'gbp', icon: MapPin, title: 'Google Business Profile Post Generator', desc: 'Generate professional posts for your Google Business Profile listing.', badges: ['Free', 'Instant'], component: GBPPostGenerator },
-  { id: 'leads', icon: Lightbulb, title: 'Lead Magnet Idea Generator', desc: 'Get 5 lead magnet ideas tailored to your industry to grow your email list.', badges: ['Free', 'Instant'], component: LeadMagnetGenerator },
-  { id: 'domain', icon: Globe, title: 'Domain Name Idea Generator', desc: 'Get creative domain name suggestions based on your business name and industry.', badges: ['Free', 'Instant'], component: DomainNameGenerator },
-  { id: 'hosting', icon: HelpCircle, title: 'Hosting Recommendation Quiz', desc: 'Answer 4 quick questions and get a personalised hosting recommendation.', badges: ['Free', 'Quiz'], component: HostingQuiz }
+  { id: 'growth-check', icon: Search, title: 'Free Website Growth Check', desc: 'Score clarity, SEO, mobile, trust, and lead capture.', component: GrowthCheckTool },
+  { id: 'lead-leak', icon: Target, title: 'Website Lead Leak Checker', desc: 'Find common reasons visitors do not become enquiries.', component: () => <BasicGenerator type="leadLeak" /> },
+  { id: 'local-seo', icon: MapPin, title: 'Local SEO Visibility Checker', desc: 'Get first-pass local visibility fixes.', component: () => <BasicGenerator type="localSeo" /> },
+  { id: 'cost', icon: PoundSterling, title: 'Website Cost Estimator', desc: 'Estimate a realistic starting range.', component: CostEstimator },
+  { id: 'gbp', icon: Globe, title: 'Google Business Profile Post Generator', desc: 'Write useful local posts quickly.', component: () => <BasicGenerator type="gbp" /> },
+  { id: 'reviews', icon: MessageSquareReply, title: 'Review Reply Generator', desc: 'Reply professionally to positive or negative reviews.', component: () => <BasicGenerator type="reviewReply" /> },
+  { id: 'follow-up', icon: Send, title: 'Quote Follow-Up Message Generator', desc: 'Follow up without sounding pushy.', component: () => <BasicGenerator type="followUp" /> },
+  { id: 'headline', icon: Sparkles, title: 'Landing Page Headline Generator', desc: 'Create clearer conversion-focused headlines.', component: () => <BasicGenerator type="headline" /> },
+  { id: 'competitor', icon: ClipboardList, title: 'Competitor Website Comparison Checklist', desc: 'Compare trust, clarity, proof, and enquiry paths.', component: () => <BasicGenerator type="checklist" /> },
+  { id: 'planner', icon: CalendarDays, title: 'Monthly Marketing Planner', desc: 'Get a simple monthly action plan.', component: () => <BasicGenerator type="planner" /> },
+  { id: 'hosting', icon: HelpCircle, title: 'Domain & Hosting Recommendation Quiz', desc: 'Choose a sensible hosting direction.', component: HostingQuiz },
 ];
 
 const Tools = () => {
-  const [activeTool, setActiveTool] = useState(null);
+  const [activeTool, setActiveTool] = useState('growth-check');
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-      {/* Hero */}
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(34,211,238,0.12)_0%,transparent_60%)] z-0 pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8 backdrop-blur-sm">
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8">
             Free Growth Tools
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            Free Tools to <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 to-blue-600">Grow Your Business</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
+            Useful tools before you spend money.
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Premium marketing tools — completely free, instant results, no signup required.
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Check lead leaks, local SEO, follow-up, pricing, and content ideas. No signup required.
           </p>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 max-w-5xl py-12 md:py-20 -mt-8">
-        {/* Estimator link */}
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mb-8">
-          <Link to="/estimator" className="block bg-gradient-to-r from-blue-600 to-blue-500 p-6 rounded-2xl text-white hover:from-blue-500 hover:to-cyan-500 transition-all group shadow-lg shadow-blue-600/20">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center"><Calculator size={24} /></div>
-                <div>
-                  <h3 className="text-lg font-bold">Website Cost Estimator</h3>
-                  <p className="text-sm text-blue-100">Get an instant project price range — no email needed</p>
-                </div>
-              </div>
-              <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform shrink-0" />
-            </div>
-          </Link>
-        </motion.div>
-
-        {/* Tool Cards */}
-        <div className="space-y-6">
-          {tools.map((tool, idx) => {
-            const Icon = tool.icon;
-            const ToolComponent = tool.component;
-            const isActive = activeTool === tool.id;
-
-            return (
-              <motion.div
-                key={tool.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden"
-              >
-                <button
-                  onClick={() => setActiveTool(isActive ? null : tool.id)}
-                  className="w-full p-6 sm:p-8 flex items-center gap-4 sm:gap-6 text-left hover:bg-slate-50/50 transition-colors"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                    <Icon size={26} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <h3 className="text-lg font-bold text-slate-900">{tool.title}</h3>
-                      {tool.badges.map(b => (
-                        <span key={b} className="px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-xs font-bold border border-green-200">{b}</span>
-                      ))}
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-10 md:py-16">
+        <div className="mb-6 rounded-2xl bg-white border border-slate-100 p-4 sm:p-5 shadow-sm">
+          <p className="text-sm font-bold text-slate-950">Start with the Growth Check, then use the smaller tools for specific fixes.</p>
+          <p className="text-sm text-slate-600 mt-1">All outputs are free and preliminary. They are designed to help you understand what to review before paying for professional work.</p>
+        </div>
+        <div className="grid lg:grid-cols-[300px_1fr] gap-6 items-start">
+          <motion.aside initial="hidden" animate="visible" variants={fadeIn} className="space-y-2 lg:sticky lg:top-24">
+            {tools.map((tool) => {
+              const Icon = tool.icon;
+              const active = activeTool === tool.id;
+              return (
+                <button key={tool.id} onClick={() => setActiveTool(tool.id)} className={`w-full text-left rounded-xl border p-3.5 transition-all ${active ? 'bg-slate-950 text-white border-slate-950 shadow-lg shadow-blue-900/10' : 'bg-white text-slate-800 border-slate-100 hover:border-blue-200'}`}>
+                  <div className="flex items-start gap-3">
+                    <Icon size={19} className={active ? 'text-cyan-300 shrink-0 mt-0.5' : 'text-blue-600 shrink-0 mt-0.5'} />
+                    <div>
+                      <h3 className="font-extrabold leading-tight text-sm">{tool.title}</h3>
+                      <p className={`text-xs mt-1 leading-relaxed ${active ? 'text-slate-300' : 'text-slate-600'}`}>{tool.desc}</p>
                     </div>
-                    <p className="text-sm text-slate-600">{tool.desc}</p>
-                  </div>
-                  <div className={`w-8 h-8 rounded-full border-2 border-slate-200 flex items-center justify-center shrink-0 transition-transform ${isActive ? 'rotate-45 border-blue-600 text-blue-600' : 'text-slate-400'}`}>
-                    <span className="text-xl leading-none">+</span>
                   </div>
                 </button>
+              );
+            })}
+          </motion.aside>
 
-                {isActive && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 sm:px-8 pb-8 border-t border-slate-100"
-                  >
-                    <div className="pt-6">
-                      <ToolComponent />
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            );
-          })}
+          <motion.main initial="hidden" animate="visible" variants={fadeIn}>
+            {tools.map((tool) => {
+              const Component = tool.component;
+              if (tool.id !== activeTool) return null;
+              return (
+                <div key={tool.id}>
+                  <Component />
+                </div>
+              );
+            })}
+            <div className="mt-6 rounded-2xl bg-blue-600 text-white p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h3 className="text-xl font-extrabold">Want a human review of the result?</h3>
+                <p className="text-blue-100">Book a free consultation and we will explain the most useful next step.</p>
+              </div>
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-5 py-3 rounded-xl font-bold">
+                Book a free review <ArrowRight size={16} />
+              </Link>
+            </div>
+          </motion.main>
         </div>
       </div>
     </div>

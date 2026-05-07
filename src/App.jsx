@@ -11,6 +11,7 @@ import Estimator from './pages/Estimator';
 import Tools from './pages/Tools';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import TrustCentre from './pages/TrustCentre';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="tools" element={<Tools />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />
+        <Route path="trust-centre" element={<TrustCentre />} />
       </Route>
     </Routes>
   );

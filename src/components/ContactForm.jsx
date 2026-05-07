@@ -65,7 +65,7 @@ const ContactForm = () => {
 
   if (status === 'success') {
     return (
-      <div className="bg-white rounded-[2.5rem] border border-cyan-400 p-8 sm:p-14 text-center flex flex-col items-center justify-center gap-6 shadow-xl shadow-cyan-400/10">
+      <div className="bg-white rounded-2xl border border-cyan-400 p-8 sm:p-10 text-center flex flex-col items-center justify-center gap-5 shadow-xl shadow-cyan-400/10">
         <CheckCircle2 color="var(--lime-accent)" size={64} />
         <h3 className="text-3xl font-bold" style={{ color: 'var(--dark-navy)' }}>Request Received!</h3>
         <p className="text-lg mb-8" style={{ color: 'var(--text-muted-dark)' }}>
@@ -79,8 +79,8 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="bg-white p-8 sm:p-14 rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-slate-100 flex flex-col gap-6 h-auto">
-      <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">Request a Free Consultation</h3>
+    <div className="bg-white p-0 flex flex-col gap-5 h-auto">
+      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Request a Free Consultation</h3>
       
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-md text-red-600 flex items-center gap-3 mb-8">
@@ -90,8 +90,8 @@ const ContactForm = () => {
       )}
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          <div className="grid md:grid-cols-2 gap-5">
             <FormField
               control={form.control}
               name="name"
@@ -120,7 +120,7 @@ const ContactForm = () => {
             />
           </div>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
             <FormField
               control={form.control}
               name="phone"
@@ -173,7 +173,7 @@ const ContactForm = () => {
             )}
           />
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5">
             <FormField
               control={form.control}
               name="businessSize"
@@ -253,7 +253,7 @@ const ContactForm = () => {
                 <FormControl>
                   <Textarea 
                     placeholder="Tell us a little bit about your current challenges and what you're looking to achieve..." 
-                    className="min-h-[120px] bg-slate-50 border-slate-200 focus-visible:ring-blue-600"
+                    className="min-h-[110px] bg-slate-50 border-slate-200 focus-visible:ring-blue-600"
                     {...field} 
                   />
                 </FormControl>
@@ -265,7 +265,7 @@ const ContactForm = () => {
           <Button 
             type="submit" 
             disabled={status === 'loading'} 
-            className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg shadow-blue-600/20"
+            className="w-full h-12 md:h-14 text-base md:text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg shadow-blue-600/20"
           >
             {status === 'loading' ? 'Sending...' : 'Submit Request'} 
             <Send size={20} className="ml-2" />

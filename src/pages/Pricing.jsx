@@ -1,146 +1,132 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Info, ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ClipboardCheck, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
-import PricingCard from '../components/PricingCard';
 import FAQAccordion from '../components/FAQAccordion';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-};
+const plans = [
+  {
+    title: 'Starter Fix',
+    bestFor: 'A careful first step before a larger project',
+    price: 'From £350',
+    timeline: '2-5 working days',
+    deliverables: ['Homepage clarity review', 'Lead leak fixes', 'CTA and trust-section recommendations', 'Tracking-ready action list'],
+  },
+  {
+    title: 'Growth Website',
+    bestFor: 'Replacing an old website with a lead-generating asset',
+    price: 'From £1,200',
+    timeline: '3-8 weeks',
+    deliverables: ['Mobile-first website', 'Service page structure', 'Lead capture flow', 'CMS where useful', 'Launch checklist'],
+    featured: true,
+  },
+  {
+    title: 'Local Growth Plan',
+    bestFor: 'Getting found by local customers month by month',
+    price: 'From £400/mo',
+    timeline: 'Monthly',
+    deliverables: ['Local SEO action plan', 'Google Business Profile support', 'Content recommendations', 'Monthly reporting'],
+  },
+  {
+    title: 'Care & Support',
+    bestFor: 'Keeping the website secure, updated, and improving',
+    price: 'From £150/mo',
+    timeline: 'Monthly',
+    deliverables: ['Updates and checks', 'Small fixes', 'Backup checks', 'Monthly improvement notes'],
+  },
+];
+
+const faqs = [
+  { question: 'Can I request an exact quote?', answer: 'Yes. Starting prices help you understand the likely level of investment, but exact quotes are provided after a quick review of your goals, current site, and scope.' },
+  { question: 'What happens after payment?', answer: 'You receive a confirmation, the agreed milestone plan, what we need from you, and the first delivery date. For suitable projects, payment can be split by milestone.' },
+  { question: 'Are there hidden fees?', answer: 'No. Any third-party costs such as hosting, domains, plugins, ad spend, or stock assets are explained before purchase.' },
+  { question: 'Do I have to sign a long contract?', answer: 'No. Project work is milestone-based. Monthly plans are designed to stay clear and low-pressure.' },
+];
 
 const Pricing = () => {
-  const [billingCycle, setBillingCycle] = useState('monthly'); // 'monthly' or 'yearly'
-
-  const faqs = [
-    { question: 'What is the typical timeline for a new website?', answer: 'Most custom websites take between 4 to 8 weeks from initial discovery to launch, depending on the complexity and features required.' },
-    { question: 'Do you provide ongoing support after launch?', answer: 'Yes, all our Growth and Premium packages include ongoing technical support, security updates, and performance monitoring.' },
-    { question: 'Will my website be mobile-friendly?', answer: 'Absolutely. We utilize a mobile-first design approach ensuring your site looks and performs flawlessly across all devices.' },
-    { question: 'Are there any hidden fees?', answer: 'No. Our pricing is completely transparent. You will know exactly what you are paying for with our fixed monthly retainers or project fees.' }
-  ];
-
-  const getPrice = (monthlyPrice) => {
-    if (billingCycle === 'yearly') {
-      // 20% discount for yearly — show discounted monthly price
-      return Math.floor(monthlyPrice * 0.8);
-    }
-    return monthlyPrice;
-  };
-
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      {/* Page Header */}
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-32 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.15)_0%,transparent_60%)] z-0 pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8 backdrop-blur-sm">
-              Pricing & Plans
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-8 leading-tight">
-              Simple, <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 to-blue-600">Transparent</span> Pricing
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-12">
-              Choose the right tier to help your small business scale online. No hidden fees, no complex contracts.
-            </p>
-
-            {/* Billing Toggle */}
-            <div className="inline-flex items-center bg-white/5 backdrop-blur-md rounded-full p-2 border border-white/10 shadow-2xl">
-              <button 
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-6 py-3 rounded-full text-base font-bold transition-all duration-300 ${billingCycle === 'monthly' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-300 hover:text-white'}`}
-              >
-                Monthly Billing
-              </button>
-              <button 
-                onClick={() => setBillingCycle('yearly')}
-                className={`px-6 py-3 rounded-full text-base font-bold transition-all duration-300 flex items-center gap-3 ${billingCycle === 'yearly' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-slate-300 hover:text-white'}`}
-              >
-                Yearly Billing 
-                <span className={`px-2.5 py-1 rounded-full text-xs uppercase tracking-wider ${billingCycle === 'yearly' ? 'bg-white/20 text-white' : 'bg-lime-400/20 text-lime-400'}`}>
-                  Save 20%
-                </span>
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Pricing Cards */}
-      <section className="py-16 md:py-32 -mt-16 md:-mt-24 relative z-20">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <PricingCard 
-                title="Starter"
-                desc="A professional website to get your business online."
-                price={getPrice(599)}
-                originalPrice={billingCycle === 'yearly' ? 599 : null}
-                period={billingCycle === 'yearly' ? 'mo (billed yearly)' : 'mo'}
-                features={['Custom 5-Page Website', 'Basic Local SEO Setup', 'Mobile Responsive Design', 'Standard Email Support']}
-              />
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-              <PricingCard 
-                isPopular={true}
-                title="Growth"
-                desc="Website plus ongoing SEO and marketing."
-                price={getPrice(799)}
-                originalPrice={billingCycle === 'yearly' ? 799 : null}
-                period={billingCycle === 'yearly' ? 'mo (billed yearly)' : 'mo'}
-                features={['Everything in Starter', 'Active Monthly SEO Optimization', 'Social Media Management (2 platforms)', 'Google Business Profile Management', 'Monthly Performance Reporting', 'Priority Support (24hr response)']}
-              />
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-              <PricingCard 
-                title="Premium"
-                desc="Full digital management for growing businesses."
-                price={getPrice(999)}
-                originalPrice={billingCycle === 'yearly' ? 999 : null}
-                period={billingCycle === 'yearly' ? 'mo (billed yearly)' : 'mo'}
-                features={['Everything in Growth', 'Full E-commerce capabilities', 'Dedicated Technical Account Manager', 'Advanced Cyber Security & Backups', 'Custom Workflow Integrations', '24/7 Priority IT Support']}
-              />
-            </motion.div>
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8">
+            Pricing Guidance
           </div>
-          
-          {/* Custom Quote Notice */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-center mt-20"
-          >
-            <div className="inline-flex flex-col md:flex-row items-center gap-6 bg-white p-8 md:px-12 md:py-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100">
-              <div className="bg-cyan-50 p-4 rounded-full text-cyan-600 shrink-0">
-                <Info size={32} />
-              </div>
-              <div className="text-center md:text-left">
-                <p className="text-xl text-slate-700 mb-2">
-                  Need a bespoke enterprise solution?
-                </p>
-                <Link to="/contact" className="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors inline-flex items-center gap-2">
-                  Contact us for a custom quote <ArrowRight size={20} />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+            Start small, know the cost, and only pay for what makes sense.
+          </h1>
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Transparent starting prices for careful UK business owners. Request an exact quote when the scope is clear.
+          </p>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 md:py-32 bg-white border-t border-slate-100">
-         <div className="container mx-auto px-6 max-w-4xl">
-            <div className="text-center mb-16">
-               <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {plans.map((plan, index) => (
+              <motion.div
+                key={plan.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.07 }}
+                className={`rounded-2xl p-6 border flex flex-col h-full ${plan.featured ? 'bg-slate-950 text-white border-slate-900 shadow-xl shadow-blue-900/15' : 'bg-white text-slate-950 border-slate-100 shadow-sm'}`}
+              >
+                {plan.featured && <span className="self-start px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider mb-5">Most common</span>}
+                <h2 className="text-xl font-extrabold mb-2">{plan.title}</h2>
+                <p className={plan.featured ? 'text-sm text-slate-300 mb-5' : 'text-sm text-slate-600 mb-5'}>{plan.bestFor}</p>
+                <p className="text-3xl font-extrabold text-blue-500 mb-2">{plan.price}</p>
+                <p className={plan.featured ? 'text-sm text-slate-400 mb-6' : 'text-sm text-slate-500 mb-6'}>{plan.timeline}</p>
+                <div className="space-y-3 flex-1">
+                  {plan.deliverables.map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className={plan.featured ? 'text-cyan-300 shrink-0 mt-0.5' : 'text-blue-600 shrink-0 mt-0.5'} />
+                      <span className={plan.featured ? 'text-slate-200 text-sm' : 'text-slate-700 text-sm'}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link to="/contact" className={`mt-8 inline-flex items-center justify-center gap-2 h-12 rounded-xl font-bold ${plan.featured ? 'bg-blue-600 text-white hover:bg-blue-500' : 'bg-blue-50 text-blue-700 hover:bg-blue-100'}`}>
+                  Request exact quote <ArrowRight size={16} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-5">
+            {['Review the scope together', 'Agree milestones and payment points', 'Start with clear next actions'].map((item, index) => (
+              <div key={item} className="bg-white rounded-2xl border border-slate-100 p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-extrabold">{index + 1}</div>
+                <div>
+                  <h3 className="font-extrabold text-slate-950">{item}</h3>
+                  <p className="text-sm text-slate-600 mt-1">You know what happens before money is committed to the next stage.</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-white">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 md:p-8 mb-8 flex gap-4">
+            <Info size={28} className="text-blue-600 shrink-0" />
+            <div>
+              <h2 className="text-xl md:text-2xl font-extrabold text-slate-950 mb-2">Pricing should reduce uncertainty, not create pressure.</h2>
+              <p className="text-slate-700 leading-relaxed">Use these starting prices to decide whether a conversation is worthwhile. We will not push a bigger package if a smaller fix is the honest next step.</p>
             </div>
-            <div className="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100">
-               <FAQAccordion faqs={faqs} />
-            </div>
-         </div>
+          </div>
+          <FAQAccordion faqs={faqs} />
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-blue-600 text-center">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <ClipboardCheck size={34} className="text-white mx-auto mb-5" />
+          <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight mb-5">Need the right option, not the biggest option?</h2>
+          <p className="text-blue-100 text-base md:text-lg mb-8">Book a free review and we will explain what should be fixed first.</p>
+          <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-full font-bold">
+            Request exact quote <ArrowRight size={18} />
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -1,330 +1,222 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, Globe, BarChart, Search, ShieldCheck, 
-  Cpu, Layers, TrendingUp, MessageCircle, Package, 
-  CheckCircle2, Zap, Clock, Headphones
+import {
+  AlertTriangle,
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  ClipboardCheck,
+  Eye,
+  FileSearch,
+  MessageCircle,
+  PoundSterling,
+  ShieldCheck,
+  Smartphone,
+  Target,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ServiceCard from '@/components/ServiceCard';
-import PricingCard from '@/components/PricingCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import HeroDashboard from '@/components/HeroDashboard';
-import BeforeAfterSlider from '@/components/BeforeAfterSlider';
-
-const faqs = [
-  { question: 'What is the typical timeline for a new website?', answer: 'Most custom websites take between 4 to 8 weeks from initial discovery to launch, depending on the complexity and features required.' },
-  { question: 'Do you provide ongoing support after launch?', answer: 'Yes, all our Growth and Premium packages include ongoing technical support, security updates, and performance monitoring.' },
-  { question: 'Will my website be mobile-friendly?', answer: 'Absolutely. We use a mobile-first design approach ensuring your site looks and performs flawlessly across all devices.' },
-  { question: 'Are there any hidden fees?', answer: 'No. Our pricing is completely transparent. You will know exactly what you are paying for with our fixed monthly retainers or project fees.' },
-  { question: 'How much does a custom website cost?', answer: 'We offer an interactive estimator tool to get an immediate price range. Typically, standard business sites start at £1,200, while custom web apps or e-commerce can start around £2,500+.' },
-  { question: 'How do I get a free consultation?', answer: 'Simply click "Get a Free Website Audit" or "Get a Quote" anywhere on the site. We provide a zero-commitment discovery call to understand your needs.' }
-];
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-};
+import GrowthCheckTool from '@/components/GrowthCheckTool';
 
 const fadeIn = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
 };
+
+const problems = [
+  { icon: MessageCircle, title: 'Unclear message', text: 'Visitors cannot quickly tell what you do, who you help, or why they should choose you.' },
+  { icon: FileSearch, title: 'Weak local SEO', text: 'Your ideal customers are searching, but competitors appear first on Google and maps.' },
+  { icon: Smartphone, title: 'Poor mobile layout', text: 'People on phones struggle to read, trust, or contact you quickly.' },
+  { icon: ShieldCheck, title: 'No trust signals', text: 'Pricing, proof, ownership, reviews, and process are not visible enough.' },
+  { icon: Target, title: 'No follow-up system', text: 'Enquiries are not captured, qualified, followed up, or turned into booked work.' },
+];
+
+const proofCards = [
+  { label: 'Sample audit report', title: 'Lead leak report preview', text: 'A clear example of how we flag message, SEO, mobile, trust, and lead-capture gaps before recommending paid work.' },
+  { label: 'Example scenario', title: 'Service business redesign', text: 'Before: vague homepage and hidden contact form. After: local proof, stronger offer, clear enquiry path, and quote follow-up.' },
+  { label: 'Process preview', title: 'Milestone-based delivery', text: 'Discovery, audit, wireframe, build, launch, reporting. You know what is happening before each payment stage.' },
+];
+
+const faqs = [
+  { question: 'Is the free growth check a full audit?', answer: 'No. It is a preliminary instant audit based on your inputs and common conversion checks. A full technical crawl or SEO audit requires live tools and manual review.' },
+  { question: 'Do you guarantee rankings or enquiries?', answer: 'No. We do not promise fake traffic, fixed rankings, or instant results. We focus on practical improvements that make your website clearer, easier to trust, and easier to enquire through.' },
+  { question: 'Will I own my website and accounts?', answer: 'Yes. Client ownership is a core principle. You should own your website, domain, hosting, analytics, Google Business Profile, and key logins.' },
+  { question: 'Can I start small?', answer: 'Yes. Many businesses begin with a Starter Fix, then move into a website, SEO, or care plan once the priorities are clear.' },
+];
 
 const Home = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      
-      {/* 1. Hero Section */}
-      <section className="relative min-h-[90vh] bg-slate-950 flex items-center pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
-        <div className="absolute top-[-20%] right-[10%] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(37,99,235,0.2)_0%,transparent_60%)] blur-[60px] z-0 pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(6,182,212,0.15)_0%,transparent_60%)] blur-[50px] z-0 pointer-events-none" />
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10 grid xl:grid-cols-12 items-center gap-12 lg:gap-16">
-          <motion.div className="xl:col-span-6" initial="hidden" animate="visible" variants={fadeIn}>
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse" />
-              <span className="text-sm font-bold tracking-widest text-white/90 uppercase">UK Digital Agency</span>
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+        <div className="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-12 items-center max-w-7xl">
+          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 font-bold text-xs uppercase tracking-widest mb-6">
+              <Eye size={14} /> Growth platform for UK small businesses
             </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-8">
-              Websites That <br className="hidden sm:block" />Actually Get You <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">More Customers</span>
+            <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6 max-w-2xl">
+              Is your website helping you win customers, or quietly losing them?
             </h1>
-            
-            <p className="text-lg md:text-xl text-slate-300 mb-12 max-w-xl font-medium leading-relaxed">
-              We design fast, modern websites and run SEO campaigns that help UK small businesses get found online and turn visitors into paying customers.
+            <p className="text-base md:text-lg text-slate-300 leading-relaxed max-w-xl mb-8">
+              Suraha Enterprise helps UK small businesses turn websites, SEO, content, and digital tools into real enquiries with clear advice, transparent pricing, and practical systems built for growth.
             </p>
-            
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-              <Link to="/contact">
-                <Button size="lg" className="h-14 px-8 text-base sm:text-lg font-bold bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-1">
-                  Get a Free Website Audit
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link to="/tools">
+                <Button size="lg" className="w-full sm:w-auto h-12 md:h-14 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-xl shadow-blue-600/25">
+                  Get a free website growth check
                 </Button>
               </Link>
-              <Link to="/services" className="text-base sm:text-lg font-semibold text-white flex items-center gap-2 hover:text-cyan-400 hover:gap-4 transition-all">
-                View Services <ArrowRight size={20} />
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 h-12 md:h-14 px-6 rounded-full border border-white/15 text-white font-bold hover:bg-white/10 transition-colors">
+                Book a free consultation <ArrowRight size={18} />
               </Link>
             </div>
-          </motion.div>
-
-          <HeroDashboard />
-        </div>
-      </section>
-
-      {/* 2. Trust Points — Real, Believable */}
-      <section className="py-12 md:py-16 bg-slate-900 border-b border-white/5">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 text-center">
-            {[
-              { icon: Zap, text: "Fast-Loading Sites" },
-              { icon: CheckCircle2, text: "Transparent Pricing" },
-              { icon: Globe, text: "UK-Focused Support" },
-              { icon: MessageCircle, text: "No Jargon, Ever" },
-              { icon: Headphones, text: "Free Consultation" }
-            ].map((item, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                className="flex flex-col items-center gap-3 py-4"
-              >
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
-                  <item.icon size={22} />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-8 max-w-xl">
+              {['No jargon', 'No fake traffic', 'Clear milestones', 'Client-owned assets'].map((item) => (
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-bold text-slate-200 text-center">
+                  {item}
                 </div>
-                <span className="text-sm font-bold text-slate-300 tracking-wide">{item.text}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. What We Do — Services Preview */}
-      <section className="py-16 md:py-32 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div className="text-center max-w-3xl mx-auto mb-16 md:mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-6">Everything Your Business Needs Online</h2>
-            <p className="text-lg md:text-xl text-slate-700">From a brand new website to ongoing SEO and marketing — we handle it all so you can focus on running your business.</p>
-          </motion.div>
-          
-          <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-            <motion.div className="flex" variants={fadeIn}><ServiceCard icon={Globe} title="Website Design" desc="Custom, mobile-friendly websites built to convert visitors into customers." /></motion.div>
-            <motion.div className="flex" variants={fadeIn}><ServiceCard icon={BarChart} title="Digital Marketing" desc="Google Ads, social media, and email campaigns that bring real leads to your door." /></motion.div>
-            <motion.div className="flex" variants={fadeIn}><ServiceCard icon={Search} title="SEO & Analytics" desc="Get found on Google for the searches your customers are already making." /></motion.div>
-            <motion.div className="flex" variants={fadeIn}><ServiceCard icon={Cpu} title="IT Support" desc="Reliable tech support and maintenance so your systems never let you down." /></motion.div>
-            <motion.div className="flex" variants={fadeIn}><ServiceCard icon={ShieldCheck} title="Cyber Security" desc="Keep your business and customer data safe with essential security measures." /></motion.div>
-            <motion.div className="flex" variants={fadeIn}><ServiceCard icon={Layers} title="Training & Strategy" desc="Digital strategy sessions and training to empower your team's skills." /></motion.div>
-          </motion.div>
-
-          <div className="text-center mt-12">
-            <Link to="/services" className="inline-flex items-center gap-2 text-blue-600 font-bold text-lg hover:gap-4 transition-all">
-              See All Services <ArrowRight size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Results We've Delivered (Sample Projects) */}
-      <section className="py-20 md:py-32 bg-slate-900 text-white border-t border-slate-800">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-16 md:flex justify-between items-end gap-8">
-            <div className="flex-1">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Sample Project Results</h2>
-              <p className="text-lg md:text-xl text-slate-400 max-w-xl">Here's the kind of impact we deliver for our clients. These are example scenarios based on typical outcomes.</p>
+              ))}
             </div>
-            <Link to="/estimator" className="hidden md:flex items-center gap-2 text-blue-400 hover:text-cyan-400 font-bold transition-all hover:gap-4 shrink-0">
-              Try the Cost Estimator <ArrowRight size={20} />
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { challenge: "Outdated website with no online bookings.", solution: "Modern redesign with integrated booking system.", result: "3x more enquiries within 8 weeks.", label: "Website Redesign" },
-              { challenge: "Not appearing on Google for key services.", solution: "Technical SEO audit and content strategy.", result: "Page 1 for 12 local search terms.", label: "SEO Campaign" },
-              { challenge: "Slow website causing visitors to leave.", solution: "Performance optimisation and hosting upgrade.", result: "Under 1 second load time achieved.", label: "Speed Optimisation" }
-            ].map((study, idx) => (
-              <motion.div key={idx} whileHover={{ y: -8 }} className="bg-slate-950 border border-slate-800 hover:border-blue-500/50 p-8 rounded-[2rem] flex flex-col justify-between group transition-colors shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-cyan-400/20 transition-colors" />
-                <div className="relative z-10">
-                  <span className="inline-block px-3 py-1 bg-blue-900/30 border border-blue-800/50 text-blue-400 text-xs font-bold uppercase tracking-wider rounded-md mb-6">{study.label}</span>
-                  <div className="mb-6">
-                    <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">Challenge</p>
-                    <p className="text-slate-200 text-base md:text-lg font-medium">{study.challenge}</p>
-                  </div>
-                  <div className="mb-8">
-                    <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">Our Approach</p>
-                    <p className="text-slate-200 text-base md:text-lg font-medium">{study.solution}</p>
-                  </div>
-                </div>
-                <div className="relative z-10">
-                  <div className="p-4 bg-blue-600/10 border border-blue-600/20 rounded-xl group-hover:bg-blue-600/20 transition-colors">
-                    <p className="text-xs text-blue-400 uppercase font-bold tracking-wider mb-1">Outcome</p>
-                    <p className="text-white font-extrabold text-xl">{study.result}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center text-sm text-slate-500 mt-8 italic">*These are representative examples based on typical project outcomes.</p>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}>
+            <GrowthCheckTool compact />
+          </motion.div>
         </div>
       </section>
 
-      {/* 5. Before/After Slider */}
-      <BeforeAfterSlider />
-
-      {/* 6. Why Choose Suraha */}
-      <section className="py-16 md:py-32 bg-white">
+      <section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Why Small Businesses <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Choose Us</span>
+          <div className="max-w-3xl mb-9">
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">Common lead leaks</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
+              Most websites do not fail loudly. They quietly lose trust before the first call.
             </h2>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 h-auto items-stretch">
-            <div className="md:col-span-2 rounded-[2.5rem] bg-slate-950 text-white p-8 sm:p-10 md:p-14 relative overflow-hidden group flex flex-col justify-center min-h-[320px]">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/30 transition-all duration-700 pointer-events-none" />
-              <div className="inline-flex p-4 rounded-2xl bg-blue-900/40 text-cyan-400 mb-6 sm:mb-8 backdrop-blur-md border border-blue-500/20 w-fit">
-                <TrendingUp size={32} />
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">Results You Can Measure</h3>
-              <p className="text-base md:text-lg text-slate-300 max-w-lg leading-relaxed">
-                We focus on what actually matters: more website visitors, more enquiries, and more customers. Every project comes with clear reporting so you can see exactly what's working.
-              </p>
-            </div>
-
-            <div className="rounded-[2.5rem] bg-slate-50 p-8 sm:p-10 md:p-12 border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col min-h-[320px]">
-               <div className="text-blue-600 mb-6 sm:mb-8 w-fit"><MessageCircle size={36} strokeWidth={1.5} /></div>
-               <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 tracking-tight">Speak to Real People</h3>
-               <p className="text-slate-700 leading-relaxed text-base md:text-lg">No account managers or bots. You talk directly to the people building your website.</p>
-            </div>
-
-            <div className="rounded-[2.5rem] bg-slate-50 p-8 sm:p-10 md:p-12 border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col min-h-[320px]">
-               <div className="text-blue-600 mb-6 sm:mb-8 w-fit"><Package size={36} strokeWidth={1.5} /></div>
-               <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 tracking-tight">No Surprises on Price</h3>
-               <p className="text-slate-700 leading-relaxed text-base md:text-lg">We quote clearly upfront. No hidden fees, no unexpected invoices. What we quote is what you pay.</p>
-            </div>
-
-            <div className="md:col-span-2 rounded-[2.5rem] bg-blue-600 p-8 sm:p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between relative overflow-hidden min-h-[200px] gap-8 md:gap-0">
-               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay pointer-events-none"></div>
-               <div className="relative z-10">
-                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">Not sure what you need?</h3>
-                 <p className="text-blue-100 text-lg md:text-xl font-medium">Take our 60-second quiz and get a personalised recommendation.</p>
-               </div>
-               <Link to="/quiz" className="relative z-10">
-                 <Button className="bg-white text-blue-900 hover:bg-slate-50 h-14 px-8 text-base md:text-lg font-bold rounded-xl shadow-xl shadow-black/10 transition-transform hover:-translate-y-1">
-                   Take the Quiz
-                 </Button>
-               </Link>
-            </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {problems.map((problem) => {
+              const Icon = problem.icon;
+              return (
+                <div key={problem.title} className="rounded-2xl border border-slate-100 bg-slate-50 p-5 h-full">
+                  <Icon size={24} className="text-blue-600 mb-3" />
+                  <h3 className="font-extrabold text-slate-950 mb-2">{problem.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{problem.text}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* 7. How We Work */}
-      <section className="py-20 md:py-32 bg-slate-950 text-white relative overflow-hidden">
-        <div className="absolute left-1/2 top-0 w-[1000px] h-[1000px] bg-blue-600/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">How We Work</h2>
-            <p className="text-lg md:text-xl text-slate-300">A clear, step-by-step process so you always know what's happening.</p>
+      <section className="py-14 md:py-20 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">What we build</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight mb-4 leading-tight">
+              Practical systems that make your business easier to find, trust, and contact.
+            </h2>
+            <p className="text-base md:text-lg text-slate-700 leading-relaxed mb-7 max-w-xl">
+              We start with the business problem, then recommend the smallest useful fix: a clearer homepage, local SEO foundation, trust content, a lead capture system, or a full growth website.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/services" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700">
+                View problem-led services <ArrowRight size={18} />
+              </Link>
+              <Link to="/trust-centre" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-200 text-slate-800 font-bold hover:bg-white">
+                Read our trust promise
+              </Link>
+            </div>
           </div>
-
-          <div className="max-w-4xl mx-auto relative">
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-slate-800 md:-translate-x-1/2 rounded-full" />
-            
+          <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { phase: "01", title: "Free Discovery Call", desc: "We learn about your business, goals, and challenges. No pressure, no jargon — just an honest conversation." },
-              { phase: "02", title: "Strategy & Design", desc: "We create a clear plan and design mockups for you to review and approve before any code is written." },
-              { phase: "03", title: "Build & Test", desc: "Our developers build your site with modern technology, then test it across every device and browser." },
-              { phase: "04", title: "Launch & Grow", desc: "We launch your site, set up analytics, and start SEO and marketing to bring in real results." }
-            ].map((step, idx) => (
-              <motion.div 
-                key={idx} 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: idx * 0.1 }}
-                className={`relative flex items-center justify-between mb-16 md:mb-20 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-              >
-                <div className="hidden md:block w-[45%]" />
-                <div className="absolute left-6 md:left-1/2 w-12 h-12 bg-blue-600 border-4 border-slate-950 rounded-full -translate-x-1/2 flex items-center justify-center font-bold text-white shadow-[0_0_20px_rgba(37,99,235,0.5)] z-10">
-                  {step.phase}
+              { icon: ClipboardCheck, title: 'Website growth audit', text: 'Find the highest-impact fixes before spending.' },
+              { icon: BarChart3, title: 'Local SEO foundations', text: 'Pages, Google Business Profile, and content built around buyer searches.' },
+              { icon: PoundSterling, title: 'Transparent pricing', text: 'Starting prices, milestones, and exact quotes before work begins.' },
+              { icon: CheckCircle2, title: 'Lead follow-up', text: 'Forms, confirmation messages, and follow-up prompts that reduce missed enquiries.' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.title} className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm h-full">
+                  <Icon size={25} className="text-blue-600 mb-3" />
+                  <h3 className="text-lg font-extrabold text-slate-950 mb-2">{item.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
                 </div>
-                <div className={`w-full md:w-[45%] pl-20 md:pl-0 ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                  <div className="bg-slate-900 border border-slate-800 p-8 rounded-[2rem] hover:border-blue-500/50 transition-colors duration-300">
-                    <h3 className="text-xl md:text-2xl font-bold mb-3 tracking-tight">{step.title}</h3>
-                    <p className="text-slate-300 leading-relaxed text-base md:text-lg">{step.desc}</p>
-                  </div>
-                </div>
-              </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-slate-950 text-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-widest text-cyan-300 mb-3">Proof without pretending</p>
+              <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight">See how the work is judged before you pay.</h2>
+            </div>
+            <Link to="/tools" className="text-cyan-300 font-bold inline-flex items-center gap-2 hover:gap-4 transition-all">
+              Try the tools first <ArrowRight size={18} />
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {proofCards.map((card) => (
+              <div key={card.title} className="rounded-2xl border border-slate-800 bg-slate-900 p-6 h-full">
+                <span className="inline-flex mb-4 px-3 py-1 rounded-full bg-blue-600/15 border border-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider">{card.label}</span>
+                <h3 className="text-xl font-extrabold mb-3">{card.title}</h3>
+                <p className="text-slate-300 leading-relaxed">{card.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-slate-500 mt-6">Where real client projects are unavailable, examples are clearly labelled as sample scenarios.</p>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="grid lg:grid-cols-3 gap-6">
+            {[
+              { title: 'Starter Fix', price: 'From £350', text: 'Best for fixing urgent trust, clarity, tracking, or conversion gaps.' },
+              { title: 'Growth Website', price: 'From £1,200', text: 'Best for replacing an old site with a lead-generating business asset.' },
+              { title: 'Local Growth Plan', price: 'From £400/mo', text: 'Best for improving local visibility, content, and reporting month by month.' },
+            ].map((plan) => (
+              <div key={plan.title} className="rounded-2xl border border-slate-100 bg-slate-50 p-6 h-full">
+                <h3 className="text-xl font-extrabold text-slate-950 mb-2">{plan.title}</h3>
+                <p className="text-3xl font-extrabold text-blue-600 mb-3">{plan.price}</p>
+                <p className="text-slate-600 leading-relaxed mb-5">{plan.text}</p>
+                <Link to="/pricing" className="font-bold text-blue-600 inline-flex items-center gap-2">See pricing <ArrowRight size={16} /></Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 8. Pricing Preview */}
-      <section className="py-16 md:py-32 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Simple, Honest Pricing</h2>
-            <p className="text-lg md:text-xl text-slate-700 mt-6 max-w-2xl mx-auto">Fixed monthly plans with everything included. No setup fees, no surprises.</p>
-          </div>
-          
-          <div className="grid lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
-            <PricingCard 
-               title="Starter" desc="A professional website to get your business online." price="599" 
-               features={['Custom 5-Page Website', 'Basic Local SEO Setup', 'Mobile Responsive Design', 'Standard Email Support']} 
-            />
-            <PricingCard 
-               title="Growth" isPopular={true} desc="Website plus ongoing SEO and marketing." price="799" 
-               features={['Everything in Starter', 'Active Monthly SEO', 'Social Media Management', 'Google Business Profile', 'Priority 24hr Support']} 
-            />
-            <PricingCard 
-               title="Premium" desc="Full digital management for growing businesses." price="999" 
-               features={['Everything in Growth', 'E-commerce Support', 'Dedicated Account Manager', 'Cyber Security & Backups', '24/7 Priority IT Support']} 
-            />
-          </div>
-
-          <div className="text-center mt-12">
-            <Link to="/pricing" className="inline-flex items-center gap-2 text-blue-600 font-bold text-lg hover:gap-4 transition-all">
-              Compare All Plans <ArrowRight size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. FAQ */}
-      <section className="py-16 md:py-32 bg-white">
+      <section className="py-14 md:py-20 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+          <div className="text-center mb-12">
+            <AlertTriangle size={32} className="text-blue-600 mx-auto mb-4" />
+            <h2 className="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">Questions careful business owners ask first</h2>
           </div>
           <FAQAccordion faqs={faqs} />
         </div>
       </section>
 
-      {/* 10. Final CTA */}
-      <section className="py-20 md:py-32 bg-blue-600 text-center relative overflow-hidden">
-         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/10 rounded-full blur-[100px] pointer-events-none" />
-         
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-8">
-            Ready to get more <br className="hidden md:block" /> customers online?
+      <section className="py-16 md:py-24 bg-blue-600 text-center">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-5">
+            Start with value before you spend.
           </h2>
-          <p className="text-lg md:text-xl text-blue-100 font-medium max-w-2xl mx-auto mb-12">
-            Book a free, no-pressure call. We'll look at your website, find what's holding you back, and give you an honest plan to fix it.
+          <p className="text-lg md:text-xl text-blue-100 mb-10">
+            Use the free tools, get a clearer view of what is holding your website back, then book a free review when you are ready.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/contact">
-              <Button size="lg" className="h-14 md:h-16 px-8 md:px-10 text-lg font-bold bg-white text-blue-900 hover:bg-slate-50 rounded-full shadow-2xl shadow-black/20 transition-transform hover:-translate-y-1">
-                Get a Free Website Audit
+            <Link to="/tools">
+              <Button size="lg" className="h-14 px-8 rounded-full bg-white text-blue-900 hover:bg-slate-50 font-bold">
+                Use free growth tools
               </Button>
             </Link>
-            <Link to="/estimator">
-              <Button size="lg" variant="outline" className="h-14 md:h-16 px-8 md:px-10 text-lg font-bold border-2 border-white/30 text-white hover:bg-white/10 rounded-full transition-transform hover:-translate-y-1">
-                Try the Cost Estimator
+            <Link to="/contact">
+              <Button size="lg" variant="outline" className="h-14 px-8 rounded-full border-2 border-white/40 text-white hover:bg-white/10 font-bold">
+                Book a free consultation
               </Button>
             </Link>
           </div>

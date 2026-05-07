@@ -23,6 +23,24 @@ const categoryColors = {
 
 const publishedFallbackPosts = fallbackPosts.filter((post) => !post.status || post.status === 'published');
 
+const strategicCategories = [
+  'Website Growth',
+  'Local SEO',
+  'Google Business Profile',
+  'Domain & Hosting',
+  'Digital Marketing',
+  'AI Tools for Small Business',
+  'Agency Buying Guides',
+];
+
+const buyerConcernArticles = [
+  'How Much Should a Small Business Website Cost in the UK?',
+  '7 Things to Check Before Paying an SEO Agency',
+  'Why Your Website Gets Visitors But No Enquiries',
+  'Google Business Profile Checklist for Local Businesses',
+  'What to Ask Before Hiring a Web Designer',
+];
+
 function formatDate(date) {
   if (!date) return 'Recently published';
 
@@ -104,22 +122,38 @@ const Blog = () => {
 
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8 backdrop-blur-sm">
+        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-6 backdrop-blur-sm">
             <BookOpen size={14} className="mr-2" /> Blog & Resources
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
             Practical Growth Advice for UK Businesses
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Guides, comparisons, and operational advice from Suraha Enterprise, now powered by Sanity CMS.
           </p>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-12 md:py-20">
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-10 md:py-16">
+        <div className="mb-10 grid lg:grid-cols-[1fr_1.2fr] gap-5">
+          <div className="rounded-2xl bg-white border border-slate-100 p-6 shadow-sm">
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">Blog strategy</p>
+            <h2 className="text-2xl font-extrabold text-slate-950 mb-3">Content built around buyer doubts, not generic marketing tips.</h2>
+            <p className="text-slate-600 leading-relaxed">The strongest articles answer what careful owners ask before spending: cost, trust, process, SEO risk, website quality, and how to judge an agency.</p>
+          </div>
+          <div className="rounded-2xl bg-slate-950 text-white border border-slate-800 p-6 shadow-xl shadow-blue-900/10">
+            <p className="text-sm font-bold uppercase tracking-widest text-cyan-300 mb-4">Priority categories</p>
+            <div className="flex flex-wrap gap-2">
+              {strategicCategories.map((cat) => (
+                <span key={cat} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm font-semibold text-slate-200">{cat}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {(error || usingFallback) && (
           <div className="mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-amber-900 flex gap-3">
             <AlertCircle size={20} className="mt-0.5 shrink-0" />
@@ -134,7 +168,7 @@ const Blog = () => {
           </div>
         )}
 
-        <motion.div initial="hidden" animate="visible" variants={fadeIn} className="mb-8">
+        <motion.div initial="hidden" animate="visible" variants={fadeIn} className="mb-7">
           <div className="relative max-w-xl mx-auto">
             <Search size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
@@ -142,12 +176,12 @@ const Blog = () => {
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              className="w-full pl-12 pr-5 py-4 rounded-2xl border border-slate-200 bg-white text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent shadow-lg shadow-slate-200/50 placeholder:text-slate-400 text-slate-900"
+              className="w-full pl-12 pr-5 py-3.5 rounded-2xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent shadow-lg shadow-slate-200/50 placeholder:text-slate-400 text-slate-900"
             />
           </div>
         </motion.div>
 
-        <motion.div initial="hidden" animate="visible" variants={fadeIn} className="mb-12">
+        <motion.div initial="hidden" animate="visible" variants={fadeIn} className="mb-10">
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((cat) => (
               <button
@@ -191,7 +225,7 @@ const Blog = () => {
                 className="h-full"
               >
                 <Link to={`/blog/${post.slug || post.id}`} className="block h-full">
-                  <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group h-full">
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group h-full">
                     {post.featuredImage ? (
                       <img
                         src={post.featuredImage}
@@ -202,7 +236,7 @@ const Blog = () => {
                       <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-400" />
                     )}
 
-                    <div className="p-7 flex flex-col flex-1">
+                    <div className="p-6 flex flex-col flex-1">
                       <div className="flex items-center justify-between gap-3 mb-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-bold border ${categoryColors[post.category] || 'bg-slate-50 text-slate-700 border-slate-200'}`}>
                           {post.category}
@@ -240,19 +274,36 @@ const Blog = () => {
           </div>
         )}
 
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-16 md:mt-24 text-center">
-          <div className="bg-slate-950 p-8 md:p-12 rounded-2xl border border-slate-800 shadow-xl shadow-blue-900/10 max-w-3xl mx-auto">
+        <div className="mt-12 rounded-2xl bg-white border border-slate-100 p-6 md:p-8 shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-2">Buyer-concern articles</p>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 leading-tight">Sample titles to publish in Sanity next</h2>
+            </div>
+            <Link to="/contact" className="text-blue-600 font-bold inline-flex items-center gap-2">Request content plan <ArrowRight size={16} /></Link>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
+            {buyerConcernArticles.map((title) => (
+              <div key={title} className="rounded-xl bg-slate-50 border border-slate-100 p-4 text-sm font-bold text-slate-800 leading-snug">
+                {title}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-14 md:mt-20 text-center">
+          <div className="bg-slate-950 p-7 md:p-10 rounded-2xl border border-slate-800 shadow-xl shadow-blue-900/10 max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-4 tracking-tight">
               Want these strategies done for you?
             </h2>
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+            <p className="text-base md:text-lg text-slate-300 mb-7 leading-relaxed">
               We write the content, manage the SEO, and build the systems. You focus on running your business.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-full text-base font-bold hover:bg-blue-700 transition-all hover:-translate-y-1 shadow-xl shadow-blue-600/20">
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full text-base font-bold hover:bg-blue-700 transition-all hover:-translate-y-1 shadow-xl shadow-blue-600/20">
                 Get a Free Consultation <ArrowRight size={18} />
               </Link>
-              <Link to="/tools" className="inline-flex items-center gap-2 px-8 py-4 border-2 border-slate-700 text-slate-100 rounded-full text-base font-bold hover:border-blue-300 hover:bg-white/5 transition-all">
+              <Link to="/tools" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-slate-700 text-slate-100 rounded-full text-base font-bold hover:border-blue-300 hover:bg-white/5 transition-all">
                 Try Free Tools
               </Link>
             </div>

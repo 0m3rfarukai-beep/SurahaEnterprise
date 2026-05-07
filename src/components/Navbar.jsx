@@ -21,9 +21,9 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: 'Free Tools', path: '/tools' },
+    { name: 'Trust Centre', path: '/trust-centre' },
     { name: 'Blog', path: '/blog' },
     { name: 'Pricing', path: '/pricing' },
-    { name: 'Estimator', path: '/estimator' }
   ];
 
   const isActivePath = (path) => {
@@ -76,7 +76,7 @@ const Navbar = () => {
             </div>
             <Link to="/contact">
               <Button className="rounded-full px-7 py-5 h-11 text-sm font-bold bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-600/15 hover:shadow-lg hover:shadow-blue-600/25 hover:-translate-y-0.5 transition-all">
-                Get a Quote
+                Free Review
               </Button>
             </Link>
           </div>
@@ -116,7 +116,7 @@ const Navbar = () => {
               })}
               <Link to="/contact" className="mt-4">
                 <Button className="w-full h-12 rounded-xl text-base font-bold bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/20">
-                  Get a Quote
+                  Free Review
                 </Button>
               </Link>
             </div>
