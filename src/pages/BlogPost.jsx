@@ -212,7 +212,7 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-        <section className="relative bg-slate-950 pt-32 pb-24 overflow-hidden text-center">
+        <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden text-center">
           <div className="container mx-auto px-6 relative z-10 max-w-2xl">
             <p className="text-blue-400 text-sm font-bold uppercase tracking-widest mb-4">404</p>
             <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Article Not Found</h1>
@@ -230,7 +230,7 @@ const BlogPost = () => {
 
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
+      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
         <div className="container mx-auto px-6 relative z-10 max-w-4xl">
           <motion.div initial="hidden" animate="visible" variants={fadeIn}>

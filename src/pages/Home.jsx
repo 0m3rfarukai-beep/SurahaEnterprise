@@ -87,47 +87,47 @@ const AuditPreview = () => (
 const Home = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-12 md:pb-16 overflow-hidden">
+      <section className="relative bg-slate-950 pt-28 pb-14 md:pt-36 md:pb-20 overflow-hidden">
         <div className="absolute top-24 left-[6%] w-24 h-24 rounded-full border border-white/10" />
         <div className="absolute bottom-16 right-[46%] w-16 h-16 bg-blue-500/10 rotate-12" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-center max-w-7xl">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.88fr)] gap-10 lg:gap-14 items-center max-w-7xl">
           <motion.div initial="hidden" animate="visible" variants={fadeIn}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 font-bold text-xs uppercase tracking-widest mb-6">
               <Eye size={14} /> Growth platform for UK small businesses
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight mb-6 max-w-2xl">
-              Turn Your Website Into a Lead-Generating Asset for Your UK Business.
+            <h1 className="text-[2.35rem] sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.03] tracking-tight mb-5 max-w-3xl">
+              Get a clearer website that earns trust and brings in better enquiries.
             </h1>
-            <p className="text-base md:text-lg text-slate-300 leading-relaxed max-w-xl mb-8">
-              Clear advice, transparent pricing, and practical systems that help small businesses get found, look trustworthy, and turn visitors into real enquiries.
+            <p className="text-base md:text-lg text-slate-300 leading-relaxed max-w-2xl mb-8">
+              Suraha helps UK small businesses fix unclear messaging, weak local visibility, missing proof, and enquiry leaks before spending more on ads or rebuilds.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link to="/tools">
-                <Button size="lg" className="w-full sm:w-auto h-12 md:h-14 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-xl shadow-blue-600/25">
-                  Get Your Free Growth Check
+                <Button size="lg" className="w-full sm:w-auto h-12 md:h-14 px-6 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold shadow-xl shadow-blue-600/25 transition-transform hover:-translate-y-0.5">
+                  Run the Free Growth Check
                 </Button>
               </Link>
-              <Link to="/services" className="inline-flex items-center justify-center gap-2 h-12 md:h-14 px-6 rounded-full border border-white/15 text-white font-bold hover:bg-white/10 transition-colors">
-                See How We Help <ArrowRight size={18} />
+              <Link to="/pricing" className="inline-flex items-center justify-center gap-2 h-12 md:h-14 px-6 rounded-full border border-white/15 text-white font-extrabold hover:bg-white/10 transition-colors">
+                View transparent pricing <ArrowRight size={18} />
               </Link>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-8 max-w-xl">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-8 max-w-2xl">
               {['No jargon', 'Transparent pricing', 'UK small business focused', 'You keep ownership'].map((item) => (
-                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-bold text-slate-200 text-center">
+                <div key={item} className="min-h-14 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-bold text-slate-200 text-center flex items-center justify-center">
                   {item}
                 </div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}>
+          <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }} className="w-full max-w-[520px] justify-self-center lg:justify-self-end">
             <AuditPreview />
           </motion.div>
         </div>
       </section>
 
-      <div className="bg-white border-y border-slate-200 overflow-hidden">
+      <div className="bg-white border-y border-slate-200 overflow-hidden" aria-hidden="true">
         <div className="whitespace-nowrap py-3 text-xs md:text-sm font-bold tracking-[0.22em] text-slate-400 uppercase">
           <div className="inline-block animate-[marquee_24s_linear_infinite]">
             Website clarity &bull; Local SEO &bull; Lead capture &bull; Trust signals &bull; Conversion &bull; Growth &bull;&nbsp;

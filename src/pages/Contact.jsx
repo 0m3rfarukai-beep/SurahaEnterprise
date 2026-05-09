@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Clock, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ContactForm';
+import PageHeader from '../components/PageHeader';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,23 +19,11 @@ const staggerContainer = {
 const Contact = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      {/* Page Header */}
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-20 md:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.15)_0%,transparent_50%)] z-0" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-6 backdrop-blur-sm">
-              Contact Us
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-              Book a free, practical website review
-            </h1>
-            <p className="text-base md:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
-              Tell us what you want to improve. We will reply with a clear next step, not a pressured sales pitch.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Contact Us"
+        title="Book a free, practical website review"
+        description="Tell us what you want to improve. We will reply with a clear next step, not a pressured sales pitch."
+      />
 
       {/* Contact Content */}
       <section className="py-10 md:py-16 relative -mt-12 md:-mt-14 z-20">

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { AlertCircle, ArrowRight, BookOpen, Clock, Search, Tag } from 'lucide-react';
 import { fetchPublishedPosts } from '@/lib/sanityQueries';
 import fallbackPosts, { categories as fallbackCategories } from '@/data/blogPosts';
+import PageHeader from '@/components/PageHeader';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -122,20 +123,12 @@ const Blog = () => {
 
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-6 backdrop-blur-sm">
-            <BookOpen size={14} className="mr-2" /> Blog & Resources
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
-            Practical Growth Advice for UK Businesses
-          </h1>
-          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Guides, comparisons, and operational advice from Suraha Enterprise, now powered by Sanity CMS.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Blog & Resources"
+        icon={BookOpen}
+        title="Practical growth advice for UK businesses"
+        description="Guides, comparisons, and operational advice from Suraha Enterprise."
+      />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-10 md:py-16">
         <div className="mb-10 grid lg:grid-cols-[1fr_1.2fr] gap-5">

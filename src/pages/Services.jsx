@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Search as SearchIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import servicesData from '@/data/servicesData';
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-};
+import PageHeader from '@/components/PageHeader';
 
 const Services = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,23 +15,11 @@ const Services = () => {
 
   return (
     <div className="overflow-x-hidden bg-slate-50">
-      {/* Page Header */}
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
-        <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(34,211,238,0.15)_0%,transparent_60%)] z-0" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-6 backdrop-blur-sm">
-              Our Services
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-              Problem-led digital services for small business growth
-            </h1>
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Clear fixes for websites, SEO, content, lead capture, branding, and ongoing support.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Our Services"
+        title="Problem-led digital services for small business growth"
+        description="Clear fixes for websites, SEO, content, lead capture, branding, and ongoing support."
+      />
 
       {/* Services Grid */}
       <section className="py-16 md:py-24">

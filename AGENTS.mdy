@@ -1,0 +1,32 @@
+# Agent Instructions
+
+Use UI UX Pro Max rules before making UI/UX changes.
+
+Project type:
+Vite/React website for SurahaEnterprise.
+
+Main goals:
+- Premium, modern, dynamic, trustworthy design
+- Better navbar
+- Cleaner hero section
+- Clear page headers on every page
+- Visible pricing values
+- Strong responsive layout
+- Consistent typography scale
+- Better spacing and alignment
+- Smooth but not excessive animations
+- Better accessibility and contrast
+
+Rules:
+- Do not rewrite the full project unless asked.
+- Improve the existing design step by step.
+- Keep business logic and routes working.
+- Check mobile, tablet, laptop, and desktop layouts.
+- Avoid overlapping text.
+- Avoid random colours and inconsistent font sizes.
+- Use professional icons, clean cards, strong CTAs, and clear section hierarchy.
+
+Before finalising:
+- run npm run build
+- fix any build errors
+- confirm navbar, hero, pricing, page headers, and responsiveness are improved

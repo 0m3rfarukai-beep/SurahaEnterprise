@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageHeader from '@/components/PageHeader';
 
 const questions = [
   {
@@ -68,21 +69,11 @@ const Quiz = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen overflow-x-hidden">
-      {/* Page Header */}
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(34,211,238,0.12)_0%,transparent_60%)] z-0 pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8 backdrop-blur-sm">
-            Service Quiz
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            Find Your <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 to-blue-600">Perfect Plan</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Answer 4 quick questions and we'll recommend the ideal package for your business.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Service Quiz"
+        title="Find the right starting point"
+        description="Answer 4 quick questions and we will recommend a sensible next step for your business."
+      />
 
       <div className="container mx-auto px-6 max-w-3xl py-16 md:py-24 -mt-12">
 

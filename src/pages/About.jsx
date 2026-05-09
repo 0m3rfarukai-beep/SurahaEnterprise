@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Target, Users, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import PageHeader from '@/components/PageHeader';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,23 +19,11 @@ const staggerContainer = {
 const About = () => {
   return (
     <div className="overflow-x-hidden">
-      {/* Page Header */}
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,rgba(37,99,235,0.15)_0%,transparent_50%)] z-0" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8 backdrop-blur-sm">
-              About Us
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-8 leading-tight">
-              Empowering Small Businesses <br className="hidden md:block" /> to <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 to-blue-600">Succeed Online</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
-              We believe that every small business deserves the tools and expertise to compete effectively in the digital age.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="About Us"
+        title="Practical digital support for small businesses"
+        description="We help business owners turn unclear websites, weak trust signals, and scattered systems into a clearer path to enquiries."
+      />
 
       {/* Our Story */}
       <section className="py-24 md:py-32 bg-white">
@@ -127,7 +116,7 @@ const About = () => {
       <section className="py-24 md:py-32 bg-blue-600 relative overflow-hidden text-center">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,255,255,0.15)_0%,transparent_70%)] -translate-y-1/2 translate-x-1/3" />
         <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 tracking-tight leading-tight">Ready to transform your business?</h2>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-8 tracking-normal leading-tight">Ready to transform your business?</h2>
           <p className="text-lg md:text-xl text-blue-100 mb-12 leading-relaxed">
             Let's have a straightforward conversation about your goals and how our premium digital solutions can help you achieve them.
           </p>

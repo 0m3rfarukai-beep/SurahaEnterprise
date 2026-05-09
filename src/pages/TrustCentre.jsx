@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ShieldCheck, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import PageHeader from '@/components/PageHeader';
 
 const promises = [
   'Transparent pricing guidance before you commit',
@@ -45,20 +46,12 @@ const contactSteps = [
 const TrustCentre = () => {
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <div className="container mx-auto px-6 relative z-10 max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8">
-            <ShieldCheck size={15} /> Trust Centre
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
-            Clear rules for working with careful business owners.
-          </h1>
-          <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-            We know small businesses do not trust agencies easily. This is how we keep the process clear, realistic, and low-pressure.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Trust Centre"
+        icon={ShieldCheck}
+        title="Clear rules for working with careful business owners."
+        description="We know small businesses do not trust agencies easily. This is how we keep the process clear, realistic, and low-pressure."
+      />
 
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">

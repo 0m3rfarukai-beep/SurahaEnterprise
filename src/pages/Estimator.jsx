@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowRight } from 'lucide-react';
+import PageHeader from '@/components/PageHeader';
 
 const Estimator = () => {
   const [config, setConfig] = useState({
@@ -46,21 +47,11 @@ const Estimator = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen overflow-x-hidden">
-      {/* Page Header */}
-      <section className="relative bg-slate-950 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(37,99,235,0.15)_0%,transparent_60%)] z-0 pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8 backdrop-blur-sm">
-            Cost Estimator
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            Get an <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 to-blue-600">Instant Quote</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Configure your project below and see a live estimated price range. No email required.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Cost Estimator"
+        title="Estimate a realistic website budget"
+        description="Configure your project below and see a live starting range. No email required."
+      />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl py-12 md:py-20 -mt-8">
         <div className="grid lg:grid-cols-5 gap-8">

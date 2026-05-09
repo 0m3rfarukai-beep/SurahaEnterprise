@@ -20,6 +20,7 @@ import {
 import { Button } from '@/components/ui/button';
 import GrowthCheckTool from '@/components/GrowthCheckTool';
 import { buildLeadPayload, saveToolLead } from '@/lib/leadCapture';
+import PageHeader from '@/components/PageHeader';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -246,20 +247,11 @@ const Tools = () => {
 
   return (
     <div className="overflow-x-hidden bg-slate-50 min-h-screen">
-      <section className="relative bg-slate-950 pt-28 md:pt-36 pb-16 md:pb-20 overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-8">
-            Free Growth Tools
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 leading-tight">
-            Useful tools before you spend money.
-          </h1>
-          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Check lead leaks, local SEO, follow-up, pricing, and content ideas. No signup required.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Free Growth Tools"
+        title="Useful tools before you spend money."
+        description="Check lead leaks, local SEO, follow-up, pricing, and content ideas. No signup required."
+      />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-[1200px] py-12 md:py-20">
         <div className="mb-8 rounded-[1.5rem] bg-white border border-slate-200 p-5 sm:p-6 shadow-sm">
