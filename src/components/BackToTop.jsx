@@ -30,7 +30,7 @@ const BackToTop = () => {
         <button
           onClick={scrollToTop}
           aria-label="Back to top"
-          className="fixed bottom-6 right-4 md:bottom-8 md:right-8 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_4px_14px_rgba(37,99,235,0.4)] z-40 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700"
+          className="fixed bottom-6 right-4 md:bottom-8 md:right-8 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_4px_14px_rgba(37,99,235,0.4)] z-40 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
         >
           <ArrowUp size={24} />
         </button>
