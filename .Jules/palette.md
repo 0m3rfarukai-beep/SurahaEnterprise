@@ -1,0 +1,3 @@
+## 2024-05-25 - Async Form Feedback & Accessible Error States
+**Learning:** During form submission, an explicit visual loading state (like a spinner) is critical for reassuring users the action is processing, and `role="alert"` ensures screen readers immediately announce any failure without requiring focus change.
+**Action:** Always include a visual loading indicator (e.g., `Loader2` from `lucide-react` with `animate-spin`) on submit buttons during async actions, and wrap error messages in `role="alert"` for accessibility.
