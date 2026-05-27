@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+
 
 const BeforeAfterSlider = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -19,6 +19,16 @@ const BeforeAfterSlider = () => {
     const x = e.touches[0].clientX - rect.left;
     const position = Math.max(0, Math.min((x / rect.width) * 100, 100));
     setSliderPosition(position);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      setSliderPosition((prev) => Math.max(0, prev - 5));
+      e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+      setSliderPosition((prev) => Math.min(100, prev + 5));
+      e.preventDefault();
+    }
   };
 
   return (
@@ -92,8 +102,15 @@ const BeforeAfterSlider = () => {
 
             {/* SLIDER HANDLE */}
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_15px_rgba(0,0,0,0.5)] z-10"
+              className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_15px_rgba(0,0,0,0.5)] z-10 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-500"
               style={{ left: `${sliderPosition}%` }}
+              role="slider"
+              tabIndex={0}
+              aria-valuenow={Math.round(sliderPosition)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label="Compare before and after"
+              onKeyDown={handleKeyDown}
             >
               <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl border border-slate-200">
                 <div className="flex gap-1">
