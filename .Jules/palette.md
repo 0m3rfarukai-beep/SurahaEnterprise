@@ -1,0 +1,3 @@
+## 2026-05-27 - Adding Keyboard Navigation to Custom Sliders
+**Learning:** Custom UI components like the Before/After slider often lack basic keyboard navigation and screen reader support because they aren't native input elements. Adding `role="slider"`, `tabIndex={0}`, and corresponding `aria-` properties makes a huge difference in usability without affecting visual design for non-assistive technology users.
+**Action:** When implementing custom interactive drag/drop or slider components, always add keyboard event listeners (`onKeyDown`) for arrow keys and ensure appropriate ARIA roles are defined.
