@@ -37,6 +37,7 @@ const Services = () => {
             </div>
             <input 
               type="text" 
+              aria-label="Search services"
               placeholder="Search services..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}

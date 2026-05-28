@@ -138,10 +138,10 @@ const BasicGenerator = ({ type }) => {
   return (
     <div className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
-        <input value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
-        <input value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
-        <input value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.businessName} aria-label="Business name" onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.websiteUrl} aria-label="Website URL" onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.businessType} aria-label="Business type" onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <input value={form.location} aria-label="Location" onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
       </div>
       <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate result</Button>
       {result && (
@@ -177,8 +177,8 @@ const CostEstimator = () => {
   return (
     <div className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.pages} onChange={(event) => setForm({ ...form, pages: event.target.value })} placeholder="Pages needed" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900" />
-        <select value={form.content} onChange={(event) => setForm({ ...form, content: event.target.value })} className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900">
+        <input value={form.pages} aria-label="Pages needed" onChange={(event) => setForm({ ...form, pages: event.target.value })} placeholder="Pages needed" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900" />
+        <select value={form.content} aria-label="Content needs" onChange={(event) => setForm({ ...form, content: event.target.value })} className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900">
           <option>Basic</option>
           <option>Copywriting</option>
         </select>
