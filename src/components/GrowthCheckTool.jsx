@@ -119,10 +119,10 @@ const GrowthCheckTool = ({ compact = false }) => {
         <div className="rounded-2xl bg-slate-50 border border-slate-100 p-4 space-y-3">
           <p className="text-sm font-extrabold text-slate-950">1. Tell us what to check</p>
           <div className="grid sm:grid-cols-2 gap-3">
-            <input value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-            <input value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-            <input value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-            <input value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            <input value={form.businessName} aria-label="Business name" onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            <input value={form.websiteUrl} aria-label="Website URL" onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            <input value={form.businessType} aria-label="Business type" onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            <input value={form.location} aria-label="Location" onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
           </div>
         </div>
 

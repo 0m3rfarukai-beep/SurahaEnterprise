@@ -166,6 +166,7 @@ const Blog = () => {
             <Search size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
+              aria-label="Search articles"
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
