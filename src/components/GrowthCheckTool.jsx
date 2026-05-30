@@ -119,18 +119,33 @@ const GrowthCheckTool = ({ compact = false }) => {
         <div className="rounded-2xl bg-slate-50 border border-slate-100 p-4 space-y-3">
           <p className="text-sm font-extrabold text-slate-950">1. Tell us what to check</p>
           <div className="grid sm:grid-cols-2 gap-3">
-            <input value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-            <input value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-            <input value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
-            <input value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            <div className="flex flex-col gap-1">
+              <label htmlFor="businessName" className="text-xs font-semibold text-slate-700">Business Name</label>
+              <input id="businessName" value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="websiteUrl" className="text-xs font-semibold text-slate-700">Website URL</label>
+              <input id="websiteUrl" value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="businessType" className="text-xs font-semibold text-slate-700">Business Type</label>
+              <input id="businessType" value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="location" className="text-xs font-semibold text-slate-700">Location</label>
+              <input id="location" value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent" />
+            </div>
           </div>
         </div>
 
         <div className="rounded-2xl bg-white border border-slate-100 p-4 space-y-3">
           <p className="text-sm font-extrabold text-slate-950">2. Choose the main goal</p>
-          <select value={form.mainGoal} onChange={(event) => setForm({ ...form, mainGoal: event.target.value })} className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-            {goals.map((goal) => <option key={goal}>{goal}</option>)}
-          </select>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="mainGoal" className="sr-only">Choose the main goal</label>
+            <select id="mainGoal" value={form.mainGoal} onChange={(event) => setForm({ ...form, mainGoal: event.target.value })} className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+              {goals.map((goal) => <option key={goal}>{goal}</option>)}
+            </select>
+          </div>
         </div>
 
         <Button onClick={runCheck} disabled={!canRun} className="w-full sm:w-auto h-12 px-6 rounded-xl font-bold bg-blue-600 hover:bg-blue-700">
