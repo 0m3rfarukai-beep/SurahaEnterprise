@@ -91,6 +91,7 @@ const Estimator = () => {
                   </div>
                   <input 
                     type="range" min="1" max="50" value={config.pages} 
+                    aria-label="Number of Pages"
                     onChange={(e) => setConfig({...config, pages: parseInt(e.target.value)})}
                     className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                   />
