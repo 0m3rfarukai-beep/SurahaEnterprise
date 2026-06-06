@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 const BeforeAfterSlider = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -21,6 +20,32 @@ const BeforeAfterSlider = () => {
     setSliderPosition(position);
   };
 
+  const handleKeyDown = (e) => {
+    const step = 5;
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        setSliderPosition((prev) => Math.max(0, prev - step));
+        e.preventDefault();
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        setSliderPosition((prev) => Math.min(100, prev + step));
+        e.preventDefault();
+        break;
+      case 'Home':
+        setSliderPosition(0);
+        e.preventDefault();
+        break;
+      case 'End':
+        setSliderPosition(100);
+        e.preventDefault();
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="py-24 bg-slate-50 overflow-hidden">
       <div className="container mx-auto px-6">
@@ -35,9 +60,16 @@ const BeforeAfterSlider = () => {
           
           <div 
             ref={containerRef}
-            className="relative w-full aspect-[16/10] md:aspect-[21/9] rounded-3xl overflow-hidden cursor-ew-resize shadow-2xl shadow-blue-900/10 border-4 border-white"
+            role="slider"
+            tabIndex={0}
+            aria-valuenow={sliderPosition}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Compare before and after designs"
+            className="relative w-full aspect-[16/10] md:aspect-[21/9] rounded-3xl overflow-hidden cursor-ew-resize shadow-2xl shadow-blue-900/10 border-4 border-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
             onMouseMove={handleDrag}
             onTouchMove={handleTouchDrag}
+            onKeyDown={handleKeyDown}
           >
             {/* AFTER IMAGE (Bottom Layer) */}
             <div className="absolute inset-0 bg-slate-900 flex items-center justify-center p-8">
