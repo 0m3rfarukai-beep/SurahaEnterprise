@@ -1,0 +1,3 @@
+## 2025-02-20 - Adding Loading States to Async Buttons
+**Learning:** Contact form submit buttons lack visual feedback when an async operation (like sending a request) is happening. This can lead to users repeatedly clicking the button, thinking the submission failed or the app is unresponsive, causing frustration.
+**Action:** Implemented a spinning `Loader2` icon alongside a "Sending..." text in the `ContactForm.jsx` submit button when the form `status === 'loading'`. This provides clear visual feedback and prevents multiple submissions by visually indicating the button is disabled. In the future, ensure all async action buttons have a clear loading state.
