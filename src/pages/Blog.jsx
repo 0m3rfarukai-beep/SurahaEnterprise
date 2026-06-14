@@ -163,8 +163,10 @@ const Blog = () => {
 
         <motion.div initial="hidden" animate="visible" variants={fadeIn} className="mb-7">
           <div className="relative max-w-xl mx-auto">
-            <Search size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search size={18} aria-hidden="true" className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <label htmlFor="blog-search" className="sr-only">Search articles</label>
             <input
+              id="blog-search"
               type="text"
               placeholder="Search articles..."
               value={searchTerm}
