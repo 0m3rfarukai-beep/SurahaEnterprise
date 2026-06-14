@@ -177,11 +177,17 @@ const CostEstimator = () => {
   return (
     <div className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.pages} onChange={(event) => setForm({ ...form, pages: event.target.value })} placeholder="Pages needed" className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900" />
-        <select value={form.content} onChange={(event) => setForm({ ...form, content: event.target.value })} className="px-4 py-3 rounded-xl border border-slate-200 text-slate-900">
-          <option>Basic</option>
-          <option>Copywriting</option>
-        </select>
+        <div>
+          <label htmlFor="pages-needed" className="sr-only">Pages needed</label>
+          <input id="pages-needed" value={form.pages} onChange={(event) => setForm({ ...form, pages: event.target.value })} placeholder="Pages needed" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900" />
+        </div>
+        <div>
+          <label htmlFor="content-type" className="sr-only">Content type</label>
+          <select id="content-type" value={form.content} onChange={(event) => setForm({ ...form, content: event.target.value })} className="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900">
+            <option>Basic</option>
+            <option>Copywriting</option>
+          </select>
+        </div>
       </div>
       <div className="flex flex-wrap gap-3">
         <label className="flex items-center gap-2 text-sm font-semibold text-slate-700"><input type="checkbox" checked={form.booking} onChange={(event) => setForm({ ...form, booking: event.target.checked })} /> Booking or lead form</label>

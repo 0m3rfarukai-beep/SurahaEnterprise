@@ -33,9 +33,11 @@ const Services = () => {
             className="max-w-xl mx-auto mb-10 relative"
           >
             <div className="absolute top-1/2 left-6 -translate-y-1/2 text-slate-400">
-              <SearchIcon size={22} />
+              <SearchIcon size={22} aria-hidden="true" />
             </div>
+            <label htmlFor="service-search" className="sr-only">Search services</label>
             <input 
+              id="service-search"
               type="text" 
               placeholder="Search services..." 
               value={searchTerm}
