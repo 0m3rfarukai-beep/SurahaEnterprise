@@ -36,7 +36,7 @@ const CopyButton = ({ text }) => {
   };
 
   return (
-    <button onClick={copy} className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800">
+    <button onClick={copy} aria-label={copied ? "Copied" : "Copy to clipboard"} className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800">
       {copied ? <><CheckCircle2 size={14} /> Copied</> : <><Copy size={14} /> Copy</>}
     </button>
   );
@@ -138,10 +138,22 @@ const BasicGenerator = ({ type }) => {
   return (
     <div className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-3">
-        <input value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
-        <input value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
-        <input value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
-        <input value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        <div>
+          <label htmlFor="businessName" className="sr-only">Business name</label>
+          <input id="businessName" value={form.businessName} onChange={(event) => setForm({ ...form, businessName: event.target.value })} placeholder="Business name" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        </div>
+        <div>
+          <label htmlFor="websiteUrl" className="sr-only">Website URL</label>
+          <input id="websiteUrl" value={form.websiteUrl} onChange={(event) => setForm({ ...form, websiteUrl: event.target.value })} placeholder="Website URL" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        </div>
+        <div>
+          <label htmlFor="businessType" className="sr-only">Business type</label>
+          <input id="businessType" value={form.businessType} onChange={(event) => setForm({ ...form, businessType: event.target.value })} placeholder="Business type" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        </div>
+        <div>
+          <label htmlFor="location" className="sr-only">Location</label>
+          <input id="location" value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} placeholder="Location" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900" />
+        </div>
       </div>
       <Button onClick={generate} className="h-12 px-6 rounded-xl font-bold">Generate result</Button>
       {result && (
