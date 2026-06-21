@@ -1,0 +1,3 @@
+## 2024-06-21 - Added Loader2 to Contact Form Submit Button
+**Learning:** Loading states for async interactions are crucial for UX, but when using lucide-react icons, we should use `Loader2` combined with `animate-spin` for a native-feeling spinner within buttons instead of just text like "Sending...". Also when handling errors, empty catch blocks should be explicitly defined `catch {}` due to strict linting rules.
+**Action:** When adding loading states to buttons, always check if a spinner can be implemented. If `lucide-react` is used, default to `Loader2` with `animate-spin` over just text changes to provide visual feedback.
