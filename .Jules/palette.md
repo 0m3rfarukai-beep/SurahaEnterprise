@@ -1,0 +1,3 @@
+## 2025-06-25 - Provide Clear Feedback During Async Submit
+**Learning:** Users can become confused and submit the form multiple times if they do not receive immediate visual feedback after clicking a submit button for an async operation (like sending a contact request).
+**Action:** Always swap the static icon (like a "Send" icon) for an animated spinner (like `Loader2` with `animate-spin` from `lucide-react`) and update the button text to clearly indicate processing (e.g., "Sending...") when the form is in a loading state.
