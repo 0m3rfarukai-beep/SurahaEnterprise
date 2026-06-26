@@ -1,0 +1,3 @@
+## 2024-06-26 - Improve Contact Form Accessibility and Loading State
+**Learning:** Incorporating visual feedback via a loading spinner (`Loader2` with `animate-spin`) for async form submissions significantly improves user experience by confirming their action was received while the network request is pending. Additionally, supplementary icons placed inside buttons or feedback states should always use `aria-hidden="true"` to prevent screen readers from reading them out loud, reducing noise.
+**Action:** Always include a visual loading state for form submissions and apply `aria-hidden="true"` to non-essential UI icons across the application.
