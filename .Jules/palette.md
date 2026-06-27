@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility and UX pattern for async buttons
+**Learning:** Supplementary icons alongside text in buttons can cause redundant or confusing screen reader announcements if not hidden. Also, providing visual feedback during async operations with a loading spinner is crucial for a smooth user experience, and the established pattern is using `Loader2` with `animate-spin`.
+**Action:** When creating or updating async buttons, always include `aria-hidden="true"` on supplementary icons (like a `Send` or `Loader2` icon). Implement a loading state that shows the `Loader2` spinner and updates the button text to reflect the ongoing action (e.g., "Sending...").
