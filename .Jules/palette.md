@@ -1,0 +1,3 @@
+## 2025-05-18 - Prevent Redundant Screen Reader Announcements for Supplementary Icons
+**Learning:** When combining text with a supplementary icon inside a button or label (such as 'Submit Request' alongside a 'Send' icon), screen readers may announce both the text and the icon's implicit label, leading to a redundant or confusing experience.
+**Action:** Always apply `aria-hidden="true"` to decorative or supplementary icons inside buttons or links that already have descriptive text, ensuring a cleaner experience for assistive technology users.
