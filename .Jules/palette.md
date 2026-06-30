@@ -1,0 +1,3 @@
+## 2024-06-30 - Contact Form Button Accessibility & UX Loading State
+**Learning:** Adding accessibility elements to loading state of buttons wasn't done properly in some parts of the code. The icon elements needed `aria-hidden="true"` since the button texts natively present the semantic context for screen readers. Also, missing an actual spinning loading component made the button states ambiguous during the transition.
+**Action:** Used `Loader2` from `lucide-react` with a spinning animation, and added `aria-hidden="true"` to supplementary icons in buttons. This pattern can be reused in all forms in the system.
