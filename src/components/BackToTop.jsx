@@ -32,7 +32,7 @@ const BackToTop = () => {
           aria-label="Back to top"
           className="fixed bottom-6 right-4 md:bottom-8 md:right-8 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_4px_14px_rgba(37,99,235,0.4)] z-40 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700"
         >
-          <ArrowUp size={24} />
+          <ArrowUp size={24} aria-hidden="true" />
         </button>
       )}
     </>
