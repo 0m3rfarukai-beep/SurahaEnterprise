@@ -130,7 +130,7 @@ const Quiz = () => {
                     onClick={() => setCurrentStep(prev => prev - 1)}
                     className="mt-8 flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors w-fit font-semibold"
                   >
-                    <ArrowLeft size={16} /> Previous Question
+                    <ArrowLeft size={16} aria-hidden="true" /> Previous Question
                   </button>
                 )}
               </motion.div>
@@ -165,7 +165,7 @@ const Quiz = () => {
                 >
                   <Link to="/contact" className="w-full">
                     <Button className="h-14 w-full text-lg font-bold rounded-xl shadow-xl shadow-blue-600/20 hover:-translate-y-1 transition-transform">
-                      Send My Recommendation <ArrowRight className="ml-2" size={20} />
+                      Send My Recommendation <ArrowRight className="ml-2" size={20} aria-hidden="true" />
                     </Button>
                   </Link>
                   <Button variant="outline" onClick={resetQuiz} className="h-14 w-full sm:w-auto px-8 text-lg font-bold rounded-xl border-2 hover:bg-slate-50">

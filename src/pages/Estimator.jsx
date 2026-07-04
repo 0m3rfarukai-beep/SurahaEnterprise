@@ -168,7 +168,7 @@ const Estimator = () => {
                 <Link to="/contact" className="block">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button className="w-full h-14 text-base sm:text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-400 rounded-xl shadow-xl shadow-blue-600/30 border border-blue-400/20 text-white">
-                      Request Exact Quote <ArrowRight className="ml-2" size={18} />
+                      Request Exact Quote <ArrowRight className="ml-2" size={18} aria-hidden="true" />
                     </Button>
                   </motion.div>
                 </Link>
