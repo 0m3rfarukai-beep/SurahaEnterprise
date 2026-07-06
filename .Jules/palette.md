@@ -1,0 +1,3 @@
+## 2023-10-27 - Decorative Icons in Form Buttons
+**Learning:** Decorative icons placed inside submission buttons (like the `Send` icon in `ContactForm.jsx`) can result in confusing screen reader announcements when they are rendered alongside primary button text.
+**Action:** When adding supplementary icons inside a button or label containing explicit text, apply `aria-hidden="true"` to the icon element to prevent redundant announcements and ensure clear focus for screen reader users.
