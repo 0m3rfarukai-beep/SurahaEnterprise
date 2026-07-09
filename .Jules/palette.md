@@ -1,0 +1,3 @@
+## 2025-07-09 - Accessible Buttons with Icons
+**Learning:** When adding supplementary icons to buttons (like a `Send` or `Loader2` icon next to the "Submit" text), it's crucial to add `aria-hidden="true"` to the icon element. Otherwise, screen readers will announce both the text and a potentially redundant description of the icon, cluttering the experience. The text itself is the accessible label.
+**Action:** Always add `aria-hidden="true"` to decorative or supplementary icons inside interactive elements (buttons, links) that already have descriptive text. Include a loading spinner via `Loader2` with `animate-spin` class for async form submission buttons to provide visual feedback.
