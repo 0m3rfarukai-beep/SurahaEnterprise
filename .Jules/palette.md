@@ -1,0 +1,3 @@
+## 2024-05-17 - Submit Button Loading State & Icon Accessibility
+**Learning:** When creating submit buttons with loading states and supplementary icons (like a 'Send' icon), screen readers can redundantly announce the icons if not properly hidden. Additionally, the project conventions established for async form submissions use `Loader2` from `lucide-react` paired with the Tailwind `animate-spin` class for clear visual feedback.
+**Action:** When adding icons to buttons with text labels, always apply `aria-hidden="true"` to the icons to maintain a clean screen reader experience. Always use the `Loader2` and `animate-spin` pattern for button loading states to ensure UI consistency across the application.
