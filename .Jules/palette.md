@@ -1,0 +1,3 @@
+## 2024-07-13 - Improve ContactForm submit button UX and accessibility
+**Learning:** Loading states on form submit buttons are important for user feedback. When replacing text or showing an icon during loading, supplementary icons like spinners or send icons should use `aria-hidden="true"` to prevent redundant screen reader announcements, relying on the button text itself to convey the state.
+**Action:** Always pair `Loader2` from `lucide-react` with `animate-spin` for loading states in buttons, and add `aria-hidden="true"` to these and other purely decorative icons.
