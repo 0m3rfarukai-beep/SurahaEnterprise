@@ -1,0 +1,3 @@
+## 2026-07-20 - Accessible Loading States and Supplementary Icons
+**Learning:** Hiding supplementary icons (like a 'Send' icon next to 'Submit') from screen readers with `aria-hidden="true"` prevents redundant and confusing announcements. Furthermore, using a visual loading spinner (`Loader2` with `animate-spin`) provides clear feedback for async actions, improving both accessibility and UX.
+**Action:** Always add `aria-hidden="true"` to icons that are purely decorative or redundant when alongside descriptive text in interactive elements. Use established patterns like `Loader2` for loading states to ensure consistent feedback.
