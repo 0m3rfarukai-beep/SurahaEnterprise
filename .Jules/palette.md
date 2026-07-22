@@ -1,0 +1,3 @@
+## 2024-03-24 - Screen Reader Announcement on Supplementary Icons
+**Learning:** When combining text with a supplementary icon inside a button or label (such as 'Submit Request' alongside a 'Send' icon or 'Sending...' alongside a 'Loader2' spinner), screen readers might announce the icon redundantly or confusingly.
+**Action:** Apply `aria-hidden="true"` to supplementary icons in buttons (like the `Send` or `Loader2` icons) to prevent redundant screen reader announcements while keeping the main text accessible.
