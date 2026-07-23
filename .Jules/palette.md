@@ -1,0 +1,3 @@
+## 2024-07-23 - Async Button Feedback and Screen Reader Icon Redundancy
+**Learning:** Found a recurring pattern where submit buttons with async operations were leaving static icons in place during the loading phase (e.g. `Sending...` with a `Send` icon). This is visually incongruous. Additionally, supplementing button text with visual icons can create confusing screen reader announcements if the icon isn't explicitly hidden (`aria-hidden="true"`).
+**Action:** When implementing loading states, always replace the primary action icon with a spinning loader (`Loader2` + `animate-spin`). When combining descriptive button text with a purely supplementary/visual icon, ensure the icon has `aria-hidden="true"` applied to keep screen reader output concise.
