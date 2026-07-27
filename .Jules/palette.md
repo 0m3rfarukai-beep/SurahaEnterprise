@@ -1,0 +1,3 @@
+## 2024-05-18 - Supplementary Icons Accessibility & Loading States
+**Learning:** When adding informative icons inside interactive elements like buttons (e.g., `Loader2` for a loading state or `Send` for submit buttons) that also have text, these icons can cause redundant or confusing announcements for screen reader users. Additionally, using `Loader2` with `animate-spin` is a consistent standard for inline button loading states.
+**Action:** Always apply `aria-hidden="true"` to supplementary icons when accompanying text is present to prevent screen reader redundancy, and use `Loader2` with `animate-spin` for async button loading states to improve visual feedback without breaking accessibility.
