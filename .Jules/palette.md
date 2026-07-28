@@ -1,0 +1,3 @@
+## 2025-02-20 - Supplementary Icons Accessibility & Loading States
+**Learning:** Adding supplementary icons next to text in interactive elements (like a Send icon next to "Submit Request") without explicit labeling can result in redundant or confusing screen reader announcements. Furthermore, conveying async loading states purely through text changes ("Sending...") misses an opportunity for clearer visual feedback.
+**Action:** Always apply `aria-hidden="true"` to decorative or supplementary icons that accompany descriptive text inside buttons and labels. Additionally, pair text updates for async operations with an animated visual indicator, such as `Loader2` from `lucide-react` with a Tailwind `animate-spin` class, to improve visual affordance.
