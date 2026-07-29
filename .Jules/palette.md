@@ -1,0 +1,3 @@
+## 2024-07-29 - Improve icon accessibility and loading states
+**Learning:** When using supplementary icons inside buttons (like a submit or sending icon alongside text), it's important to apply `aria-hidden="true"` to prevent screen readers from announcing them redundantly. Also, use `Loader2` from `lucide-react` with the `animate-spin` class for consistent loading state feedback.
+**Action:** Always add `aria-hidden="true"` to supplementary button icons and use `Loader2` for loading states.
