@@ -1,0 +1,3 @@
+## 2023-10-27 - Submit Button Loading State
+**Learning:** Adding a loading spinner (`Loader2` with `animate-spin`) to the submit button provides crucial visual feedback during async operations, while `aria-hidden="true"` prevents redundant screen reader announcements for the icon. Also removing unused `catch (err)` error variables with `catch {}` satisfies strict ESLint rules in this repository.
+**Action:** Always include a visual loading state with appropriate `aria-hidden` attributes for decorative icons on async submit actions. Fix ESLint unused variable errors in try/catch blocks by removing the `err` variable when not needed.
