@@ -1,0 +1,3 @@
+## 2026-08-11 - Loading states in Submit Buttons
+**Learning:** Adding a `Loader2` paired with Tailwind's `animate-spin` is an effective, reusable pattern for conveying loading states within form action buttons. Crucially, supplementary icons inside actionable elements (like the `Loader2` and `Send` icons here) need the `aria-hidden="true"` attribute to prevent confusing screen reader behavior where the icon and the text are both announced or mis-announced.
+**Action:** Always add `aria-hidden="true"` to supplementary, decorative icons contained within UI buttons alongside visible text. Use `Loader2` from `lucide-react` with `animate-spin` for form submit feedback.
