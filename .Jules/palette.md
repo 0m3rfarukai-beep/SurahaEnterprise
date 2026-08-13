@@ -1,0 +1,3 @@
+## 2024-11-20 - Accessible loading state and supplementary icons
+**Learning:** Using aria-hidden="true" on supplementary icons within buttons containing text prevents screen readers from making redundant or confusing announcements, while using the Loader2 component paired with animate-spin ensures a visually clear, recognizable standard for async progress feedback.
+**Action:** When adding supplementary icons like 'Send' alongside text like 'Submit Request', apply aria-hidden="true" to the icon. When implementing loading states on form submission buttons, utilize lucide-react's Loader2 with Tailwind's animate-spin class.
