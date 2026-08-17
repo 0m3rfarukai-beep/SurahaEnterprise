@@ -1,0 +1,3 @@
+## 2026-08-17 - Enhance Button Loading State and Accessibility
+**Learning:** For forms that save data or submit requests asynchronously, adding a visual loading spinner (`Loader2` with `animate-spin`) along with disabling the button greatly improves user experience by providing immediate feedback. Additionally, supplementary icons (like `Send` or `Loader2`) inside text-bearing buttons should include `aria-hidden="true"` to prevent redundant and potentially confusing screen reader announcements.
+**Action:** Always include a visual loading state (like a spinner) and use `aria-hidden="true"` on decorative or supplementary icons within interactive elements.
