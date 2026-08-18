@@ -1,0 +1,3 @@
+## 2024-08-18 - Added Loading Spinner and ARIA Hiding to Submit Button
+**Learning:** Combining text and supplementary icons inside buttons (e.g., text + `Loader2` or text + `Send`) requires explicit `aria-hidden="true"` on the icons to prevent screen readers from announcing redundant or potentially confusing visual elements.
+**Action:** Always add `aria-hidden="true"` to pure decorative icons (like `Loader2` or `Send`) within a button that already clearly conveys state via text.
