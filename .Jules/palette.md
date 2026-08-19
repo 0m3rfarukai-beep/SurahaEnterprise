@@ -1,0 +1,3 @@
+## 2026-08-19 - Contact Form Loading State and Icon ARIA Attributes
+**Learning:** Combining text and a supplementary icon (like a 'Send' icon) inside a button without explicitly hiding the icon from screen readers can lead to confusing and redundant announcements. Furthermore, introducing visual loading indicators (like a spinning `Loader2`) inside a button must also consider screen reader output so they don't announce raw svg or icon code.
+**Action:** When adding supplementary icons or loading spinners to interactive elements that already contain descriptive text (e.g., 'Submit Request'), apply `aria-hidden="true"` to the icon or spinner to ensure screen readers only announce the text label, keeping the auditory experience clean and accessible.
