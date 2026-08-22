@@ -1,0 +1,3 @@
+## 2024-08-22 - Improved Contact Form Accessibility and Loading UX
+**Learning:** When using icons alongside text in a button (like "Submit Request" with a Send icon, or "Sending..." with a Loader spinner), the text already provides full context to screen readers. Leaving the icon accessible results in redundant or confusing announcements.
+**Action:** Always add `aria-hidden="true"` to supplementary or decorative icons within elements that already have textual content, to ensure a cleaner and less noisy screen reader experience. Additionally, adopting standard conventions like `Loader2` combined with Tailwind's `animate-spin` helps standardise the visual loading feedback consistently across the app.
