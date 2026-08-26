@@ -1,0 +1,3 @@
+## 2024-08-26 - Accessible Async Button Loading States
+**Learning:** When creating button loading states, it's important to provide visual feedback (like a spinning loader) without cluttering screen reader announcements. Using `aria-hidden="true"` on decorative icons and loader components ensures that screen readers only announce the text change (e.g., "Submit Request" to "Sending...") rather than trying to read the icon itself.
+**Action:** When adding icons or loaders alongside text in interactive elements like buttons, always add `aria-hidden="true"` to the icon element to improve accessibility and reduce noise for screen reader users.
