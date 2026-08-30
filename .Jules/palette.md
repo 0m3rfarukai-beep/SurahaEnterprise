@@ -1,0 +1,3 @@
+## 2024-11-20 - Loading States on Async Buttons
+**Learning:** For a smooth UX on forms, it is critical to provide visual feedback during async operations like submissions. The combination of `Loader2` from `lucide-react` with Tailwind's `animate-spin` provides an excellent, standard pattern for loading spinners. Furthermore, any supplementary icons within buttons or labels (like a 'Send' icon alongside 'Submit Request') must have `aria-hidden="true"` to prevent redundant or confusing screen reader announcements.
+**Action:** When creating or updating form submit buttons, always implement a loading state with `Loader2` and `animate-spin` while disabling the button, and ensure supplementary visual icons have `aria-hidden="true"`.
