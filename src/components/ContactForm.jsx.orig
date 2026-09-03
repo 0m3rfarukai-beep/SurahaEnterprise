@@ -56,8 +56,7 @@ const ContactForm = () => {
         localStorage.setItem('suraha_submissions', JSON.stringify([...existingSubmissions, { ...values, date: new Date().toISOString() }]));
         setStatus('success');
         form.reset();
-      } catch (err) {
-        console.error(err);
+      } catch {} {
         setStatus('error');
         setErrorMessage('Failed to save submission locally. Please try again.');
       }
@@ -82,7 +81,7 @@ const ContactForm = () => {
   return (
     <div className="bg-white p-0 flex flex-col gap-5 h-auto">
       <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Request a Free Consultation</h3>
-      
+
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-md text-red-600 flex items-center gap-3 mb-8">
           <AlertCircle size={20} />
@@ -120,7 +119,7 @@ const ContactForm = () => {
               )}
             />
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-5">
             <FormField
               control={form.control}
@@ -157,8 +156,8 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel className="font-semibold text-slate-800">Service Needed *</FormLabel>
                 <FormControl>
-                  <select 
-                    {...field} 
+                  <select
+                    {...field}
                     className="flex h-12 w-full items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm ring-offset-white placeholder:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <option value="" disabled>Select the primary service you're interested in</option>
@@ -182,8 +181,8 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Business Size *</FormLabel>
                   <FormControl>
-                    <select 
-                      {...field} 
+                    <select
+                      {...field}
                       className="flex h-12 w-full items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm ring-offset-white placeholder:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <option value="" disabled>Select size</option>
@@ -205,8 +204,8 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Budget Range *</FormLabel>
                   <FormControl>
-                    <select 
-                      {...field} 
+                    <select
+                      {...field}
                       className="flex h-12 w-full items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm ring-offset-white placeholder:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <option value="" disabled>Select budget</option>
@@ -228,8 +227,8 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Project Timeline *</FormLabel>
                   <FormControl>
-                    <select 
-                      {...field} 
+                    <select
+                      {...field}
                       className="flex h-12 w-full items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm ring-offset-white placeholder:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <option value="" disabled>Select timeline</option>
@@ -252,10 +251,10 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel className="font-semibold text-slate-800">Project Details *</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Tell us a little bit about your current challenges and what you're looking to achieve..." 
+                  <Textarea
+                    placeholder="Tell us a little bit about your current challenges and what you're looking to achieve..."
                     className="min-h-[110px] bg-slate-50 border-slate-200 focus-visible:ring-blue-600"
-                    {...field} 
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -263,12 +262,12 @@ const ContactForm = () => {
             )}
           />
 
-          <Button 
-            type="submit" 
-            disabled={status === 'loading'} 
+          <Button
+            type="submit"
+            disabled={status === 'loading'}
             className="w-full h-12 md:h-14 text-base md:text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg shadow-blue-600/20"
           >
-            {status === 'loading' ? 'Sending...' : 'Submit Request'} 
+            {status === 'loading' ? 'Sending...' : 'Submit Request'}
             {status === 'loading' ? (
               <Loader2 className="ml-2 animate-spin" size={20} aria-hidden="true" />
             ) : (
