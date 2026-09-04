@@ -1,0 +1,3 @@
+## 2024-05-24 - Submit Button Loading State and Accessibility
+**Learning:** Adding a loading spinner (`Loader2` with `animate-spin`) to async submit buttons improves user feedback during processing. Also, when combining text with a supplementary icon inside a button (such as 'Submit Request' alongside a 'Send' icon), applying `aria-hidden="true"` to the icon prevents redundant or confusing screen reader announcements.
+**Action:** Always include a visual loading state (like a spinner) for form submissions or async actions. Consistently apply `aria-hidden="true"` to purely decorative or supplementary icons next to text labels within interactive elements.
