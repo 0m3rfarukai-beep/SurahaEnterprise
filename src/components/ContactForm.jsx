@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -57,6 +57,7 @@ const ContactForm = () => {
         setStatus('success');
         form.reset();
       } catch (err) {
+        console.error('Form submission error:', err);
         setStatus('error');
         setErrorMessage('Failed to save submission locally. Please try again.');
       }
@@ -268,7 +269,11 @@ const ContactForm = () => {
             className="w-full h-12 md:h-14 text-base md:text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg shadow-blue-600/20"
           >
             {status === 'loading' ? 'Sending...' : 'Submit Request'} 
-            <Send size={20} className="ml-2" />
+            {status === 'loading' ? (
+              <Loader2 size={20} className="ml-2 animate-spin" aria-hidden="true" />
+            ) : (
+              <Send size={20} className="ml-2" aria-hidden="true" />
+            )}
           </Button>
         </form>
       </Form>
