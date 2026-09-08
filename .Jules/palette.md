@@ -1,0 +1,3 @@
+## 2025-05-14 - Improve Loading States & Icon Accessibility
+**Learning:** Supplementary icons used in buttons alongside text (like a `Send` or `Loader2` icon) cause redundant screen reader announcements if left exposed.
+**Action:** Always apply `aria-hidden="true"` to supplementary icons in buttons when text is already present. Use the `Loader2` component with `animate-spin` for standardized loading state patterns in async forms.
