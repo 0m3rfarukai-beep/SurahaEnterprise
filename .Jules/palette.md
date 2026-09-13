@@ -1,0 +1,3 @@
+## 2024-09-13 - Optimize Mobile Data Entry and Accessibility
+**Learning:** Using semantic HTML `type` attributes (e.g., `type="email"`, `type="tel"`, `type="url"`) triggers optimized mobile keyboards, which significantly improves data entry UX on touch devices compared to generic text inputs. Additionally, using `aria-hidden="true"` on supplementary icons inside text buttons prevents redundant or confusing screen reader announcements.
+**Action:** Always apply the most specific input type available based on the data expected, and ensure decorative or supplementary icons inside buttons are hidden from screen readers.
