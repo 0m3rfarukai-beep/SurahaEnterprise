@@ -1,0 +1,3 @@
+## 2024-05-19 - Form UX and Mobile Accessibility
+**Learning:** Proper use of semantic input `type` attributes (`email`, `tel`, `url`) is crucial for mobile users as it triggers optimized software keyboards, significantly improving data entry UX. Additionally, explicit loading states during async actions (like form submissions) paired with `aria-hidden` on supplementary UI icons ensure that visual feedback is immediate without causing repetitive or confusing screen reader announcements.
+**Action:** Always apply the most specific HTML `type` attribute available for text inputs and standardize async button loading states using spinning loaders with `aria-hidden="true"` applied to decorative supplementary icons to ensure a balanced visual and accessible experience.
