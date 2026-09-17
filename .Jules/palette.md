@@ -1,0 +1,3 @@
+## 2023-10-27 - Semantic Input Types and ARIA Enhancements
+**Learning:** React/Tailwind applications often rely on generic text inputs and visual icons which degrade mobile UX (no optimized keyboard) and accessibility (screen readers announce decorative icons). Adding precise input types (like `email`, `tel`, `url`) significantly improves the mobile data entry experience. Furthermore, supplementary button icons must have `aria-hidden="true"` applied to avoid confusing screen reader announcements alongside text labels.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute to inputs and explicitly hide decorative/supplementary icons from assistive technologies using `aria-hidden="true"`.
