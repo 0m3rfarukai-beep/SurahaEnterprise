@@ -1,0 +1,3 @@
+## 2024-05-24 - Semantic Input Types & Supplemental Icons
+**Learning:** React text inputs defaults to standard keyboard on mobile. Using standard HTML5 types (e.g. `type="email"`, `type="tel"`, `type="url"`) correctly maps native device software keyboards out of the box and avoids screen reader confusion. Additionally, visual icons paired with text inside interactive elements (like a Send icon inside a submit button) create redundant screen reader noise if not explicitly hidden.
+**Action:** Always apply explicit semantic input types on form fields designed for specific data, and add `aria-hidden="true"` to supplementary visual-only icons to improve data entry speed and accessible navigation.
