@@ -1,0 +1,3 @@
+## 2024-09-25 - Contact Form Mobile Inputs and Button Accessibility
+**Learning:** Text inputs managed by Shadcn/React Hook Form lack semantic `type` attributes by default (like `type="email"` or `type="tel"`), degrading mobile keyboard UX. Additionally, supplementary icons paired with text inside buttons lack `aria-hidden`, causing redundant screen reader announcements, and async buttons often miss visual loading indicators.
+**Action:** Manually specify semantic `type` attributes for inputs to trigger optimized mobile keyboards. Pair text with `aria-hidden="true"` on supplementary icons, and use `Loader2` with `animate-spin` for clear async loading states.
