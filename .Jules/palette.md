@@ -1,0 +1,3 @@
+## 2024-09-26 - Form Input and Submit Button UX Enhancements
+**Learning:** Adding semantic `type` attributes to input fields (like `tel`, `url`, `email`) significantly enhances mobile UX by automatically triggering the correct software keyboard. Additionally, providing visual feedback with an animated spinner on submit buttons and hiding supplementary icons with `aria-hidden="true"` reduces screen reader clutter.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute to text inputs. When implementing loading states for async actions, use the `Loader2` component from `lucide-react` paired with the Tailwind `animate-spin` class, and ensure supplementary icons within buttons or labels have `aria-hidden="true"`.
