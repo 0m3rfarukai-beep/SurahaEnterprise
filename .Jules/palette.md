@@ -1,0 +1,3 @@
+## 2024-10-24 - Semantic Input Types & Loading States
+**Learning:** Using generic `type="text"` for specialized data fields (email, phone, URL) forces users on mobile devices to use standard keyboards instead of optimized layouts (like numeric keypads or keyboards with quick access to `@` and `.com`).
+**Action:** Always apply the most semantically appropriate HTML `type` attribute (`type="email"`, `type="tel"`, `type="url"`) to inputs. Additionally, when implementing loading states for async actions, utilize standard visual cues like a spinner (`Loader2` from `lucide-react` with `animate-spin`) combined with a supplementary icon that has `aria-hidden="true"` applied to avoid redundant screen reader announcements.
