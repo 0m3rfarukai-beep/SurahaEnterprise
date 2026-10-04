@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -57,6 +57,7 @@ const ContactForm = () => {
         setStatus('success');
         form.reset();
       } catch (err) {
+        console.error("Local storage error:", err);
         setStatus('error');
         setErrorMessage('Failed to save submission locally. Please try again.');
       }
@@ -112,7 +113,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Business Email *</FormLabel>
                   <FormControl>
-                    <Input placeholder="jane@company.com" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input placeholder="jane@company.com" type="email" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,7 +129,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Phone Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="+44 7000 000000" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input placeholder="+44 7000 000000" type="tel" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,7 +142,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Company Website</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://example.com" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input placeholder="https://example.com" type="url" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -267,8 +268,17 @@ const ContactForm = () => {
             disabled={status === 'loading'} 
             className="w-full h-12 md:h-14 text-base md:text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-lg shadow-blue-600/20"
           >
-            {status === 'loading' ? 'Sending...' : 'Submit Request'} 
-            <Send size={20} className="ml-2" />
+            {status === 'loading' ? (
+              <>
+                <Loader2 size={20} className="mr-2 animate-spin" aria-hidden="true" />
+                Sending...
+              </>
+            ) : (
+              <>
+                Submit Request
+                <Send size={20} className="ml-2" aria-hidden="true" />
+              </>
+            )}
           </Button>
         </form>
       </Form>

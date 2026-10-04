@@ -1,0 +1,3 @@
+## 2024-05-19 - Semantic Types & ARIA Hiding in Forms
+**Learning:** Decorative icons in loading buttons (like standard send arrows alongside spinners) get redundantly announced by screen readers if not properly hidden. Additionally, text inputs often miss optimal mobile keyboards because they default to text rather than their specific formats (like url, tel).
+**Action:** Always add `aria-hidden="true"` to supplementary/decorative icons inside buttons, and ensure proper `type` attributes (e.g. `type="email"`, `type="tel"`, `type="url"`) are used on form fields to trigger correct mobile device keyboards.
