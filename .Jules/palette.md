@@ -1,0 +1,3 @@
+## 2024-05-18 - Semantic Input Types & Accessible Loading States
+**Learning:** Text inputs in forms (`ContactForm.jsx`) lacked specific `type` attributes (e.g., `email`, `tel`, `url`), which degrades mobile UX by failing to trigger optimized software keyboards. Additionally, when using icons in buttons (like a spinner during a loading state), they can be redundantly announced by screen readers if not properly hidden.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute to text inputs to enhance mobile data entry UX. Pair loading spinners (like `Loader2`) with text (e.g., "Sending...") and apply `aria-hidden="true"` to supplementary icons within buttons to prevent confusing screen reader announcements.
