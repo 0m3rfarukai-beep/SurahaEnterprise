@@ -1,0 +1,3 @@
+## 2025-02-13 - Semantic Input Types & Icon Accessibility
+**Learning:** For mobile users, explicitly setting `type="email"`, `type="tel"`, and `type="url"` on text inputs triggers the correct software keyboard (e.g., adding '@', '.com', and numeric keypads). Additionally, applying `aria-hidden="true"` to purely decorative or supplementary icons (like a 'Send' arrow next to text, or loading spinners) prevents confusing and redundant screen reader announcements.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute to text inputs and ensure supplementary icons within buttons or labels have `aria-hidden="true"`.
