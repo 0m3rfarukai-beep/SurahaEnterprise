@@ -1,0 +1,4 @@
+
+## 2024-03-24 - Form UX and Accessibility Enhancements
+**Learning:** Found that custom `Input` components acting as specific field types (email, phone, url) were missing correct semantic HTML `type` attributes. This lack of semantic typing degraded the mobile experience by not triggering the appropriate specialized mobile keyboards. Additionally, found the form's submit button lacked a loading indicator, providing poor visual feedback for an async operation, and its icon lacked `aria-hidden`, leading to potentially confusing screen-reader announcements.
+**Action:** Always add semantic HTML `type` attributes (e.g. `type="email"`, `type="tel"`, `type="url"`) to corresponding text inputs for mobile keyboard optimization. Use `Loader2` from `lucide-react` paired with Tailwind's `animate-spin` for clear loading states on async actions. Apply `aria-hidden="true"` to supplementary icons in buttons to prevent redundant screen-reader announcements.
