@@ -1,0 +1,3 @@
+## 2024-06-25 - Semantic input types and sr-only labels in grid layouts
+**Learning:** Text inputs should always have the most semantically appropriate `type` attribute (`email`, `tel`, `url`) to trigger optimized mobile keyboards. When adding `sr-only` labels to inputs inside CSS grid layouts, wrapping the label and input in a `<div>` with `w-full` on the input prevents the visually hidden label from unintentionally acting as a grid item and breaking the layout.
+**Action:** Always check input types during form creation. Apply `sr-only` labels paired with wrapper `<div>`s when forms use CSS grids and visually rely only on placeholders.
