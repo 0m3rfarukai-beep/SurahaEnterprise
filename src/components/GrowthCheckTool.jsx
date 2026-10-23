@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { AlertCircle, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { buildLeadPayload, saveToolLead } from '@/lib/leadCapture';
 
@@ -74,20 +74,26 @@ const GrowthCheckTool = ({ compact = false }) => {
     mainGoal: goals[0],
   });
   const [report, setReport] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const canRun = useMemo(() => form.businessName.trim() && form.websiteUrl.trim(), [form.businessName, form.websiteUrl]);
 
   const runCheck = async () => {
     if (!canRun) return;
-    const nextReport = buildReport(form);
-    setReport(nextReport);
-    await saveToolLead(buildLeadPayload({
-      toolUsed: 'Free Website Growth Check',
-      form,
-      result: nextReport,
-      recommendedService: nextReport.recommendedService,
-      leadScore: nextReport.leadScore,
-    }));
+    setIsLoading(true);
+    try {
+      const nextReport = buildReport(form);
+      setReport(nextReport);
+      await saveToolLead(buildLeadPayload({
+        toolUsed: 'Free Website Growth Check',
+        form,
+        result: nextReport,
+        recommendedService: nextReport.recommendedService,
+        leadScore: nextReport.leadScore,
+      }));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -133,8 +139,9 @@ const GrowthCheckTool = ({ compact = false }) => {
           </select>
         </div>
 
-        <Button onClick={runCheck} disabled={!canRun} className="w-full sm:w-auto h-12 px-6 rounded-xl font-bold bg-blue-600 hover:bg-blue-700">
-          Generate Growth Check
+        <Button onClick={runCheck} disabled={!canRun || isLoading} className="w-full sm:w-auto h-12 px-6 rounded-xl font-bold bg-blue-600 hover:bg-blue-700 flex items-center justify-center">
+          {isLoading && <Loader2 size={18} className="animate-spin mr-2" aria-hidden="true" />}
+          {isLoading ? 'Generating...' : 'Generate Growth Check'}
         </Button>
 
         {report && (
