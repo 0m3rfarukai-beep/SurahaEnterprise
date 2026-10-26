@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility Labels in CSS Grids & Mobile UX
+**Learning:** Adding `.sr-only` visually hidden labels to inputs directly inside a CSS grid container causes them to act as grid items, unexpectedly breaking the layout. Additionally, omitting explicit semantic `type` attributes (like `type="url"` or `type="email"`) degrades the mobile experience because standard keyboards are triggered instead of optimized contextual keyboards.
+**Action:** When adding accessibility labels to inputs within a grid layout, always wrap the `<label>` and `<input>` in a parent `<div>`, and apply `w-full` to the input so it fills the parent. Also, always ensure the most semantically appropriate `type` attribute is assigned to inputs to enhance mobile data entry.
