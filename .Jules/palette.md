@@ -1,0 +1,3 @@
+## 2024-10-27 - Mobile and Accessibility UX Optimizations
+**Learning:** Text inputs lacking appropriate `type` attributes (e.g., `email`, `tel`, `url`) provide a poor user experience on mobile devices by failing to trigger optimized software keyboards. Additionally, when using icons alongside text inside interactive elements like buttons, screen readers may make redundant or confusing announcements if the supplementary icon is not explicitly hidden.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute (`email`, `tel`, `url`, etc.) to text inputs to enhance mobile data entry UX. Apply `aria-hidden="true"` to supplementary icons within buttons or labels to ensure screen readers only announce the primary interactive text.
