@@ -1,0 +1,3 @@
+## 2023-10-28 - Contact Form UX
+**Learning:** Adding semantically appropriate HTML `type` attributes (e.g., `type="email"`, `type="tel"`, `type="url"`) to inputs significantly improves mobile UX by triggering the correct software keyboards. Using `Loader2` from `lucide-react` paired with `animate-spin` is the standard for async loading states. Decorative icons paired with text must use `aria-hidden="true"` to prevent screen reader redundancy.
+**Action:** Always apply specific input types over generic text inputs. Use the `Loader2` + `animate-spin` pattern for all async form submissions. Audit buttons to ensure decorative icons have `aria-hidden="true"`.
