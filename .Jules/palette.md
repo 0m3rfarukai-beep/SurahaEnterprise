@@ -1,0 +1,3 @@
+## 2024-05-14 - Optimize Mobile Keyboards and Async Action Feedback
+**Learning:** Proper semantic HTML input types (e.g., `type="email"`, `type="tel"`, `type="url"`) drastically improve data entry UX on mobile devices by triggering optimized software keyboards. Also, when an async submit button has multiple elements like supplementary icons, visually representing a loading state needs careful ARIA handling to keep screen readers from announcing confusing, shifting elements.
+**Action:** Use specific semantic input types wherever possible. When adding supplementary icons or loading spinners to buttons, ensure `aria-hidden="true"` is applied to the icons to prevent redundant screen reader announcements while providing clear visual feedback.
