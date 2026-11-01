@@ -1,0 +1,3 @@
+## 2024-05-24 - Enhance mobile entry with semantic input types and loading states
+**Learning:** Text inputs should use semantically appropriate HTML `type` attributes (e.g., `type="email"`, `type="tel"`, `type="url"`) to properly trigger optimized software keyboards on mobile devices, vastly improving data entry UX. Additionally, wrapping icons next to text in `aria-hidden="true"` prevents redundant screen reader announcements (e.g., "Submit Request Send").
+**Action:** Always apply the most semantically appropriate `type` attribute for text inputs, and hide supplementary decorative icons within buttons from screen readers using `aria-hidden="true"`. Use `Loader2` from `lucide-react` with `animate-spin` for async loading indicators.
