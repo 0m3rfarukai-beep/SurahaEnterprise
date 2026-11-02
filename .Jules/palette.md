@@ -1,0 +1,3 @@
+## 2024-03-20 - Missing ARIA Labels on Form Inputs
+**Learning:** Found multiple `<input>` elements in `src/components/GrowthCheckTool.jsx` relying solely on placeholder text for visual labeling without accompanying `<label>` elements or `aria-label` attributes, which creates significant accessibility barriers for screen reader users and fails WCAG guidelines.
+**Action:** When creating form fields, always ensure every input has an explicit label, either visually through a `<label>` element connected via `id`/`htmlFor` (preferred) or via an `aria-label` attribute if the visual design strictly precludes a visible label.
