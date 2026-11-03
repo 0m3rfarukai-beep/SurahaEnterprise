@@ -1,0 +1,3 @@
+## 2024-05-15 - Enhancing Mobile Data Entry & Button Accessibility
+**Learning:** Adding the correct `type` attribute (`email`, `tel`, `url`) to form inputs isn't just about validation; it significantly improves the mobile UX by triggering the correct software keyboard natively. Furthermore, supplementary icons inside a button (like a "Send" icon next to "Submit Request") create duplicate or confusing audio for screen readers.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute to text inputs, especially for contact forms. Always apply `aria-hidden="true"` to supplementary icons inside buttons to maintain accessible and clean screen reader announcements.
