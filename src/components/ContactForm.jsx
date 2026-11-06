@@ -57,6 +57,7 @@ const ContactForm = () => {
         setStatus('success');
         form.reset();
       } catch (err) {
+        console.error(err);
         setStatus('error');
         setErrorMessage('Failed to save submission locally. Please try again.');
       }
@@ -112,7 +113,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Business Email *</FormLabel>
                   <FormControl>
-                    <Input placeholder="jane@company.com" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,7 +129,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Phone Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="+44 7000 000000" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input type="tel" placeholder="+44 7000 000000" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,7 +142,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel className="font-semibold text-slate-800">Company Website</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://example.com" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input type="url" placeholder="https://example.com" {...field} className="h-12 bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
