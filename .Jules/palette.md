@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing Loading State Spinner
+**Learning:** The submit button in `ContactForm` changes text to "Sending..." when clicked, but the `Send` icon remains, making the loading state less obvious and polished than it could be. A spinner during async operations is a critical micro-UX enhancement that provides better visual feedback that the application is processing the request.
+**Action:** Replace the `Send` icon with a `Loader2` spinner (with `animate-spin` class) when the form status is 'loading', and add `aria-hidden="true"` to the icon to prevent redundant screen reader announcements.
