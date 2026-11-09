@@ -1,0 +1,3 @@
+## 2024-11-09 - Improve Contact Form UX and Accessibility
+**Learning:** Adding semantically correct input types (`email`, `tel`, `url`) significantly improves the mobile user experience by triggering the correct software keyboard. Additionally, supplementary icons placed inside buttons (like a submit spinner or send icon) can cause screen readers to announce confusing or redundant information.
+**Action:** Always apply the most semantically appropriate HTML `type` attribute to text inputs. When combining text with a supplementary icon inside a button or label, apply `aria-hidden="true"` to the icon to prevent redundant screen reader announcements.
