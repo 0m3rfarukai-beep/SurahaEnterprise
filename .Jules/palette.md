@@ -1,0 +1,3 @@
+## 2024-11-11 - Add loading spinner and a11y improvements to contact form
+**Learning:** Adding a supplementary icon to a button with text requires `aria-hidden="true"` to prevent redundant screen reader announcements. Using `Loader2` with `animate-spin` provides clear visual feedback during async operations like form submissions, improving the user experience.
+**Action:** Always add `aria-hidden="true"` to supplementary icons in buttons (like "Submit Request" alongside a "Send" icon) and use `Loader2` from `lucide-react` with Tailwind's `animate-spin` for loading states to provide visual feedback.
